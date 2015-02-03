@@ -4,12 +4,17 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>&lt;编写可维护的 JavaScript&gt; 要点 | Fannie Love Blog</title>
+    <title>jshint | Fannie Love Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="Fannie">
     
-    <meta name="description" content="&amp;lt;编写可维护的 JavaScript&amp;gt; 要点">
+    <meta name="description" content="jshint
+安装
+安装 JSHint 最简单的方法是使用 node. 只需要在你的终端输入下面的命令行(标记 -g 表示要在你的系统中全局安装, 如果你仅仅想安装在你的项目中, 请删除 -g).
+1npm install jshint -g
+
+下面你就可以使用 jshint 程序了, 一个简单的用">
     
     
     
@@ -68,15 +73,15 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2015/01/29/2015-01-27-maintainable-javascript/" title="&lt;编写可维护的 JavaScript&gt; 要点" itemprop="url">&lt;编写可维护的 JavaScript&gt; 要点</a>
+      <a href="/2015/02/03/jshint/" title="jshint" itemprop="url">jshint</a>
   </h1>
   <p class="article-author">By
     
       <a href="http://blog.fflove.top" title="Fannie">Fannie</a>
     </p>
   <p class="article-time">
-    <time datetime="2015-01-29T15:22:55.000Z" itemprop="datePublished">2015-01-29</time>
-    Updated:<time datetime="2015-01-29T15:22:55.000Z" itemprop="dateModified">2015-01-29</time>
+    <time datetime="2015-02-03T00:22:14.000Z" itemprop="datePublished">2015-02-03</time>
+    Updated:<time datetime="2015-02-03T01:18:24.000Z" itemprop="dateModified">2015-02-03</time>
     
   </p>
 </header>
@@ -85,20 +90,49 @@
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
-		<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#<编写可维护的_JavaScript>_要点"><span class="toc-number">1.</span> <span class="toc-text"><编写可维护的 JavaScript> 要点</span></a></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#jshint"><span class="toc-number">1.</span> <span class="toc-text">jshint</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装"><span class="toc-number">1.1.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置"><span class="toc-number">1.2.</span> <span class="toc-text">配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#内联配置"><span class="toc-number">1.3.</span> <span class="toc-text">内联配置</span></a></li></ol></li></ol>
 		</div>
 		
-		<h3 id="&lt;编写可维护的_JavaScript&gt;_要点">&lt;编写可维护的 JavaScript&gt; 要点</h3>
+		<h1 id="jshint">jshint</h1>
+<h2 id="安装">安装</h2>
+<p>安装 JSHint 最简单的方法是使用 node. 只需要在你的终端输入下面的命令行(标记 -g 表示要在你的系统中全局安装, 如果你仅仅想安装在你的项目中, 请删除 -g).</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm <span class="operator"><span class="keyword">install</span> jshint -g</span></div></pre></td></tr></table></figure>
+
+<p>下面你就可以使用 jshint 程序了, 一个简单的用法是检测单个文件或者指定目录下的所有 js 文件:</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">localhos<span class="variable">t:blog</span> fan$ jshint <span class="keyword">source</span>/test/myfile.js</div><div class="line"><span class="keyword">source</span>/test/myfile.<span class="keyword">j</span><span class="variable">s:</span> <span class="built_in">line</span> <span class="number">2</span>, <span class="built_in">col</span> <span class="number">6</span>, Missing semicolon.</div><div class="line"></div><div class="line"><span class="number">1</span> error</div></pre></td></tr></table></figure>
+
+<p>? 如果文件路径是一个破折号(-), jshint 将从标准输入读取</p>
+<h2 id="配置">配置</h2>
+<p>配置方式:</p>
+<ul>
+<li>通过 —config 标记手动指定特殊的配置文件(.jshintrc)</li>
+<li>将配置写入项目的 package.json 文件中的 jshintConfig 属性下</li>
+</ul>
+<p>如果使用 .jshintrc, 开始时, JSHint 将在被检测的 js 文件目录下寻找 .jshintrc 文件. 如果没有找到, 将向上层目录树查找一直到根目录.(注意: 如果输入是标准输入, JSHint 不接受查找配置文件).</p>
+<p>这种设置允许你为每一个项目分配配置文件. 放配置文件在项目的根目录下, 不论你在项目的哪个位置执行 JSHint, 使用的都是同一个配置.</p>
+<p>配置文件是一个简单的 json 文件, 它指明 JSHint 参数是打开还是关闭. 例如下面的这个配置, 未定义和未使用的变量将被标记为警告, 并且告诉 JSHint 全局变量的名字是 MY_GLOBAL.</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">{</div><div class="line">    "<span class="attribute">undef</span>": <span class="value"><span class="literal">true</span></span>,</div><div class="line">    "<span class="attribute">unused</span>": <span class="value"><span class="literal">true</span></span>,</div><div class="line">    "<span class="attribute">predef</span>": <span class="value">[ <span class="string">"MY_GLOBAL"</span> ]</span></div><div class="line">}</div></pre></td></tr></table></figure>
+
+<h2 id="内联配置">内联配置</h2>
+<p>除了(In addition to)使用配置文件之外, 你能使用特殊的注解在文件内部. 该注解以 jshint 或者 global 开始, 后面跟着以逗号分隔的参数. 例如, 下面的小片段和上面的配置有相同的作用.</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">/<span class="keyword">*</span> jshint undef: true, unused: true <span class="keyword">*</span>/</div><div class="line">/<span class="keyword">*</span> global MY_GLOBAL <span class="keyword">*</span>/</div></pre></td></tr></table></figure>
+
+<p>你能使用单行或者多行注释</p>
   
 	</div>
 		<footer class="article-footer clearfix">
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/JavaScript/">JavaScript</a>
+  </div>
 
 
 
 
 <div class="article-share" id="share">
 
-  <div data-url="http://blog.fflove.top/2015/01/29/2015-01-27-maintainable-javascript/" data-title="&lt;编写可维护的 JavaScript&gt; 要点 | Fannie Love Blog" data-tsina="null" class="share clearfix">
+  <div data-url="http://blog.fflove.top/2015/02/03/jshint/" data-title="jshint | Fannie Love Blog" data-tsina="null" class="share clearfix">
   </div>
 
 </div>
@@ -107,19 +141,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2015/01/30/2015-01-27-element-select/" title="select 样式重定义">
-  <strong>PREVIOUS:</strong><br/>
-  <span>
-  select 样式重定义</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2015/01/29/2015-01-27-js-apply-call/"  title="关于 JavaScript 中 apply 和 call">
+<a href="/2015/01/31/oneday/"  title="后会无期">
  <strong>NEXT:</strong><br/> 
- <span>关于 JavaScript 中 apply 和 call
+ <span>后会无期
 </span>
 </a>
 </div>
@@ -141,7 +167,7 @@
   
   <div class="archiveslist">
     <p class="asidetitle"><a href="/archives">Archives</a></p>
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">8</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">7</span></li></ul>
   </div>
 
 
@@ -161,7 +187,7 @@
 	<p class="asidetitle">Tags</p>
 		<ul class="clearfix">
 		
-			<li><a href="/tags/JavaScript/" title="JavaScript">JavaScript<sup>1</sup></a></li>
+			<li><a href="/tags/JavaScript/" title="JavaScript">JavaScript<sup>2</sup></a></li>
 		
 			<li><a href="/tags/音乐/" title="音乐">音乐<sup>1</sup></a></li>
 		
