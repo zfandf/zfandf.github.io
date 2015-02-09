@@ -81,7 +81,7 @@
     </p>
   <p class="article-time">
     <time datetime="2015-02-03T00:22:14.000Z" itemprop="datePublished">2015-02-03</time>
-    Updated:<time datetime="2015-02-03T01:18:24.000Z" itemprop="dateModified">2015-02-03</time>
+    Updated:<time datetime="2015-02-06T01:10:32.000Z" itemprop="dateModified">2015-02-06</time>
     
   </p>
 </header>
@@ -90,7 +90,7 @@
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
-		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#jshint"><span class="toc-number">1.</span> <span class="toc-text">jshint</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装"><span class="toc-number">1.1.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置"><span class="toc-number">1.2.</span> <span class="toc-text">配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#内联配置"><span class="toc-number">1.3.</span> <span class="toc-text">内联配置</span></a></li></ol></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#jshint"><span class="toc-number">1.</span> <span class="toc-text">jshint</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装"><span class="toc-number">1.1.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置"><span class="toc-number">1.2.</span> <span class="toc-text">配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#内联配置"><span class="toc-number">1.3.</span> <span class="toc-text">内联配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#指令,_下面是_JSHint_支持的指令列表"><span class="toc-number">1.4.</span> <span class="toc-text">指令, 下面是 JSHint 支持的指令列表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参数"><span class="toc-number">1.5.</span> <span class="toc-text">参数</span></a></li></ol></li></ol>
 		</div>
 		
 		<h1 id="jshint">jshint</h1>
@@ -117,7 +117,38 @@
 <p>除了(In addition to)使用配置文件之外, 你能使用特殊的注解在文件内部. 该注解以 jshint 或者 global 开始, 后面跟着以逗号分隔的参数. 例如, 下面的小片段和上面的配置有相同的作用.</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">/<span class="keyword">*</span> jshint undef: true, unused: true <span class="keyword">*</span>/</div><div class="line">/<span class="keyword">*</span> global MY_GLOBAL <span class="keyword">*</span>/</div></pre></td></tr></table></figure>
 
-<p>你能使用单行或者多行注释</p>
+<p>你能使用单行或者多行注释来配置 jshint. 如果你将注释写在函数内部, 配置将只在函数内部生效.</p>
+<h2 id="指令,_下面是_JSHint_支持的指令列表">指令, 下面是 JSHint 支持的指令列表</h2>
+<p>jshint  设置 JSHint 参数的指令:</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/<span class="keyword">*</span> jshint strict: true <span class="keyword">*</span>/</div></pre></td></tr></table></figure>
+
+<p>JSHint  设置 JSHint 兼容 JSLint 参数的指令:</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/<span class="keyword">*</span> jslint vars: true <span class="keyword">*</span>/</div></pre></td></tr></table></figure>
+
+<p>global  global 指令用于告诉 JSHint 在别处定义的全局变量. 如果值为 false(默认为 false), JSHint 认为该变量为只读. 该属性和 undef 属性一起使用.</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/<span class="keyword">*</span> global MY_LIB: false <span class="keyword">*</span>/</div></pre></td></tr></table></figure>
+
+<p>你也可以针对某几个全局变量设置黑名单, 确保它们在当前文件的任何地方都不可以使用.</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/<span class="keyword">*</span> global -BAD_LIB <span class="keyword">*</span>/</div></pre></td></tr></table></figure>
+
+<p>exported  用于告诉 JSHint 在当前文件定义了一个在别处使用的全局变量, 通常和 unused 参数一起使用.</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/<span class="keyword">*</span> exported EXPORTED_LIB <span class="keyword">*</span>/</div></pre></td></tr></table></figure>
+
+<p>members  这个指令用于告诉 JSHint 所有你打算使用的属性. 该指令是被弃用的, 不赞成使用</p>
+<p>ignore  指令告诉 JSHint 忽略某快代码</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Code here will be linted with JSHint</span></div><div class="line"><span class="comment">/* jshint ignore:start */</span></div><div class="line"><span class="comment">// Code here will be ignore by JSHint</span></div><div class="line"><span class="comment">/* jshint ignore:end */</span></div></pre></td></tr></table></figure>
+
+<p>所有在 ignore:start 和 ignore:end 之间的代码都将被 JSHint 忽略. 另外, 你能通过尾随注释忽略一行代码:</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function">ignoreThis</span>(); <span class="comment">// jshint ignore:line</span></div></pre></td></tr></table></figure>
+
+<h2 id="参数">参数</h2>
+<p>大部分情况下, 当你在自己的代码中调整 JSHint 时, 你需要在所有的 JSHint 参数中寻找适合自己的那一个. 尝试找出 JSHint 参数是如何工作的是恰当的参数是混乱的和令人沮丧的(我们正在努力修复) 请仔细阅读下面的两段文章.</p>
+<p>JSHint 有两种类型的参数: 强制的和松懈的. 前者使 JSHint 更严格后者压制一些警告. 看下面这个栗子的代码:</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">main</span><span class="params">(a, b)</span> </span>{</div><div class="line">    <span class="keyword">return</span> a == <span class="literal">null</span>;</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p>当使用默认的 jshint 参数检测这段代码时, 会报出如下警告:</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">fan:test fan$ jshint myfile.js</div><div class="line">myfile.js: line 2, col 14, <span class="operator"><span class="keyword">Use</span> <span class="string">'==='</span> <span class="keyword">to</span> compare <span class="keyword">with</span> <span class="string">'null'</span>.</span></div><div class="line"></div><div class="line"><span class="number">1</span> error</div></pre></td></tr></table></figure>
+
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -141,6 +172,14 @@
 	
 <nav class="article-nav clearfix">
  
+ <div class="prev" >
+ <a href="/2015/02/09/javascript-design-pattern-constructor/" title="javascript_design_pattern-constructor">
+  <strong>PREVIOUS:</strong><br/>
+  <span>
+  javascript_design_pattern-constructor</span>
+</a>
+</div>
+
 
 <div class="next">
 <a href="/2015/01/31/oneday/"  title="后会无期">
@@ -167,7 +206,7 @@
   
   <div class="archiveslist">
     <p class="asidetitle"><a href="/archives">Archives</a></p>
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">7</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">7</span></li></ul>
   </div>
 
 
@@ -187,7 +226,9 @@
 	<p class="asidetitle">Tags</p>
 		<ul class="clearfix">
 		
-			<li><a href="/tags/JavaScript/" title="JavaScript">JavaScript<sup>2</sup></a></li>
+			<li><a href="/tags/JavaScript/" title="JavaScript">JavaScript<sup>3</sup></a></li>
+		
+			<li><a href="/tags/oneday/" title="oneday">oneday<sup>1</sup></a></li>
 		
 			<li><a href="/tags/音乐/" title="音乐">音乐<sup>1</sup></a></li>
 		

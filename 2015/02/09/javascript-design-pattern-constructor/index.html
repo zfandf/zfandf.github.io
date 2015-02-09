@@ -4,20 +4,14 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>jQuery 自定义插件 | Fannie Love Blog</title>
+    <title>javascript_design_pattern-constructor | Fannie Love Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="Fannie">
     
-    <meta name="description" content="jQuery 自定义插件
-基本要点
-
-命名: 以 jquery.[插件名].js 命令
-所有的对象方法都附加到 jQuery.fn 对象上, 所有的全局函数都附加到 jQuery 上.
-this 指向
-this.each
-为了稳妥, 可以在插件头部各添加分号
-插件应该返回一个 jQuery 对象, ">
+    <meta name="description" content="JavaScript 设计模式 - Contructor (构造器) 模式
+基本 Contructor
+1234567function Person(name, age) {    this.name = name;    this.age = age;    this.toString = fun">
     
     
     
@@ -76,15 +70,15 @@ this.each
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2015/01/29/2015-01-27-jquery-plugns/" title="jQuery 自定义插件" itemprop="url">jQuery 自定义插件</a>
+      <a href="/2015/02/09/javascript-design-pattern-constructor/" title="javascript_design_pattern-constructor" itemprop="url">javascript_design_pattern-constructor</a>
   </h1>
   <p class="article-author">By
     
       <a href="http://blog.fflove.top" title="Fannie">Fannie</a>
     </p>
   <p class="article-time">
-    <time datetime="2015-01-29T15:22:05.000Z" itemprop="datePublished">2015-01-29</time>
-    Updated:<time datetime="2015-01-29T15:22:05.000Z" itemprop="dateModified">2015-01-29</time>
+    <time datetime="2015-02-09T00:40:51.000Z" itemprop="datePublished">2015-02-09</time>
+    Updated:<time datetime="2015-02-09T00:51:00.000Z" itemprop="dateModified">2015-02-09</time>
     
   </p>
 </header>
@@ -93,47 +87,31 @@ this.each
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
-		<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#jQuery_自定义插件"><span class="toc-number">1.</span> <span class="toc-text">jQuery 自定义插件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#基本要点"><span class="toc-number"></span> <span class="toc-text">基本要点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#基本格式"><span class="toc-number"></span> <span class="toc-text">基本格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#插件类型"><span class="toc-number"></span> <span class="toc-text">插件类型</span></a>
+		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#JavaScript_设计模式_-_Contructor_(构造器)_模式"><span class="toc-number">1.</span> <span class="toc-text">JavaScript 设计模式 - Contructor (构造器) 模式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#基本_Contructor"><span class="toc-number">1.1.</span> <span class="toc-text">基本 Contructor</span></a></li></ol></li></ol>
 		</div>
 		
-		<h3 id="jQuery_自定义插件">jQuery 自定义插件</h3>
-<h2 id="基本要点">基本要点</h2>
-<ul>
-<li>命名: 以 jquery.[插件名].js 命令</li>
-<li>所有的对象方法都附加到 jQuery.fn 对象上, 所有的全局函数都附加到 jQuery 上.</li>
-<li>this 指向</li>
-<li>this.each</li>
-<li>为了稳妥, 可以在插件头部各添加分号</li>
-<li>插件应该返回一个 jQuery 对象, 以保证插件的链式操作. 除非插件需要返回的是一些需要获取的量, 比如字符串或者数组.</li>
-<li>在插件中, 尽量不要使用 $ 作为 jQuery 对象的别名. 如果使用闭包来回避这个问题.</li>
-</ul>
-<h2 id="基本格式">基本格式</h2>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">;(<span class="function"><span class="keyword">function</span><span class="params">($)</span> </span>{</div><div class="line">    <span class="comment">// 代码块</span></div><div class="line">})(jQuery);</div></pre></td></tr></table></figure>
+		<h1 id="JavaScript_设计模式_-_Contructor_(构造器)_模式">JavaScript 设计模式 - Contructor (构造器) 模式</h1>
+<h2 id="基本_Contructor">基本 Contructor</h2>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span><span class="params">(name, age)</span> </span>{</div><div class="line">    <span class="keyword">this</span>.name = name;</div><div class="line">    <span class="keyword">this</span>.age = age;</div><div class="line">    <span class="keyword">this</span>.toString = <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>{</div><div class="line">        <span class="keyword">return</span> <span class="string">'我是'</span> + <span class="keyword">this</span>.name + <span class="string">', 今年'</span> + <span class="keyword">this</span>.age + <span class="string">'岁'</span>;</div><div class="line">    };</div><div class="line">}</div></pre></td></tr></table></figure>
 
-<h2 id="插件类型">插件类型</h2>
-<ul>
-<li>封装 jQuery 对象方法的插件</li>
-</ul>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">;(<span class="function"><span class="keyword">function</span><span class="params">($)</span> </span>{</div><div class="line">    $.fn.extend({</div><div class="line">        <span class="string">'对象方法名'</span>: <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>{</div><div class="line">            <span class="comment">// 方法内容</span></div><div class="line">        }</div><div class="line">    });</div><div class="line">})(jQuery);</div></pre></td></tr></table></figure>
+<p>用法, 创建 Person 的新实例:</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> p1 = <span class="keyword">new</span> Person(<span class="string">'fannie'</span>, <span class="number">21</span>);</div></pre></td></tr></table></figure>
 
-<ul>
-<li>封装全局函数的插件</li>
-</ul>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">;(<span class="function"><span class="keyword">function</span><span class="params">($)</span> </span>{</div><div class="line">    $.extend({</div><div class="line">        <span class="string">'方法名'</span>: <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>{</div><div class="line">            <span class="comment">// 方法内容</span></div><div class="line">        }</div><div class="line">    });</div><div class="line">})(jQuery);</div></pre></td></tr></table></figure>
-
-<ul>
-<li>自定义选择器<br>  这个实验了一下, 只有 jQuery1.7.2可用, 故而..</li>
-</ul>
   
 	</div>
 		<footer class="article-footer clearfix">
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/JavaScript/">JavaScript</a>
+  </div>
 
 
 
 
 <div class="article-share" id="share">
 
-  <div data-url="http://blog.fflove.top/2015/01/29/2015-01-27-jquery-plugns/" data-title="jQuery 自定义插件 | Fannie Love Blog" data-tsina="null" class="share clearfix">
+  <div data-url="http://blog.fflove.top/2015/02/09/javascript-design-pattern-constructor/" data-title="javascript_design_pattern-constructor | Fannie Love Blog" data-tsina="null" class="share clearfix">
   </div>
 
 </div>
@@ -143,18 +121,18 @@ this.each
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2015/01/29/2015-01-27-js-apply-call/" title="关于 JavaScript 中 apply 和 call">
+ <a href="/2015/02/09/oneday_1/" title="有一天">
   <strong>PREVIOUS:</strong><br/>
   <span>
-  关于 JavaScript 中 apply 和 call</span>
+  有一天</span>
 </a>
 </div>
 
 
 <div class="next">
-<a href="/2015/01/29/2015-01-27-arguments-callee/"  title="关于 JavaScript arguments.callee">
+<a href="/2015/02/03/jshint/"  title="jshint">
  <strong>NEXT:</strong><br/> 
- <span>关于 JavaScript arguments.callee
+ <span>jshint
 </span>
 </a>
 </div>
