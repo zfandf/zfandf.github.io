@@ -4,14 +4,20 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>JavaScript 设计模式 - Contructor (构造器) 模式 | Fannie Love Blog</title>
+    <title>JavaScript 设计模式 - Module (模块) 模式 | Fannie Love Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="Fannie">
     
-    <meta name="description" content="JavaScript 设计模式 - Contructor (构造器) 模式
-基本 Contructor
-1234567891011function Person(name, age) {    this.name = name;    this.age = age;    this.toString">
+    <meta name="description" content="模块是任何强大应用程序架构中不可或缺的一部分, 它通常能够帮助我们清晰的分离和组织项目中的代码单元.在 JavaScript 中, 有几种用于实现模块的方法:
+
+对象字面量表示法
+Module 模式
+AMD 模块
+CommonJs 模块
+ECMAScript Harmony 模块
+
+Module 模">
     
     
     
@@ -70,15 +76,15 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2015/02/09/javascript-design-pattern-constructor/" title="JavaScript 设计模式 - Contructor (构造器) 模式" itemprop="url">JavaScript 设计模式 - Contructor (构造器) 模式</a>
+      <a href="/2015/02/10/javascript-design-pattern-module/" title="JavaScript 设计模式 - Module (模块) 模式" itemprop="url">JavaScript 设计模式 - Module (模块) 模式</a>
   </h1>
   <p class="article-author">By
     
       <a href="http://blog.fflove.top" title="Fannie">Fannie</a>
     </p>
   <p class="article-time">
-    <time datetime="2015-02-09T00:40:51.000Z" itemprop="datePublished">2015-02-09</time>
-    Updated:<time datetime="2015-02-10T00:44:55.000Z" itemprop="dateModified">2015-02-10</time>
+    <time datetime="2015-02-10T00:42:16.000Z" itemprop="datePublished">2015-02-10</time>
+    Updated:<time datetime="2015-02-11T00:59:01.000Z" itemprop="dateModified">2015-02-11</time>
     
   </p>
 </header>
@@ -87,18 +93,30 @@
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
-		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#JavaScript_设计模式_-_Contructor_(构造器)_模式"><span class="toc-number">1.</span> <span class="toc-text">JavaScript 设计模式 - Contructor (构造器) 模式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#基本_Contructor"><span class="toc-number">1.1.</span> <span class="toc-text">基本 Contructor</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#带原型的_Contructor_(构造器)"><span class="toc-number">1.2.</span> <span class="toc-text">带原型的 Contructor (构造器)</span></a></li></ol></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#对象字面量"><span class="toc-number">1.</span> <span class="toc-text">对象字面量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Module_(模块)_模式"><span class="toc-number">2.</span> <span class="toc-text">Module (模块) 模式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#私有"><span class="toc-number">2.1.</span> <span class="toc-text">私有</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#示例,_计数器"><span class="toc-number">2.2.</span> <span class="toc-text">示例, 计数器</span></a></li></ol></li></ol>
 		</div>
 		
-		<h1 id="JavaScript_设计模式_-_Contructor_(构造器)_模式">JavaScript 设计模式 - Contructor (构造器) 模式</h1>
-<h2 id="基本_Contructor">基本 Contructor</h2>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span><span class="params">(name, age)</span> </span>{</div><div class="line">    <span class="keyword">this</span>.name = name;</div><div class="line">    <span class="keyword">this</span>.age = age;</div><div class="line">    <span class="keyword">this</span>.toString = <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>{</div><div class="line">        <span class="keyword">return</span> <span class="string">'我是'</span> + <span class="keyword">this</span>.name + <span class="string">', 今年'</span> + <span class="keyword">this</span>.age + <span class="string">'岁'</span>;</div><div class="line">    };</div><div class="line">}</div><div class="line"></div><div class="line"><span class="comment">// 用法, 创建 Person 的新实例:</span></div><div class="line"><span class="keyword">var</span> p1 = <span class="keyword">new</span> Person(<span class="string">'fannie'</span>, <span class="number">27</span>);</div><div class="line"><span class="keyword">var</span> p2 = <span class="keyword">new</span> Person(<span class="string">'job'</span>, <span class="number">28</span>);</div></pre></td></tr></table></figure>
+		<p>模块是任何强大应用程序架构中不可或缺的一部分, 它通常能够帮助我们清晰的分离和组织项目中的代码单元.<br>在 JavaScript 中, 有几种用于实现模块的方法:</p>
+<ul>
+<li>对象字面量表示法</li>
+<li>Module 模式</li>
+<li>AMD 模块</li>
+<li>CommonJs 模块</li>
+<li>ECMAScript Harmony 模块</li>
+</ul>
+<p>Module 模式在某种程度上是基于对象字面量, 因此首先重新认识一下对象字面量.</p>
+<h2 id="对象字面量">对象字面量</h2>
+<p>在对象字面量表示法中, 一个对象被描述为一组包含在大括号 ({}) 中, 以逗号分隔的 name/value 对. 对象内的名称可以是字符串或者标志符, 后面跟着一个冒号. 对象的最后一个 name/value 对的后面不用加都好, 如果加逗号某些浏览器(IE)将会报错.</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> myObj = {</div><div class="line">    variableKey: variableValue,</div><div class="line">    functionKey: <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>{</div><div class="line">        <span class="comment">// dosomething</span></div><div class="line">    }</div><div class="line">};</div></pre></td></tr></table></figure>
 
-<h2 id="带原型的_Contructor_(构造器)">带原型的 Contructor (构造器)</h2>
-<p>JavaScript 中有一个名为 prototype 的属性. 调用 JAvaScript 构造器创建一个对象后, 新对象就会具有构造器原型的所有属性. 通过这种方式, 可以创建多个对象并访问相同的原型.</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span><span class="params">(name, age)</span> </span>{</div><div class="line">    <span class="keyword">this</span>.name = name;</div><div class="line">    <span class="keyword">this</span>.age = age;</div><div class="line">}</div><div class="line"></div><div class="line"><span class="comment">// 注意: 在这里我们使用 Object.prototype.newMethod 而不是 Object.prototype 是为了避免重新定义 prototype 对象.</span></div><div class="line">Person.prototype.toString = <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>{</div><div class="line">    <span class="keyword">return</span> <span class="string">'我是'</span> + <span class="keyword">this</span>.name + <span class="string">', 今年'</span> + <span class="keyword">this</span>.age + <span class="string">'岁'</span>;</div><div class="line">};</div><div class="line"></div><div class="line"><span class="comment">// 用法</span></div><div class="line"><span class="keyword">var</span> p1 = <span class="keyword">new</span> Person(<span class="string">'fannie'</span>, <span class="number">27</span>);</div><div class="line"><span class="keyword">var</span> p2 = <span class="keyword">new</span> Person(<span class="string">'job'</span>, <span class="number">28</span>);</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(p1.toString());</div><div class="line"><span class="built_in">console</span>.log(p2.toString());</div></pre></td></tr></table></figure>
+<p>对象字面量不需要使用 new 运算符进行实例化, 但不能用在一个语句的开头, 因为开始的可能被解读为一个块的开始. 在对象的外部, 新成员可以使用如下赋值语句添加到对象字面量上, 如: myObj.property = ‘somevalue’;<br>使用对象字面量有助于封装和组织代码<br>也就是说, 如果我们选择了这种技术, 我们可能同样也对 Module 模式感兴趣.他仍然使用对象字面量, 但只是作为一个作用域函数的返回值.</p>
+<h2 id="Module_(模块)_模式">Module (模块) 模式</h2>
+<p>Module 模式最初被定义为一种在传统软件工程中为类提供私有和公有封装的方法.<br>在 JavaScript 中, Module 模式用于进一步模拟类的概念, 通过这种方式, 能够使一个单独的对象拥有公有/私有方法和变量, 从而屏蔽来自全局作用域的特殊部分.<br>产生的结果是: 函数名与在页面上其它脚本定义的函数冲突的可能性降低.</p>
+<h3 id="私有">私有</h3>
+<p>Module 模式使用闭包封装 “私有” 状态和组织. 它提供一种包装混合公有/私有方法和变量的方式, 防止其泄漏致全局作用域, 并与别的开发人员接口发生冲突.通过该模式, 只需返回一个公有API, 而其他一切都维持在私有的闭包里.<br>这种形式为我们提供了一个屏蔽处理底层事件逻辑的整洁解决方案, 同时只暴露一个接口供应用程序的其它部分使用. 该模式除了返回一个对象而非一个函数外, 非常类似于一个自调用的函数表达式.<br>注意: 在 JavaScript 中, 没有真正意义上的 “私有”, JavaScript 没有访问修饰符. 因此, 我们使用函数作用域来模拟公有/私有的概念. 在 Module 模式内, 由于闭包的存在, 声明的变量和方法只在模式内部可用, 但是在返回对象上定义的变量和方法, 则对外部使用者都是可用的.</p>
+<h3 id="示例,_计数器">示例, 计数器</h3>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 计数器</span></div><div class="line"><span class="keyword">var</span> counterModule = (<span class="function"><span class="keyword">function</span><span class="params">()</span> </span>{</div><div class="line">    <span class="keyword">var</span> counter = <span class="number">0</span>;</div><div class="line">    <span class="keyword">return</span> {</div><div class="line">        add: <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>{</div><div class="line">            <span class="keyword">return</span> ++counter;</div><div class="line">        },</div><div class="line">        sub: <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>{</div><div class="line">            <span class="keyword">return</span> --counter;</div><div class="line">        },</div><div class="line">        reset: <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>{</div><div class="line">            counter = <span class="number">0</span>;</div><div class="line">            <span class="keyword">return</span> counter;</div><div class="line">        }</div><div class="line">    };</div><div class="line">})();</div><div class="line"></div><div class="line"><span class="comment">// 用法</span></div><div class="line"></div><div class="line"><span class="comment">// 增加计数器</span></div><div class="line">counterModule.add();</div><div class="line">counterModule.add();</div><div class="line">counterModule.add();</div><div class="line"></div><div class="line"><span class="comment">// 重置计数器</span></div><div class="line">counterModule.reset();</div></pre></td></tr></table></figure>
 
-<p>现在 toString() 的单一实例就能够在所有 Person 对象之间共享.</p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -113,7 +131,7 @@
 
 <div class="article-share" id="share">
 
-  <div data-url="http://blog.fflove.top/2015/02/09/javascript-design-pattern-constructor/" data-title="JavaScript 设计模式 - Contructor (构造器) 模式 | Fannie Love Blog" data-tsina="null" class="share clearfix">
+  <div data-url="http://blog.fflove.top/2015/02/10/javascript-design-pattern-module/" data-title="JavaScript 设计模式 - Module (模块) 模式 | Fannie Love Blog" data-tsina="null" class="share clearfix">
   </div>
 
 </div>
@@ -122,19 +140,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2015/02/09/oneday_1/" title="今天">
-  <strong>PREVIOUS:</strong><br/>
-  <span>
-  今天</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2015/02/03/jshint/"  title="jshint">
+<a href="/2015/02/09/music-what-i-miss-most/"  title="我怀念的">
  <strong>NEXT:</strong><br/> 
- <span>jshint
+ <span>我怀念的
 </span>
 </a>
 </div>
