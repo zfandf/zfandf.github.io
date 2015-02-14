@@ -84,7 +84,7 @@ Module 模">
     </p>
   <p class="article-time">
     <time datetime="2015-02-10T00:42:16.000Z" itemprop="datePublished">2015-02-10</time>
-    Updated:<time datetime="2015-02-11T00:59:01.000Z" itemprop="dateModified">2015-02-11</time>
+    Updated:<time datetime="2015-02-13T01:01:33.000Z" itemprop="dateModified">2015-02-13</time>
     
   </p>
 </header>
@@ -93,7 +93,7 @@ Module 模">
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
-		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#对象字面量"><span class="toc-number">1.</span> <span class="toc-text">对象字面量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Module_(模块)_模式"><span class="toc-number">2.</span> <span class="toc-text">Module (模块) 模式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#私有"><span class="toc-number">2.1.</span> <span class="toc-text">私有</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#示例,_计数器"><span class="toc-number">2.2.</span> <span class="toc-text">示例, 计数器</span></a></li></ol></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#对象字面量"><span class="toc-number">1.</span> <span class="toc-text">对象字面量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Module_(模块)_模式"><span class="toc-number">2.</span> <span class="toc-text">Module (模块) 模式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#私有"><span class="toc-number">2.1.</span> <span class="toc-text">私有</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#示例,_购物车"><span class="toc-number">2.2.</span> <span class="toc-text">示例, 购物车</span></a></li></ol></li></ol>
 		</div>
 		
 		<p>模块是任何强大应用程序架构中不可或缺的一部分, 它通常能够帮助我们清晰的分离和组织项目中的代码单元.<br>在 JavaScript 中, 有几种用于实现模块的方法:</p>
@@ -114,18 +114,28 @@ Module 模">
 <p>Module 模式最初被定义为一种在传统软件工程中为类提供私有和公有封装的方法.<br>在 JavaScript 中, Module 模式用于进一步模拟类的概念, 通过这种方式, 能够使一个单独的对象拥有公有/私有方法和变量, 从而屏蔽来自全局作用域的特殊部分.<br>产生的结果是: 函数名与在页面上其它脚本定义的函数冲突的可能性降低.</p>
 <h3 id="私有">私有</h3>
 <p>Module 模式使用闭包封装 “私有” 状态和组织. 它提供一种包装混合公有/私有方法和变量的方式, 防止其泄漏致全局作用域, 并与别的开发人员接口发生冲突.通过该模式, 只需返回一个公有API, 而其他一切都维持在私有的闭包里.<br>这种形式为我们提供了一个屏蔽处理底层事件逻辑的整洁解决方案, 同时只暴露一个接口供应用程序的其它部分使用. 该模式除了返回一个对象而非一个函数外, 非常类似于一个自调用的函数表达式.<br>注意: 在 JavaScript 中, 没有真正意义上的 “私有”, JavaScript 没有访问修饰符. 因此, 我们使用函数作用域来模拟公有/私有的概念. 在 Module 模式内, 由于闭包的存在, 声明的变量和方法只在模式内部可用, 但是在返回对象上定义的变量和方法, 则对外部使用者都是可用的.</p>
-<h3 id="示例,_计数器">示例, 计数器</h3>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 计数器</span></div><div class="line"><span class="keyword">var</span> counterModule = (<span class="function"><span class="keyword">function</span><span class="params">()</span> </span>{</div><div class="line">    <span class="keyword">var</span> counter = <span class="number">0</span>;</div><div class="line">    <span class="keyword">return</span> {</div><div class="line">        add: <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>{</div><div class="line">            <span class="keyword">return</span> ++counter;</div><div class="line">        },</div><div class="line">        sub: <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>{</div><div class="line">            <span class="keyword">return</span> --counter;</div><div class="line">        },</div><div class="line">        reset: <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>{</div><div class="line">            counter = <span class="number">0</span>;</div><div class="line">            <span class="keyword">return</span> counter;</div><div class="line">        }</div><div class="line">    };</div><div class="line">})();</div><div class="line"></div><div class="line"><span class="comment">// 用法</span></div><div class="line"></div><div class="line"><span class="comment">// 增加计数器</span></div><div class="line">counterModule.add();</div><div class="line">counterModule.add();</div><div class="line">counterModule.add();</div><div class="line"></div><div class="line"><span class="comment">// 重置计数器</span></div><div class="line">counterModule.reset();</div></pre></td></tr></table></figure>
+<h3 id="示例,_购物车">示例, 购物车</h3>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 购物车</span></div><div class="line"><span class="keyword">var</span> basketModule = <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>{</div><div class="line">    <span class="keyword">var</span> basket = [];</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">checkItem</span><span class="params">(item)</span> </span>{</div><div class="line">        <span class="keyword">if</span> (!item.id || !item.name) {</div><div class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">        }</div><div class="line">        item.price = item.price || <span class="number">0</span>;</div><div class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">    }</div><div class="line"></div><div class="line">    <span class="keyword">return</span> {</div><div class="line">        addItem: <span class="function"><span class="keyword">function</span><span class="params">(item)</span> </span>{</div><div class="line">            <span class="keyword">if</span> (checkItem(item)) {</div><div class="line">                basket.push(item);</div><div class="line">            } <span class="keyword">else</span> {</div><div class="line">                <span class="built_in">console</span>.log(<span class="string">'item is error'</span>);</div><div class="line">            }</div><div class="line">        },</div><div class="line">        getItemCount: <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>{</div><div class="line">            <span class="keyword">return</span> basket.length;</div><div class="line">        },</div><div class="line">        getTotal: <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>{</div><div class="line">            <span class="keyword">var</span> itemCount = <span class="keyword">this</span>.getItemCount(),</div><div class="line">                total = <span class="number">0</span>;</div><div class="line">            <span class="keyword">while</span> (itemCount--) {</div><div class="line">                total += basket[itemCount].price;</div><div class="line">            }</div><div class="line">            <span class="keyword">return</span> total;</div><div class="line">        }</div><div class="line">    };</div><div class="line">}();</div><div class="line">basketModule.addItem({</div><div class="line">    id: <span class="number">1</span>,</div><div class="line">    name: <span class="string">'JavaScript 设计模式'</span>,</div><div class="line">    price: <span class="number">10.4</span></div><div class="line">});</div><div class="line">basketModule.addItem({</div><div class="line">    id: <span class="number">1</span>,</div><div class="line">    name: <span class="string">'JavaScript 高级教程'</span>,</div><div class="line">    price: <span class="number">20</span></div><div class="line">});</div><div class="line"><span class="built_in">console</span>.log(basketModule.getItemCount()); <span class="comment">// 输出: 2</span></div><div class="line"><span class="built_in">console</span>.log(basketModule.getTotal()); <span class="comment">// 输出: 30.4</span></div><div class="line"><span class="built_in">console</span>.log(basketModule.basket); <span class="comment">// 输出: undefined</span></div><div class="line"><span class="built_in">console</span>.log(basketModule.basket); <span class="comment">// 输出: undefined</span></div></pre></td></tr></table></figure>
 
+<p>Module 模式将私有的方法和属性都封装在闭包内, 防止外部访问, 可以被外部访问的方法和属性都定义在返回的对象上.<br>请注意上面的 basket模块中的作用域函数是如何包裹在所有函数周围, 然后调用并立即存储返回值. 这有很多优点:</p>
+<ul>
+<li>只有我们的模块才能享有拥有私有函数的自由. 因为它们不会暴露于页面的其余部分(只会暴露与我们输出的 API)</li>
+<li>函数往往已声明并命名, 在试图找到有哪些函数抛出异常时, 这将使得在调试器中显示调用堆栈变得更容易</li>
+</ul>
   
 	</div>
 		<footer class="article-footer clearfix">
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/JavaScript/">JavaScript</a>
+  <span></span> <a href="/tags/JavaScript/">JavaScript</a><a href="/tags/Javascript-Design-PatternJavaScript/">Javascript Design PatternJavaScript</a>
   </div>
 
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
+</div>
 
 
 
@@ -174,7 +184,7 @@ Module 模">
   
   <div class="archiveslist">
     <p class="asidetitle"><a href="/archives">Archives</a></p>
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">7</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">7</span></li></ul>
   </div>
 
 
@@ -183,7 +193,7 @@ Module 模">
 	<p class="asidetitle">Categories</p>
 		<ul>
 		
-			<li><a href="/categories/JavaScript/" title="JavaScript">JavaScript<sup>1</sup></a></li>
+			<li><a href="/categories/JavaScript/" title="JavaScript">JavaScript<sup>5</sup></a></li>
 		
 		</ul>
 </div>
@@ -194,7 +204,11 @@ Module 模">
 	<p class="asidetitle">Tags</p>
 		<ul class="clearfix">
 		
-			<li><a href="/tags/JavaScript/" title="JavaScript">JavaScript<sup>4</sup></a></li>
+			<li><a href="/tags/JavaScript/" title="JavaScript">JavaScript<sup>5</sup></a></li>
+		
+			<li><a href="/tags/Javascript-Design-Pattern/" title="Javascript Design Pattern">Javascript Design Pattern<sup>2</sup></a></li>
+		
+			<li><a href="/tags/Javascript-Design-PatternJavaScript/" title="Javascript Design PatternJavaScript">Javascript Design PatternJavaScript<sup>1</sup></a></li>
 		
 			<li><a href="/tags/Music/" title="Music">Music<sup>3</sup></a></li>
 		
