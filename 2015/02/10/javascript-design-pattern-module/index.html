@@ -84,7 +84,7 @@ Module 模">
     </p>
   <p class="article-time">
     <time datetime="2015-02-10T00:42:16.000Z" itemprop="datePublished">2015-02-10</time>
-    Updated:<time datetime="2015-02-21T09:37:00.000Z" itemprop="dateModified">2015-02-21</time>
+    Updated:<time datetime="2015-03-05T00:56:21.000Z" itemprop="dateModified">2015-03-05</time>
     
   </p>
 </header>
@@ -93,7 +93,7 @@ Module 模">
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
-		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#对象字面量"><span class="toc-number">1.</span> <span class="toc-text">对象字面量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Module_(模块)_模式"><span class="toc-number">2.</span> <span class="toc-text">Module (模块) 模式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#私有"><span class="toc-number">2.1.</span> <span class="toc-text">私有</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#示例,_购物车"><span class="toc-number">2.2.</span> <span class="toc-text">示例, 购物车</span></a></li></ol></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#对象字面量"><span class="toc-number">1.</span> <span class="toc-text">对象字面量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Module_(模块)_模式"><span class="toc-number">2.</span> <span class="toc-text">Module (模块) 模式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#私有"><span class="toc-number">2.1.</span> <span class="toc-text">私有</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#示例,_购物车"><span class="toc-number">2.2.</span> <span class="toc-text">示例, 购物车</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Module_模式变化"><span class="toc-number">3.</span> <span class="toc-text">Module 模式变化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#引入混入"><span class="toc-number">3.1.</span> <span class="toc-text">引入混入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#引出"><span class="toc-number">3.2.</span> <span class="toc-text">引出</span></a></li></ol></li></ol>
 		</div>
 		
 		<p>模块是任何强大应用程序架构中不可或缺的一部分, 它通常能够帮助我们清晰的分离和组织项目中的代码单元.<br>在 JavaScript 中, 有几种用于实现模块的方法:</p>
@@ -122,6 +122,16 @@ Module 模">
 <li>只有我们的模块才能享有拥有私有函数的自由. 因为它们不会暴露于页面的其余部分(只会暴露与我们输出的 API)</li>
 <li>函数往往已声明并命名, 在试图找到有哪些函数抛出异常时, 这将使得在调试器中显示调用堆栈变得更容易</li>
 </ul>
+<h2 id="Module_模式变化">Module 模式变化</h2>
+<h3 id="引入混入">引入混入</h3>
+<p>模式的这种变化演示了全局变量如何作为参数传递给模块的匿名函数. 这允许我们引入它们, 并按照我们希望的方式为它们取个本地别名.</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> TestModule = (<span class="function"><span class="keyword">function</span><span class="params">(j, w)</span> </span>{</div><div class="line">    <span class="comment">// dosomething</span></div><div class="line">})(jQuery, <span class="built_in">window</span>);</div></pre></td></tr></table></figure>
+
+<p>引入的这种变化可以自定义使用的全局变量的名称, 即使外部全局变量名称改变, 该模块也只需要修改传入的参数名.</p>
+<h3 id="引出">引出</h3>
+<p>引出变化允许我们声明全局变量, 而不需要实现它们.</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> TestModule = (<span class="function"><span class="keyword">function</span><span class="params">()</span> </span>{</div><div class="line">    <span class="keyword">var</span> <span class="built_in">module</span> = {},</div><div class="line">        privateVariable = <span class="string">'hello world'</span>;</div><div class="line"></div><div class="line">    <span class="built_in">module</span>.publicProperty = <span class="string">'Foobar'</span>;</div><div class="line">    <span class="built_in">module</span>.publicMethod = <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>{</div><div class="line">        <span class="comment">// dosomething</span></div><div class="line">        <span class="built_in">console</span>.log(privateVariable);</div><div class="line">    };</div><div class="line">    <span class="keyword">return</span> <span class="built_in">module</span>;</div><div class="line">})();</div></pre></td></tr></table></figure>
+
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -184,7 +194,7 @@ Module 模">
   
   <div class="archiveslist">
     <p class="asidetitle"><a href="/archives">Archives</a></p>
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">7</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">7</span></li></ul>
   </div>
 
 
@@ -193,7 +203,7 @@ Module 模">
 	<p class="asidetitle">Categories</p>
 		<ul>
 		
-			<li><a href="/categories/JavaScript/" title="JavaScript">JavaScript<sup>5</sup></a></li>
+			<li><a href="/categories/JavaScript/" title="JavaScript">JavaScript<sup>6</sup></a></li>
 		
 		</ul>
 </div>
@@ -204,9 +214,9 @@ Module 模">
 	<p class="asidetitle">Tags</p>
 		<ul class="clearfix">
 		
-			<li><a href="/tags/JavaScript/" title="JavaScript">JavaScript<sup>5</sup></a></li>
+			<li><a href="/tags/JavaScript/" title="JavaScript">JavaScript<sup>6</sup></a></li>
 		
-			<li><a href="/tags/Javascript-Design-Pattern/" title="Javascript Design Pattern">Javascript Design Pattern<sup>3</sup></a></li>
+			<li><a href="/tags/Javascript-Design-Pattern/" title="Javascript Design Pattern">Javascript Design Pattern<sup>4</sup></a></li>
 		
 			<li><a href="/tags/Music/" title="Music">Music<sup>3</sup></a></li>
 		
