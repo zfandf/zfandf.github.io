@@ -4,12 +4,12 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>javascript-design-pattern-singleton | Fannie Love Blog</title>
+    <title>JavaScript 设计模式 -  Singleton (单例) 模式 | Fannie Love Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="Fannie">
     
-    <meta name="description" content="单例模式限制了类的实例化次数只能一次. 它的实现是, 在该实例不存在的情况下, 通过一个方法创建一个类来实现创建类的新实例; 如果实例已经存在, 则直接返回该实例的引用.">
+    <meta name="description" content="单例模式限制了类的实例化次数只能一次. 它的实现是, 在该实例不存在的情况下, 通过一个方法创建一个类来实现创建类的新实例; 如果实例已经存在, 则直接返回该实例的引用.Singleton 不同于静态类, 因为我们可以推迟它的初始化, 这通常是因为它们需要一些信息, 而这些信息在初始化期间无法获取.">
     
     
     
@@ -68,7 +68,7 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2015/03/05/javascript-design-pattern-singleton/" title="javascript-design-pattern-singleton" itemprop="url">javascript-design-pattern-singleton</a>
+      <a href="/2015/03/05/javascript-design-pattern-singleton/" title="JavaScript 设计模式 -  Singleton (单例) 模式" itemprop="url">JavaScript 设计模式 -  Singleton (单例) 模式</a>
   </h1>
   <p class="article-author">By
     
@@ -76,7 +76,7 @@
     </p>
   <p class="article-time">
     <time datetime="2015-03-05T01:04:56.000Z" itemprop="datePublished">2015-03-05</time>
-    Updated:<time datetime="2015-03-05T01:07:32.000Z" itemprop="dateModified">2015-03-05</time>
+    Updated:<time datetime="2015-03-23T01:24:37.000Z" itemprop="dateModified">2015-03-23</time>
     
   </p>
 </header>
@@ -88,7 +88,15 @@
 		
 		</div>
 		
-		<p>单例模式限制了类的实例化次数只能一次. 它的实现是, 在该实例不存在的情况下, 通过一个方法创建一个类来实现创建类的新实例; 如果实例已经存在, 则直接返回该实例的引用.</p>
+		<p>单例模式限制了类的实例化次数只能一次. 它的实现是, 在该实例不存在的情况下, 通过一个方法创建一个类来实现创建类的新实例; 如果实例已经存在, 则直接返回该实例的引用.<br>Singleton 不同于静态类, 因为我们可以推迟它的初始化, 这通常是因为它们需要一些信息, 而这些信息在初始化期间无法获取.<br>在 Javascript 中, Singleton 充当共享资源命名空间, 从全局命名空间中隔离出代码实现, 从而为函数提供单一访问节点.</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> mySingleton = (<span class="function"><span class="keyword">function</span><span class="params">()</span> </span>{</div><div class="line">    <span class="keyword">var</span> instance;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">init</span><span class="params">()</span> </span>{</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'init instance'</span>);</div><div class="line">        <span class="keyword">var</span> initTime = <span class="keyword">new</span> <span class="built_in">Date</span>();</div><div class="line">        <span class="function"><span class="keyword">function</span> <span class="title">privateFunction</span><span class="params">()</span> </span>{</div><div class="line">            <span class="built_in">console</span>.log(<span class="string">'it is private function'</span>);</div><div class="line">        }</div><div class="line">        <span class="keyword">return</span> {</div><div class="line">            publicProperty: <span class="string">'I am public property'</span>,</div><div class="line">            getInitTime: <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>{</div><div class="line">                <span class="keyword">return</span> initTime;</div><div class="line">            }</div><div class="line">        }</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> {</div><div class="line">        getInstance: <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>{</div><div class="line">            <span class="keyword">if</span> (!instance) {</div><div class="line">                instance = init();</div><div class="line">            }</div><div class="line">            <span class="keyword">return</span> instance;</div><div class="line">        }</div><div class="line">    }</div><div class="line">})();</div><div class="line"></div><div class="line"><span class="keyword">var</span> my1 = mySingleton.getInstance(),<span class="comment">// 第一次获取实例</span></div><div class="line">    my2 = mySingleton.getInstance();<span class="comment">// 第二次获取实例</span></div><div class="line">initTime1 = my1.getInitTime();</div><div class="line">initTime2 = my2.getInitTime();</div><div class="line"><span class="built_in">console</span>.log(<span class="string">'initTime1: '</span>, initTime1);</div><div class="line"><span class="built_in">console</span>.log(<span class="string">'initTime2: '</span>, initTime2);</div></pre></td></tr></table></figure>
+
+<p>在上面例子中, 两次获取 getInstance, 只调用了一次 init() 方法.</p>
+<p>Singleton 模式适用性:</p>
+<ul>
+<li>当类只能有一个实例而且客户可以从一个统一的访问点访问它时.</li>
+<li>该唯一的实例应该是通过子类化可扩展的, 并且客户端应该无需更改代码就能使用一个扩展的实例时.</li>
+</ul>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -108,7 +116,7 @@
 
 <div class="article-share" id="share">
 
-  <div data-url="http://blog.fflove.top/2015/03/05/javascript-design-pattern-singleton/" data-title="javascript-design-pattern-singleton | Fannie Love Blog" data-tsina="null" class="share clearfix">
+  <div data-url="http://blog.fflove.top/2015/03/05/javascript-design-pattern-singleton/" data-title="JavaScript 设计模式 -  Singleton (单例) 模式 | Fannie Love Blog" data-tsina="null" class="share clearfix">
   </div>
 
 </div>
