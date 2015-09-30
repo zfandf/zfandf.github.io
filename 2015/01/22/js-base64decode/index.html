@@ -1,0 +1,498 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>JavaScript Base64编码转换 | Fannie Love Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Fannie">
+    
+    <meta name="description" content="var base64EncodeChars = &quot;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/&quot;;
+var base64DecodeChars = [
+    -1, -1, -1, -1, -1, -1, -1, ">
+    
+    
+    
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/icon.png">
+    <link rel="apple-touch-icon-precomposed" href="/img/icon.png">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/icon.png" alt="Fannie Love Blog" title="Fannie Love Blog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Fannie Love Blog">Fannie Love Blog</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					
+						<li><a href="/">主页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/web/">Demo</a></li>
+					
+						<li><a href="https://github.com/zfandf/zfandf.github.io">GitHub</a></li>
+					
+					<li>
+					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:blog.fflove.top">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/01/22/js-base64decode/" title="JavaScript Base64编码转换" itemprop="url">JavaScript Base64编码转换</a>
+  </h1>
+  <p class="article-author">By
+    
+      <a href="http://blog.fflove.top" title="Fannie">Fannie</a>
+    </p>
+  <p class="article-time">
+    <time datetime="2015-01-22T00:40:51.000Z" itemprop="datePublished">2015-01-22</time>
+    更新日期:<time datetime="2015-09-15T13:10:38.000Z" itemprop="dateModified">2015-09-15</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+		</div>
+		
+		<pre><code>var base64EncodeChars = <span class="string">"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"</span>;
+var base64DecodeChars = [
+    -<span class="number">1</span>, -<span class="number">1</span>, -<span class="number">1</span>, -<span class="number">1</span>, -<span class="number">1</span>, -<span class="number">1</span>, -<span class="number">1</span>, -<span class="number">1</span>, -<span class="number">1</span>, -<span class="number">1</span>, -<span class="number">1</span>, -<span class="number">1</span>, -<span class="number">1</span>, -<span class="number">1</span>, -<span class="number">1</span>, -<span class="number">1</span>,
+    -<span class="number">1</span>, -<span class="number">1</span>, -<span class="number">1</span>, -<span class="number">1</span>, -<span class="number">1</span>, -<span class="number">1</span>, -<span class="number">1</span>, -<span class="number">1</span>, -<span class="number">1</span>, -<span class="number">1</span>, -<span class="number">1</span>, -<span class="number">1</span>, -<span class="number">1</span>, -<span class="number">1</span>, -<span class="number">1</span>, -<span class="number">1</span>,
+    -<span class="number">1</span>, -<span class="number">1</span>, -<span class="number">1</span>, -<span class="number">1</span>, -<span class="number">1</span>, -<span class="number">1</span>, -<span class="number">1</span>, -<span class="number">1</span>, -<span class="number">1</span>, -<span class="number">1</span>, -<span class="number">1</span>, <span class="number">62</span>, -<span class="number">1</span>, -<span class="number">1</span>, -<span class="number">1</span>, <span class="number">63</span>,
+    <span class="number">52</span>, <span class="number">53</span>, <span class="number">54</span>, <span class="number">55</span>, <span class="number">56</span>, <span class="number">57</span>, <span class="number">58</span>, <span class="number">59</span>, <span class="number">60</span>, <span class="number">61</span>, -<span class="number">1</span>, -<span class="number">1</span>, -<span class="number">1</span>, -<span class="number">1</span>, -<span class="number">1</span>, -<span class="number">1</span>,
+    -<span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>, <span class="number">11</span>, <span class="number">12</span>, <span class="number">13</span>, <span class="number">14</span>,
+    <span class="number">15</span>, <span class="number">16</span>, <span class="number">17</span>, <span class="number">18</span>, <span class="number">19</span>, <span class="number">20</span>, <span class="number">21</span>, <span class="number">22</span>, <span class="number">23</span>, <span class="number">24</span>, <span class="number">25</span>, -<span class="number">1</span>, -<span class="number">1</span>, -<span class="number">1</span>, -<span class="number">1</span>, -<span class="number">1</span>,
+    -<span class="number">1</span>, <span class="number">26</span>, <span class="number">27</span>, <span class="number">28</span>, <span class="number">29</span>, <span class="number">30</span>, <span class="number">31</span>, <span class="number">32</span>, <span class="number">33</span>, <span class="number">34</span>, <span class="number">35</span>, <span class="number">36</span>, <span class="number">37</span>, <span class="number">38</span>, <span class="number">39</span>, <span class="number">40</span>,
+    <span class="number">41</span>, <span class="number">42</span>, <span class="number">43</span>, <span class="number">44</span>, <span class="number">45</span>, <span class="number">46</span>, <span class="number">47</span>, <span class="number">48</span>, <span class="number">49</span>, <span class="number">50</span>, <span class="number">51</span>, -<span class="number">1</span>, -<span class="number">1</span>, -<span class="number">1</span>, -<span class="number">1</span>, -<span class="number">1</span>];
+<span class="function">function <span class="title">base64encode</span><span class="params">(str)</span> </span>{
+    var out, i, len;
+    var c1, c2, c3;
+    len = str.length;
+    i = <span class="number">0</span>;
+    out = <span class="string">""</span>;
+    <span class="keyword">while</span>(i &lt; len) {
+        c1 = str.charCodeAt(i++) &amp; <span class="number">0xff</span>;
+        <span class="keyword">if</span> (i == len) {
+            out += base64EncodeChars.charAt(c1 &gt;&gt; <span class="number">2</span>);
+            out += base64EncodeChars.charAt((c1 &amp; <span class="number">0x3</span>) &lt;&lt; <span class="number">4</span>);
+            out += <span class="string">"=="</span>;
+            <span class="keyword">break</span>;
+        }
+        c2 = str.charCodeAt(i++);
+        <span class="keyword">if</span> (i == len) {
+            out += base64EncodeChars.charAt(c1 &gt;&gt; <span class="number">2</span>);
+            out += base64EncodeChars.charAt(((c1 &amp; <span class="number">0x3</span>)&lt;&lt; <span class="number">4</span>) | ((c2 &amp; <span class="number">0xF0</span>) &gt;&gt; <span class="number">4</span>));
+            out += base64EncodeChars.charAt((c2 &amp; <span class="number">0xF</span>) &lt;&lt; <span class="number">2</span>);
+            out += <span class="string">"="</span>;
+            <span class="keyword">break</span>;
+        }
+        c3 = str.charCodeAt(i++);
+        out += base64EncodeChars.charAt(c1 &gt;&gt; <span class="number">2</span>);
+        out += base64EncodeChars.charAt(((c1 &amp; <span class="number">0x3</span>)&lt;&lt; <span class="number">4</span>) | ((c2 &amp; <span class="number">0xF0</span>) &gt;&gt; <span class="number">4</span>));
+        out += base64EncodeChars.charAt(((c2 &amp; <span class="number">0xF</span>) &lt;&lt; <span class="number">2</span>) | ((c3 &amp; <span class="number">0xC0</span>) &gt;&gt;<span class="number">6</span>));
+        out += base64EncodeChars.charAt(c3 &amp; <span class="number">0x3F</span>);
+    }
+    <span class="keyword">return</span> out;
+}
+<span class="function">function <span class="title">base64decode</span><span class="params">(str)</span> </span>{
+    var c1, c2, c3, c4;
+    var i, len, out;
+    len = str.length;
+    i = <span class="number">0</span>;
+    out = <span class="string">""</span>;
+    <span class="keyword">while</span>(i &lt; len) {
+        <span class="comment">/* c1 */</span>
+        <span class="keyword">do</span> {
+            c1 = base64DecodeChars[str.charCodeAt(i++) &amp; <span class="number">0xff</span>];
+        } <span class="keyword">while</span>(i &lt; len &amp;&amp; c1 == -<span class="number">1</span>);
+        <span class="keyword">if</span>(c1 == -<span class="number">1</span>) {
+            <span class="keyword">break</span>;
+        }
+
+        <span class="comment">/* c2 */</span>
+        <span class="keyword">do</span> {
+            c2 = base64DecodeChars[str.charCodeAt(i++) &amp; <span class="number">0xff</span>];
+        } <span class="keyword">while</span>(i &lt; len &amp;&amp; c2 == -<span class="number">1</span>);
+        <span class="keyword">if</span>(c2 == -<span class="number">1</span>)
+            <span class="keyword">break</span>;
+        out += String.fromCharCode((c1 &lt;&lt; <span class="number">2</span>) | ((c2 &amp; <span class="number">0x30</span>) &gt;&gt; <span class="number">4</span>));
+        <span class="comment">/* c3 */</span>
+        <span class="keyword">do</span> {
+            c3 = str.charCodeAt(i++) &amp; <span class="number">0xff</span>;
+            <span class="keyword">if</span>(c3 == <span class="number">61</span>)
+                <span class="keyword">return</span> out;
+            c3 = base64DecodeChars[c3];
+        } <span class="keyword">while</span>(i &lt; len &amp;&amp; c3 == -<span class="number">1</span>);
+        <span class="keyword">if</span>(c3 == -<span class="number">1</span>)
+            <span class="keyword">break</span>;
+        out += String.fromCharCode(((c2 &amp; <span class="number">0XF</span>) &lt;&lt; <span class="number">4</span>) | ((c3 &amp; <span class="number">0x3C</span>) &gt;&gt; <span class="number">2</span>));
+        <span class="comment">/* c4 */</span>
+        <span class="keyword">do</span> {
+            c4 = str.charCodeAt(i++) &amp; <span class="number">0xff</span>;
+            <span class="keyword">if</span>(c4 == <span class="number">61</span>)
+                <span class="keyword">return</span> out;
+            c4 = base64DecodeChars[c4];
+        } <span class="keyword">while</span>(i &lt; len &amp;&amp; c4 == -<span class="number">1</span>);
+        <span class="keyword">if</span>(c4 == -<span class="number">1</span>)
+            <span class="keyword">break</span>;
+        out += String.fromCharCode(((c3 &amp; <span class="number">0x03</span>) &lt;&lt; <span class="number">6</span>) | c4);
+    }
+    <span class="keyword">return</span> out;
+}
+&lt;!--￼<span class="number">0</span>--&gt;
+
+<span class="function">function <span class="title">utf16to8</span><span class="params">(str)</span> </span>{
+    var out, i, len, c;
+    out = <span class="string">""</span>;
+    len = str.length;
+    <span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; len; i++) {
+        c = str.charCodeAt(i);
+        <span class="keyword">if</span> ((c &gt;= <span class="number">0x0001</span>) &amp;&amp; (c &lt;= <span class="number">0x007F</span>)) {
+            out += str.charAt(i);
+        } <span class="keyword">else</span> <span class="keyword">if</span> (c &gt; <span class="number">0x07FF</span>) {
+            out += String.fromCharCode(<span class="number">0xE0</span> | ((c &gt;&gt; <span class="number">12</span>) &amp; <span class="number">0x0F</span>));
+            out += String.fromCharCode(<span class="number">0x80</span> | ((c &gt;&gt; <span class="number">6</span>) &amp; <span class="number">0x3F</span>));
+            out += String.fromCharCode(<span class="number">0x80</span> | ((c &gt;&gt; <span class="number">0</span>) &amp; <span class="number">0x3F</span>));
+        } <span class="keyword">else</span> {
+            out += String.fromCharCode(<span class="number">0xC0</span> | ((c &gt;&gt; <span class="number">6</span>) &amp; <span class="number">0x1F</span>));
+            out += String.fromCharCode(<span class="number">0x80</span> | ((c &gt;&gt; <span class="number">0</span>) &amp; <span class="number">0x3F</span>));
+        }
+    }
+    <span class="keyword">return</span> out;
+}
+<span class="function">function <span class="title">utf8to16</span><span class="params">(str)</span> </span>{
+    var out, i, len, c;
+    var char2, char3;
+    out = <span class="string">""</span>;
+    len = str.length;
+    i = <span class="number">0</span>;
+    <span class="keyword">while</span>(i &lt; len) {
+        c = str.charCodeAt(i++);
+        <span class="keyword">switch</span>(c &gt;&gt; <span class="number">4</span>) {
+            <span class="keyword">case</span> <span class="number">0</span>: <span class="keyword">case</span> <span class="number">1</span>: <span class="keyword">case</span> <span class="number">2</span>: <span class="keyword">case</span> <span class="number">3</span>: <span class="keyword">case</span> <span class="number">4</span>: <span class="keyword">case</span> <span class="number">5</span>: <span class="keyword">case</span> <span class="number">6</span>: <span class="keyword">case</span> <span class="number">7</span>:
+                <span class="comment">// 0<span class="label">xxxxxxx</span></span>
+                out += str.charAt(i-<span class="number">1</span>);
+                <span class="keyword">break</span>;
+            <span class="keyword">case</span> <span class="number">12</span>: <span class="keyword">case</span> <span class="number">13</span>:
+                <span class="comment">// 110x <span class="label">xxxx　 10xx xxxx</span></span>
+                char2 = str.charCodeAt(i++);
+                out += String.fromCharCode(((c &amp; <span class="number">0x1F</span>) &lt;&lt; <span class="number">6</span>) | (char2 &amp; <span class="number">0x3F</span>));
+            <span class="keyword">break</span>;
+            <span class="keyword">case</span> <span class="number">14</span>:
+                <span class="comment">// 1110 <span class="label">xxxx　10xx xxxx　10xx xxxx</span></span>
+                char2 = str.charCodeAt(i++);
+                char3 = str.charCodeAt(i++);
+                out += String.fromCharCode(((c &amp; <span class="number">0x0F</span>) &lt;&lt; <span class="number">12</span>) | ((char2 &amp; <span class="number">0x3F</span>) &lt;&lt; <span class="number">6</span>) | ((char3 &amp; <span class="number">0x3F</span>) &lt;&lt; <span class="number">0</span>));
+                <span class="keyword">break</span>;
+        }
+    }
+    <span class="keyword">return</span> out;
+}
+
+<span class="function">function <span class="title">doit</span><span class="params">()</span> </span>{
+    var f = document.f;
+    <span class="keyword">if</span> (f.source.value) {
+        f.output.value = base64encode(utf16to8(f.source.value));
+    }
+    f.decode.value = utf8to16(base64decode(f.output.value));
+}
+</code></pre><p>the end</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/JavaScript/">JavaScript</a>
+  </div>
+
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
+</div>
+
+
+
+<div class="article-share" id="share">
+
+  <div data-url="http://blog.fflove.top/2015/01/22/js-base64decode/" data-title="JavaScript Base64编码转换 | Fannie Love Blog" data-tsina="null" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2015/01/27/jquery-plugns/" title="jQuery 自定义插件">
+  <strong>PREVIOUS:</strong><br/>
+  <span>
+  jQuery 自定义插件</span>
+</a>
+</div>
+
+
+</nav>
+
+	
+<section class="comment">
+	<div class="ds-thread"></div>
+</section>
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+  <div class="archiveslist">
+    <p class="asidetitle"><a href="/archives">归档</a></p>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">九月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">二月 2015</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">6</span></li></ul>
+  </div>
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+			<li><a href="/categories/JavaScript/" title="JavaScript">JavaScript<sup>8</sup></a></li>
+		
+			<li><a href="/categories/css/" title="css">css<sup>1</sup></a></li>
+		
+			<li><a href="/categories/jquery/" title="jquery">jquery<sup>1</sup></a></li>
+		
+			<li><a href="/categories/js/" title="js">js<sup>2</sup></a></li>
+		
+			<li><a href="/categories/test/" title="test">test<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tags/JavaScript/" title="JavaScript">JavaScript<sup>8</sup></a></li>
+		
+			<li><a href="/tags/Javascript-Design-Pattern/" title="Javascript Design Pattern">Javascript Design Pattern<sup>4</sup></a></li>
+		
+			<li><a href="/tags/Music/" title="Music">Music<sup>3</sup></a></li>
+		
+			<li><a href="/tags/js/" title="js">js<sup>1</sup></a></li>
+		
+			<li><a href="/tags/oneday/" title="oneday">oneday<sup>0</sup></a></li>
+		
+			<li><a href="/tags/resume/" title="resume">resume<sup>0</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+      <li><a href="http://yangjian.me" target="_blank" title="YangJian">Alimon's Blog</a></li>
+      <li><a href="http://hexo.io" target="_blank" title="Hexo">Hexo</a></li>
+    </ul>
+</div>
+
+
+  <div class="rsspart">
+	<a href="null" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<div class="social-font clearfix">
+		
+		
+		
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="Pacman">Pacman</a> © 2015 
+		
+		<a href="http://blog.fflove.top" target="_blank" title="Fannie">Fannie</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"ffloveblog"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+  </body>
+</html>

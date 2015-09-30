@@ -1,0 +1,477 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>Node.js 入门经典 | Fannie Love Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Fannie">
+    
+    <meta name="description" content="Node.js 介绍npm ( Node包管理器)npm 是什么npm(Node Package Manager, Node 包管理器) 是 NodeJs的包管理器。它允许开发人员在 Node.js 应用程序中创建、共享并重用模块。
+安装 npm如果使用来自 http://nodejs.org 的安">
+    
+    
+    
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/icon.png">
+    <link rel="apple-touch-icon-precomposed" href="/img/icon.png">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/icon.png" alt="Fannie Love Blog" title="Fannie Love Blog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Fannie Love Blog">Fannie Love Blog</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					
+						<li><a href="/">主页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/web/">Demo</a></li>
+					
+						<li><a href="https://github.com/zfandf/zfandf.github.io">GitHub</a></li>
+					
+					<li>
+					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:blog.fflove.top">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/09/16/nodejs-install/" title="Node.js 入门经典" itemprop="url">Node.js 入门经典</a>
+  </h1>
+  <p class="article-author">By
+    
+      <a href="http://blog.fflove.top" title="Fannie">Fannie</a>
+    </p>
+  <p class="article-time">
+    <time datetime="2015-09-16T07:17:24.000Z" itemprop="datePublished">2015-09-16</time>
+    更新日期:<time datetime="2015-09-19T08:14:08.000Z" itemprop="dateModified">2015-09-19</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Node-js_介绍"><span class="toc-number">1.</span> <span class="toc-text">Node.js 介绍</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#npm_(_Node包管理器)"><span class="toc-number">2.</span> <span class="toc-text">npm ( Node包管理器)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#npm_是什么"><span class="toc-number">2.1.</span> <span class="toc-text">npm 是什么</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装_npm"><span class="toc-number">2.2.</span> <span class="toc-text">安装 npm</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#npm_安装模块"><span class="toc-number">2.3.</span> <span class="toc-text">npm 安装模块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用模块"><span class="toc-number">2.4.</span> <span class="toc-text">使用模块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何查找模块"><span class="toc-number">2.5.</span> <span class="toc-text">如何查找模块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#本地和全局安装"><span class="toc-number">2.6.</span> <span class="toc-text">本地和全局安装</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#本地安装"><span class="toc-number">2.6.1.</span> <span class="toc-text">本地安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#全局安装"><span class="toc-number">2.6.2.</span> <span class="toc-text">全局安装</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何查找模块文档"><span class="toc-number">2.7.</span> <span class="toc-text">如何查找模块文档</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用_package-json_指定依赖关系_（dependency）"><span class="toc-number">2.8.</span> <span class="toc-text">使用 package.json 指定依赖关系 （dependency）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Q&A"><span class="toc-number">2.9.</span> <span class="toc-text">Q&A</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Node-js_的作用"><span class="toc-number">3.</span> <span class="toc-text">Node.js 的作用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#设计_Node-js_的目的"><span class="toc-number">3.1.</span> <span class="toc-text">设计 Node.js 的目的</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#理解_I/O"><span class="toc-number">3.2.</span> <span class="toc-text">理解 I/O</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#处理输入"><span class="toc-number">3.3.</span> <span class="toc-text">处理输入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#联网的_I/O_是不可预测的"><span class="toc-number">3.4.</span> <span class="toc-text">联网的 I/O 是不可预测的</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#人类是不可预测的"><span class="toc-number">3.5.</span> <span class="toc-text">人类是不可预测的</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#处理不可预测性"><span class="toc-number">3.6.</span> <span class="toc-text">处理不可预测性</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#回调"><span class="toc-number">4.</span> <span class="toc-text">回调</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是回调"><span class="toc-number">4.1.</span> <span class="toc-text">什么是回调</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#剖析回调"><span class="toc-number">4.2.</span> <span class="toc-text">剖析回调</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Node-js_如何使用回调"><span class="toc-number">4.3.</span> <span class="toc-text">Node.js 如何使用回调</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#同步和异步代码"><span class="toc-number">4.4.</span> <span class="toc-text">同步和异步代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#事件循环"><span class="toc-number">4.5.</span> <span class="toc-text">事件循环</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#HTTP"><span class="toc-number">5.</span> <span class="toc-text">HTTP</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Express_介绍"><span class="toc-number">6.</span> <span class="toc-text">Express 介绍</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#深入_Express"><span class="toc-number">7.</span> <span class="toc-text">深入 Express</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#数据的持久化"><span class="toc-number">8.</span> <span class="toc-text">数据的持久化</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#调试_Node-js_应用程序"><span class="toc-number">9.</span> <span class="toc-text">调试 Node.js 应用程序</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#测试_Node-js_应用程序"><span class="toc-number">10.</span> <span class="toc-text">测试 Node.js 应用程序</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#部署_Node-js_应用程序"><span class="toc-number">11.</span> <span class="toc-text">部署 Node.js 应用程序</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#介绍_Socket-IO"><span class="toc-number">12.</span> <span class="toc-text">介绍 Socket.IO</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#一个_Socket-IO_聊天服务器"><span class="toc-number">13.</span> <span class="toc-text">一个 Socket.IO 聊天服务器</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#一个流_Twitter_客户端"><span class="toc-number">14.</span> <span class="toc-text">一个流 Twitter 客户端</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#JSON_API"><span class="toc-number">15.</span> <span class="toc-text">JSON API</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#进程模块"><span class="toc-number">16.</span> <span class="toc-text">进程模块</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#子进程模块"><span class="toc-number">17.</span> <span class="toc-text">子进程模块</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#事件模块"><span class="toc-number">18.</span> <span class="toc-text">事件模块</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#缓冲区模块"><span class="toc-number">19.</span> <span class="toc-text">缓冲区模块</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#流模块"><span class="toc-number">20.</span> <span class="toc-text">流模块</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#CoffeeScript"><span class="toc-number">21.</span> <span class="toc-text">CoffeeScript</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#创建_Node-js_模块"><span class="toc-number">22.</span> <span class="toc-text">创建 Node.js 模块</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#使用_Connect_创建中间件"><span class="toc-number">23.</span> <span class="toc-text">使用 Connect 创建中间件</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#结合_Backbone-js_与_Node-js"><span class="toc-number">24.</span> <span class="toc-text">结合 Backbone.js 与 Node.js</span></a></li></ol>
+		</div>
+		
+		<h1 id="Node-js_介绍">Node.js 介绍</h1><h1 id="npm_(_Node包管理器)">npm ( Node包管理器)</h1><h2 id="npm_是什么">npm 是什么</h2><p>npm(Node Package Manager, Node 包管理器) 是 NodeJs的包管理器。它允许开发人员在 Node.js 应用程序中创建、共享并重用模块。</p>
+<h2 id="安装_npm">安装 npm</h2><p>如果使用来自 <a href="http://nodejs.org" target="_blank" rel="external">http://nodejs.org</a> 的安装程序安装了 Node.js,那么 npm 已经安装好了。如果从源代码编译安装了 Node.js，那么可以在 <a href="http://npmjs.org/找到" target="_blank" rel="external">http://npmjs.org/找到</a> npm 的操作指南。完成安装之后，打开终端输入 npm -v 查看 npm 的版本号。</p>
+<h2 id="npm_安装模块">npm 安装模块</h2><pre><code>npm install <span class="string">[module_name]</span>
+</code></pre><h2 id="使用模块">使用模块</h2><pre><code><span class="keyword">var</span> <span class="built_in">module</span> = <span class="built_in">require</span>(<span class="string">'module'</span>);
+</code></pre><h2 id="如何查找模块">如何查找模块</h2><ul>
+<li><p>官方来源 </p>
+<p>  <a href="http://search.npmjs.org/" target="_blank" rel="external">http://search.npmjs.org/</a></p>
+</li>
+<li><p>使用命令行直接搜素</p>
+<pre><code><span class="built_in">npm</span> search jquery
+</code></pre></li>
+<li><p>非官方来源</p>
+<p>  <a href="http://blago.dachev.com/modules" target="_blank" rel="external">http://blago.dachev.com/modules</a></p>
+<p>  <a href="http://eirikb.github.io/nipster/" target="_blank" rel="external">http://eirikb.github.io/nipster/</a></p>
+</li>
+</ul>
+<h2 id="本地和全局安装">本地和全局安装</h2><h3 id="本地安装">本地安装</h3><p>意味着库将安装在项目本地的一个名为 node_modules 的文件夹下，以便项目使用。这是默认行为，只要运行如下命令，就是如此:</p>
+<pre><code>npm install <span class="string">[module_name]</span>
+</code></pre><p>这将产生如下的文件夹结构：</p>
+<pre><code>-<span class="ruby"> foo.js
+</span>-<span class="ruby"> node_modules/
+</span>    -<span class="ruby"> module_name</span>
+</code></pre><h3 id="全局安装">全局安装</h3><p>这些模块带有可执行文件，你希望能够在文件系统的任何一个位置都能运行这些可执行文件。Express 就是一个可能需要全局安装的模块示例。 Express 是 Node.js 的一个 Web 开发框架，带有一个能够创建站点骨架的生成器。</p>
+<p>要全局安装模块，只需要在安装时加上 -g 标记</p>
+<pre><code>npm <span class="operator"><span class="keyword">install</span> -<span class="keyword">g</span> [module_name]</span>
+</code></pre><h2 id="如何查找模块文档">如何查找模块文档</h2><p>可以执行如下命令在浏览器中查看模块文档，以 underscore 为例：</p>
+<pre><code><span class="built_in">npm</span> docs underscore
+</code></pre><p>通过如下命令可以查看项目的 bug:</p>
+<pre><code><span class="label">npm</span> <span class="keyword">bugs </span>underscore
+</code></pre><p>有经验之后，会发现阅读模块的源代码是理解其作用的最快方法：</p>
+<pre><code>npm <span class="keyword">edit</span> underscore
+</code></pre><p>该命令必须在 Node.js 项目文件夹的根目录下运行，而且该模块必须被下载到了 node_modules 文件夹 中</p>
+<h2 id="使用_package-json_指定依赖关系_（dependency）">使用 package.json 指定依赖关系 （dependency）</h2><p>在开发 Node.js 应用程序的时候，毫无疑问要使用模块。一个一个的安装模块会是件耗时的工作，而且容易遗漏。</p>
+<p>npm 允许开发人员使用 package.json 文件来指定在应用程序中要用的模块，并且通过单个命令来安装他们：</p>
+<pre><code>npm <span class="keyword">install</span>
+</code></pre><p>这样做有如下优势：</p>
+<ul>
+<li>无需一个一个的安装模块</li>
+<li>其它开发人员可以很容易的安装你的应用程序</li>
+<li>应用程序的依赖关系存储在单一的地方</li>
+</ul>
+<p>以 underscore 为例的 package.json</p>
+<pre><code>{
+    "<span class="attribute">name</span>": <span class="value"><span class="string">"example02"</span></span>,
+    "<span class="attribute">version</span>": <span class="value"><span class="string">"0.0.1"</span></span>,
+    "<span class="attribute">dependencies</span>": <span class="value">{
+        "<span class="attribute">underscore</span>": <span class="value"><span class="string">"~1.2.1"</span>
+    </span>}
+</span>}
+</code></pre><h2 id="Q&amp;A">Q&amp;A</h2><ul>
+<li>什么是模块</li>
+</ul>
+<p>模块是可重用的代码块</p>
+<ul>
+<li><p>模块的本地安装和全局安装有什么区别</p>
+<p>  本地安装意味着模块会被安装在项目内名为 node_modules 的文件夹中，而且它们只可以在该项目中使用。全局安装意味着该模块可以在系统的任何一个地方使用。请尽量使用本地安装。</p>
+</li>
+<li><p>在管理模块时，使用 package.json 有什么优势</p>
+<p>  不需要一个一个的安装模块，其它开发人员可以简单的安装使用我们的应用程序</p>
+</li>
+</ul>
+<h1 id="Node-js_的作用">Node.js 的作用</h1><p>本章学习要点：</p>
+<ul>
+<li>I/O 的意义</li>
+<li>Node.js 想解决的问题</li>
+<li>并发的意义</li>
+<li>实现并发的不同方法</li>
+</ul>
+<h2 id="设计_Node-js_的目的">设计 Node.js 的目的</h2><blockquote>
+<p>Node.js 是构建在 Chrome 的 JavaScript 运行时之上的一个平台，用于简单构建快速的、可扩展的网络应用程序。Node.js 使用事件驱动的、非阻塞的 I/O 模型，这让其<br>既轻量又高效，是运行于不同发布设备上的数据密集型实时应用程序的完美平台。</p>
+</blockquote>
+<h2 id="理解_I/O">理解 I/O</h2><p>I/O 是输入/输出的简写，指的是计算机和人或者数据处理系统之间的通信。可以将 I/O 想成是数据在一次输入和一次输出之间的移动。以下是一些例子：</p>
+<ul>
+<li>使用键盘敲入文本（输入）并在屏幕上看到文本显示（输出）</li>
+<li>移动鼠标（输入）并在屏幕上看到鼠标移动（输出）</li>
+<li>将数据传递给外壳脚本（shell script）（输入）并在终端上看到输出</li>
+</ul>
+<p>I/O 的思想可以通过在终端里运行一个程序来演示：</p>
+<pre><code>bogon:blog fan$ <span class="built_in">echo</span> <span class="string">'Each peach pear plum'</span>
+Each peach pear plum
+</code></pre><p>输入》计算机》输出</p>
+<p>这里所用的程序是 echo, 这是一个简单的用于回显任何所提供的文本的工具。从数据移动的角度看，所发生的事情如下：</p>
+<ol>
+<li>文本字符串被传递给 echo 程序（输入）</li>
+<li>文本字符串流经 echo 程序的逻辑</li>
+<li>echo 程序将其输出到终端显示（输出）</li>
+</ol>
+<h2 id="处理输入">处理输入</h2><h2 id="联网的_I/O_是不可预测的">联网的 I/O 是不可预测的</h2><p>Web 服务器响应的时间会随着如下的这些因素中的某些因素的不同而变的极为不同：</p>
+<ul>
+<li>解析 DNS 请求的时间</li>
+<li>服务器的繁忙程度</li>
+<li>要应答的数据有多大</li>
+<li>服务器和客户端的可用带宽</li>
+<li>为响应而服务的软件效率</li>
+<li>所使用的网络的繁忙程度</li>
+<li>数据要传输多远</li>
+</ul>
+<h2 id="人类是不可预测的">人类是不可预测的</h2><p>事件驱动编程是处理不可预测性的极佳方式，因为我们可以识别将要放生的事件，即使我们并不知道时间什么时候会发生。</p>
+<h2 id="处理不可预测性">处理不可预测性</h2><p>并发这个术语描述的是事情会在同时发生并可能相互交互。</p>
+<p>JavaScript 是一种时间驱动语言，旨在能够对外界的事件做出响应。</p>
+<h1 id="回调">回调</h1><p>本章介绍如下内容</p>
+<ul>
+<li>回调是什么，他们在 JavaScript 中如何使用</li>
+<li>Node.js 中如何使用回调</li>
+<li>同步和异步编程的区别</li>
+<li>事件循环是什么</li>
+</ul>
+<h2 id="什么是回调">什么是回调</h2><p>回调指的是将一个函数作为参数传递给另一个函数，并且通常在第一个函数完成后被调用。</p>
+<h2 id="剖析回调">剖析回调</h2><p>回调函数在 Javascript 内部是如何工作的？</p>
+<p>函数可以作为参数传递到另一个函数，然后被调用。确切的要做的的事情定义在作为回调传递进来的函数中。</p>
+<h2 id="Node-js_如何使用回调">Node.js 如何使用回调</h2><p>Node.js 到处使用回调，尤其在有 I/O 操作发生的地方。下面是一个在 Node.js 中使用 filesystem 模块从磁盘读入文件内容的示例：</p>
+<pre><code><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);
+fs.readFile(<span class="string">'somefile.txt'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">err, data</span>) </span>{
+    <span class="built_in">console</span>.log(err);
+    <span class="built_in">console</span>.log(data);
+});
+</code></pre><p>在这个例子中，文件读取完毕之后会调用回调函数</p>
+<p>另一个例子：</p>
+<pre><code><span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>);
+http.get({host: <span class="string">'shapeshed.com'</span>}, <span class="function"><span class="keyword">function</span>(<span class="params">res</span>) </span>{
+    <span class="built_in">console</span>.log(<span class="string">'Got response: '</span> + res.statusCode);
+}).on(<span class="string">'error'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>{
+    <span class="built_in">console</span>.log(<span class="string">'Got error: '</span> + e.message);
+});
+</code></pre><p>在这个例子中，回调函数的调用发生在远程服务器返回响应之后。由于这段代码必须进入网络来获取数据，所以就不可能确切的知道什么时候数据能够返回，甚至都不能确认数据会不会返回。尤其在从多个来源和多个网络中获取数据时，由于数据返回的时间的不可预测的本质，要编写代码对此做出响应将是困难的。Node.js 是对这一问题的响应，它以提供一个创建联网应用程序的平台为目标。回调是 Node.js 实现网络编程的关键方法，因为回调让代码在其它事件发生的时候能够运行，也就是数据从 shapeshed.com 返回的时候。当事件发生时，我们成回调被 “触发”, 从而导致回调函数被调用。</p>
+<h2 id="同步和异步代码">同步和异步代码</h2><p>同步的代码意味着每一次执行一个操作，在一个操作完成之前，代码的执行会被阻塞，无法移到下一个操作上。<br>在程序 4-2.js 中，使用 sleep() 函数来模拟完成操作所需的时间花销。</p>
+<p>同步和阻塞这两个术语可以互换使用，指的是代码的执行会在函数返回之前停止，如果某个操作阻塞，那么脚本就无法继续。对于最终用户而言，这意味着他们必须等待。</p>
+<p>异步和非阻塞这两个术语也可以互换使用，指的是基于回调的、允许脚本并行执行操作的方法。脚本无需等待某个操作的结果才能继续前进，因为操作结果会在事件发生时由回调来处理。使用异步方法，操作无需一个接一个的发生。</p>
+<h2 id="事件循环">事件循环</h2><h1 id="HTTP">HTTP</h1><h1 id="Express_介绍">Express 介绍</h1><h1 id="深入_Express">深入 Express</h1><h1 id="数据的持久化">数据的持久化</h1><h1 id="调试_Node-js_应用程序">调试 Node.js 应用程序</h1><h1 id="测试_Node-js_应用程序">测试 Node.js 应用程序</h1><h1 id="部署_Node-js_应用程序">部署 Node.js 应用程序</h1><h1 id="介绍_Socket-IO">介绍 Socket.IO</h1><h1 id="一个_Socket-IO_聊天服务器">一个 Socket.IO 聊天服务器</h1><h1 id="一个流_Twitter_客户端">一个流 Twitter 客户端</h1><h1 id="JSON_API">JSON API</h1><h1 id="进程模块">进程模块</h1><h1 id="子进程模块">子进程模块</h1><h1 id="事件模块">事件模块</h1><h1 id="缓冲区模块">缓冲区模块</h1><h1 id="流模块">流模块</h1><h1 id="CoffeeScript">CoffeeScript</h1><h1 id="创建_Node-js_模块">创建 Node.js 模块</h1><h1 id="使用_Connect_创建中间件">使用 Connect 创建中间件</h1><h1 id="结合_Backbone-js_与_Node-js">结合 Backbone.js 与 Node.js</h1>  
+	</div>
+		<footer class="article-footer clearfix">
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/js/">js</a>
+  </div>
+
+
+
+
+<div class="article-share" id="share">
+
+  <div data-url="http://blog.fflove.top/2015/09/16/nodejs-install/" data-title="Node.js 入门经典 | Fannie Love Blog" data-tsina="null" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2015/09/16/jscover/"  title="JsCover">
+ <strong>NEXT:</strong><br/> 
+ <span>JsCover
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section class="comment">
+	<div class="ds-thread"></div>
+</section>
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+  <div class="archiveslist">
+    <p class="asidetitle"><a href="/archives">归档</a></p>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">九月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">二月 2015</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">6</span></li></ul>
+  </div>
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+			<li><a href="/categories/JavaScript/" title="JavaScript">JavaScript<sup>8</sup></a></li>
+		
+			<li><a href="/categories/css/" title="css">css<sup>1</sup></a></li>
+		
+			<li><a href="/categories/jquery/" title="jquery">jquery<sup>1</sup></a></li>
+		
+			<li><a href="/categories/js/" title="js">js<sup>2</sup></a></li>
+		
+			<li><a href="/categories/test/" title="test">test<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tags/JavaScript/" title="JavaScript">JavaScript<sup>8</sup></a></li>
+		
+			<li><a href="/tags/Javascript-Design-Pattern/" title="Javascript Design Pattern">Javascript Design Pattern<sup>4</sup></a></li>
+		
+			<li><a href="/tags/Music/" title="Music">Music<sup>3</sup></a></li>
+		
+			<li><a href="/tags/js/" title="js">js<sup>1</sup></a></li>
+		
+			<li><a href="/tags/oneday/" title="oneday">oneday<sup>0</sup></a></li>
+		
+			<li><a href="/tags/resume/" title="resume">resume<sup>0</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+      <li><a href="http://yangjian.me" target="_blank" title="YangJian">Alimon's Blog</a></li>
+      <li><a href="http://hexo.io" target="_blank" title="Hexo">Hexo</a></li>
+    </ul>
+</div>
+
+
+  <div class="rsspart">
+	<a href="null" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<div class="social-font clearfix">
+		
+		
+		
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="Pacman">Pacman</a> © 2015 
+		
+		<a href="http://blog.fflove.top" target="_blank" title="Fannie">Fannie</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"ffloveblog"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+  </body>
+</html>
