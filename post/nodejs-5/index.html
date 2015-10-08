@@ -1,0 +1,627 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>Node.js 入门经典 第五章 HTTP | 初见</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Fannie">
+    
+
+    
+    <meta name="description" content="本章学习要点
+理解 HTTP
+使用 Node.js 创建 HTTP 服务器
+使用 Node.js 创建 HTTP 客户端
+
+什么是 HTTP超文本传输协议（HTTP）是 Internet 上老牌的通信协议。它定义了服务器和客户端在通信的时候应该如何发送和接收数据。
+使用 Node.js 的 HTTP 服务器一个基础的服务器创建一个简单的 Node.js 服务器将 “hello world” 输出到">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Node.js 入门经典 第五章 HTTP">
+<meta property="og:url" content="http://blog.fflove.top/post/nodejs-5/index.html">
+<meta property="og:site_name" content="初见">
+<meta property="og:description" content="本章学习要点
+理解 HTTP
+使用 Node.js 创建 HTTP 服务器
+使用 Node.js 创建 HTTP 客户端
+
+什么是 HTTP超文本传输协议（HTTP）是 Internet 上老牌的通信协议。它定义了服务器和客户端在通信的时候应该如何发送和接收数据。
+使用 Node.js 的 HTTP 服务器一个基础的服务器创建一个简单的 Node.js 服务器将 “hello world” 输出到">
+<meta property="og:updated_time" content="2015-10-02T08:05:46.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Node.js 入门经典 第五章 HTTP">
+<meta name="twitter:description" content="本章学习要点
+理解 HTTP
+使用 Node.js 创建 HTTP 服务器
+使用 Node.js 创建 HTTP 客户端
+
+什么是 HTTP超文本传输协议（HTTP）是 Internet 上老牌的通信协议。它定义了服务器和客户端在通信的时候应该如何发送和接收数据。
+使用 Node.js 的 HTTP 服务器一个基础的服务器创建一个简单的 Node.js 服务器将 “hello world” 输出到">
+
+    
+    <link rel="alternative" href="/atom.xml" title="初见" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" href="/img/favicon.ico">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/icon.png" alt="初见" title="初见"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="初见">初见</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">主页 | Home</a></li>
+					
+						<li><a href="/archives">归档 | Archives</a></li>
+					
+						<li><a href="/about">简介 | About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:blog.fflove.top">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/post/nodejs-5/" title="Node.js 入门经典 第五章 HTTP" itemprop="url">Node.js 入门经典 第五章 HTTP</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Fannie" target="_blank" itemprop="author">Fannie</a>
+		
+  <p class="article-time">
+    <time datetime="2015-10-02T01:38:51.000Z" itemprop="datePublished"> 发表于 2015-10-02</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#本章学习要点"><span class="toc-number">1.</span> <span class="toc-text">本章学习要点</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#什么是_HTTP"><span class="toc-number">2.</span> <span class="toc-text">什么是 HTTP</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#使用_Node-js_的_HTTP_服务器"><span class="toc-number">3.</span> <span class="toc-text">使用 Node.js 的 HTTP 服务器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#一个基础的服务器"><span class="toc-number">3.1.</span> <span class="toc-text">一个基础的服务器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#加入头（Header）"><span class="toc-number">3.2.</span> <span class="toc-text">加入头（Header）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#检查响应头"><span class="toc-number">3.3.</span> <span class="toc-text">检查响应头</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Node-js_中的重定向"><span class="toc-number">3.4.</span> <span class="toc-text">Node.js 中的重定向</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#响应不同的请求"><span class="toc-number">3.5.</span> <span class="toc-text">响应不同的请求</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#使用_Node-js_的_HTTP_客户端"><span class="toc-number">4.</span> <span class="toc-text">使用 Node.js 的 HTTP 客户端</span></a></li></ol>
+		
+		</div>
+		
+		<h1 id="本章学习要点">本章学习要点</h1><ul>
+<li>理解 HTTP</li>
+<li>使用 Node.js 创建 HTTP 服务器</li>
+<li>使用 Node.js 创建 HTTP 客户端</li>
+</ul>
+<h1 id="什么是_HTTP">什么是 HTTP</h1><p>超文本传输协议（HTTP）是 Internet 上老牌的通信协议。它定义了服务器和客户端在通信的时候应该如何发送和接收数据。</p>
+<h1 id="使用_Node-js_的_HTTP_服务器">使用 Node.js 的 HTTP 服务器</h1><h2 id="一个基础的服务器">一个基础的服务器</h2><p>创建一个简单的 Node.js 服务器将 “hello world” 输出到 Web 浏览器。</p>
+<pre><code><span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>),
+    port = <span class="number">3000</span>;
+
+http.createServer(<span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>) </span>{
+    res.end(<span class="string">'hello world'</span>);
+}).listen(port, <span class="string">'127.0.0.1'</span>);
+<span class="built_in">console</span>.log(<span class="string">'server running at http://127.0.0.1:'</span> + port);
+</code></pre><h2 id="加入头（Header）">加入头（Header）</h2><p>对于每一个 HTTP 请求和响应，都会发送 HTTP 头。HTTP 头发送的是附加信息，包括内容类型、服务器发送响应的日期以及 HTTP 状态码。</p>
+<p>在简单的 hello world 服务器中，Node.js 已经发送了一些基本信息。</p>
+<pre><code><span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>),
+    port = <span class="number">3000</span>;
+
+http.createServer(<span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>) </span>{
+    res.writeHead(<span class="number">200</span>, {
+        <span class="string">'Content-Type'</span>: <span class="string">'text/plain'</span>
+    });
+    res.end(<span class="string">'hello world'</span>);
+}).listen(port, <span class="string">'127.0.0.1'</span>);
+<span class="built_in">console</span>.log(<span class="string">'server running at http://127.0.0.1:'</span> + port);
+</code></pre><h2 id="检查响应头">检查响应头</h2><ul>
+<li>chrome 用户，可以使用 HTTP Headers 扩展</li>
+<li>firefox 用户，可以使用 Live HTTP Headers Firefox 外挂</li>
+<li><p>习惯使用终端的用户，可以使用 curl 来取得响应头的内容。</p>
+<p>  在终端运行如下命令</p>
+<pre><code>curl -I <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">3000</span>
+</code></pre><p>  应当看到如下响应</p>
+<pre><code>HTTP/<span class="number">1.1</span> <span class="number">200</span> OK
+Date: Fri, <span class="number">02</span> Oct <span class="number">2015</span> <span class="number">02</span>:<span class="number">27</span>:<span class="number">23</span> GMT
+Connection: keep-alive
+</code></pre></li>
+</ul>
+<h2 id="Node-js_中的重定向">Node.js 中的重定向</h2><p>重定向的准则如下</p>
+<ul>
+<li>给客户发送 301 响应代码，告诉客户：资源已经移到另一个位置</li>
+<li>发送一个位置头（Location Header）告诉客户重定向到哪里</li>
+</ul>
+<p>举个栗子，将访问者指向到百度主页</p>
+<pre><code><span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>),
+    port = <span class="number">3000</span>;
+
+http.createServer(<span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>) </span>{
+    res.writeHead(<span class="number">301</span>, {
+        <span class="string">'Location'</span>: <span class="string">'http://www.baidu.com'</span>
+    });
+}).listen(port, <span class="string">'127.0.0.1'</span>);
+<span class="built_in">console</span>.log(<span class="string">'Server running at http:127.0.0.1:'</span> + port);
+</code></pre><h2 id="响应不同的请求">响应不同的请求</h2><p>如果要让服务器返回超过一种类型的请求，就需要给应用程序加一些路由（router）. Node.js 中 URL 模块使我们可以读取 URL、分析它然后对输出做一些事情。</p>
+<p>路由定义响应</p>
+<blockquote>
+<p>路由指的是应用程序要响应的请求。举个例子来说，如果想展示一个位于 /about_us 的 “关于我们” 页面，就需要在应用程序中对这一请求设置一个路由。</p>
+</blockquote>
+<p>下面是使用 URL 模块创建的路由服务器：</p>
+<pre><code>var http = <span class="built_in">require</span>(<span class="string">'http'</span>),
+    url = <span class="built_in">require</span>(<span class="string">'url'</span>),
+    port = <span class="number">3000</span>,
+    host = <span class="string">'127.0.0.1'</span>;
+
+http.createServer(<span class="function"><span class="keyword">function</span><span class="params">(req, res)</span></span> {
+    var pathname = url.parse(req.url).pathname;
+
+    <span class="keyword">if</span> (pathname === <span class="string">'/'</span>) {
+        res.writeHead(<span class="number">200</span>, {
+            <span class="string">'Content-Type'</span>: <span class="string">'text/plain'</span>
+        });
+        res.<span class="keyword">end</span>(<span class="string">'hello world'</span>);
+    } <span class="keyword">else</span> <span class="keyword">if</span> (pathname === <span class="string">'/about'</span>) {
+        res.writeHead(<span class="number">200</span>, {
+            <span class="string">'Content-Type'</span>: <span class="string">'text/plain'</span>
+        });
+        res.<span class="keyword">end</span>(<span class="string">'about us'</span>);
+    } <span class="keyword">else</span> <span class="keyword">if</span> (pathname === <span class="string">'/redirect'</span>) {
+        res.writeHead(<span class="number">301</span>, {
+            <span class="string">'Location'</span>: <span class="string">'http://www.baidu.com'</span>
+        });
+        res.<span class="keyword">end</span>();
+    } <span class="keyword">else</span> {
+        res.writeHead(<span class="number">404</span>, {
+            <span class="string">'Content-Type'</span>: <span class="string">'text/plain'</span>
+        });
+        res.<span class="keyword">end</span>(<span class="string">'404 not found'</span>);
+    }
+}).listen(port, host);
+console.log(<span class="string">'Server running at http://127.0.0.1:'</span> + port);
+</code></pre><p>使用 URL 模块可以创建对许多不同请求进行响应的服务器。但如此做法会使程序变得复杂、难以阅读与维护。在第 6 章中会介绍 Express 库来解决这一问题。</p>
+<h1 id="使用_Node-js_的_HTTP_客户端">使用 Node.js 的 HTTP 客户端</h1><p>HTML 客户端不总是浏览器</p>
+<blockquote>
+<p>HTML 客户端可以是任何对服务器请求响应的东西。 比如 web 浏览器、搜索引擎机器人、电子邮件客户端以及 web 刮取器（Web Scraper）都是 HTML 客户端。</p>
+</blockquote>
+<p>需要使用 HTML 客户端的场景有：</p>
+<ul>
+<li>监控服务器的正常工作时间</li>
+<li>刮取不能通过 API 获取的 Web 内容</li>
+<li>创建将来自 Web 的两个或更多信息来源组合在一起的混搭（mashup）</li>
+<li>对诸如 Twitter 或 Flicker 这样的流行 Web Service 进行 API 调用</li>
+</ul>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/js/">js</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Node-js-入门经典/">Node.js 入门经典</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://blog.fflove.top/post/nodejs-5/" data-title="Node.js 入门经典 第五章 HTTP | 初见" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/post/chrome-extension/" title="前端工程师喜欢的 chrome 扩展">
+  <strong>上一篇：</strong><br/>
+  <span>
+  前端工程师喜欢的 chrome 扩展</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/post/nodejs-install/"  title="Node.js 入门经典">
+ <strong>下一篇：</strong><br/> 
+ <span>Node.js 入门经典
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="post/nodejs-5/" data-title="Node.js 入门经典 第五章 HTTP" data-url="http://blog.fflove.top/post/nodejs-5/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#本章学习要点"><span class="toc-number">1.</span> <span class="toc-text">本章学习要点</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#什么是_HTTP"><span class="toc-number">2.</span> <span class="toc-text">什么是 HTTP</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#使用_Node-js_的_HTTP_服务器"><span class="toc-number">3.</span> <span class="toc-text">使用 Node.js 的 HTTP 服务器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#一个基础的服务器"><span class="toc-number">3.1.</span> <span class="toc-text">一个基础的服务器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#加入头（Header）"><span class="toc-number">3.2.</span> <span class="toc-text">加入头（Header）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#检查响应头"><span class="toc-number">3.3.</span> <span class="toc-text">检查响应头</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Node-js_中的重定向"><span class="toc-number">3.4.</span> <span class="toc-text">Node.js 中的重定向</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#响应不同的请求"><span class="toc-number">3.5.</span> <span class="toc-text">响应不同的请求</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#使用_Node-js_的_HTTP_客户端"><span class="toc-number">4.</span> <span class="toc-text">使用 Node.js 的 HTTP 客户端</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/JavaScript/" title="JavaScript">JavaScript<sup>8</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/css/" title="css">css<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/jquery/" title="jquery">jquery<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/js/" title="js">js<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/test/" title="test">test<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/前端/" title="前端">前端<sup>1</sup></a></li>
+		  
+		
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/JavaScript/" title="JavaScript">JavaScript<sup>8</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Javascript-Design-Pattern/" title="Javascript Design Pattern">Javascript Design Pattern<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Music/" title="Music">Music<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/js/" title="js">js<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Node-js-入门经典/" title="Node.js 入门经典">Node.js 入门经典<sup>2</sup></a></li>
+			
+		
+			
+		
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://coderq.com" target="_blank" title="一个面向程序员交流分享的新一代社区">码农圈</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> 人生若只如初见 <br/>
+			</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		<a href="https://github.com/https://github.com/zfandf" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<a href="mailto:zfandf@163.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2015 
+		
+		<a href="/about" target="_blank" title="Fannie">Fannie</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"ffloveblog"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

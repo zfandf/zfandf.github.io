@@ -1,0 +1,542 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>jshint | 初见</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Fannie">
+    
+
+    
+    <meta name="description" content="jshint安装安装 JSHint 最简单的方法是使用 node. 只需要在你的终端输入下面的命令行(标记 -g 表示要在你的系统中全局安装, 如果你仅仅想安装在你的项目中, 请删除 -g).
+1npm install jshint -g
+下面你就可以使用 jshint 程序了, 一个简单的用法是检测单个文件或者指定目录下的所有 js 文件:
+1localhost:blog fan$ jshint">
+<meta property="og:type" content="article">
+<meta property="og:title" content="jshint">
+<meta property="og:url" content="http://blog.fflove.top/post/jshint/index.html">
+<meta property="og:site_name" content="初见">
+<meta property="og:description" content="jshint安装安装 JSHint 最简单的方法是使用 node. 只需要在你的终端输入下面的命令行(标记 -g 表示要在你的系统中全局安装, 如果你仅仅想安装在你的项目中, 请删除 -g).
+1npm install jshint -g
+下面你就可以使用 jshint 程序了, 一个简单的用法是检测单个文件或者指定目录下的所有 js 文件:
+1localhost:blog fan$ jshint">
+<meta property="og:updated_time" content="2015-09-01T11:29:30.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="jshint">
+<meta name="twitter:description" content="jshint安装安装 JSHint 最简单的方法是使用 node. 只需要在你的终端输入下面的命令行(标记 -g 表示要在你的系统中全局安装, 如果你仅仅想安装在你的项目中, 请删除 -g).
+1npm install jshint -g
+下面你就可以使用 jshint 程序了, 一个简单的用法是检测单个文件或者指定目录下的所有 js 文件:
+1localhost:blog fan$ jshint">
+
+    
+    <link rel="alternative" href="/atom.xml" title="初见" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" href="/img/favicon.ico">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/icon.png" alt="初见" title="初见"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="初见">初见</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">主页 | Home</a></li>
+					
+						<li><a href="/archives">归档 | Archives</a></li>
+					
+						<li><a href="/about">简介 | About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:blog.fflove.top">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/post/jshint/" title="jshint" itemprop="url">jshint</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Fannie" target="_blank" itemprop="author">Fannie</a>
+		
+  <p class="article-time">
+    <time datetime="2015-02-03T00:22:14.000Z" itemprop="datePublished"> 发表于 2015-02-03</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#jshint"><span class="toc-number">1.</span> <span class="toc-text">jshint</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装"><span class="toc-number">1.1.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置"><span class="toc-number">1.2.</span> <span class="toc-text">配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#内联配置"><span class="toc-number">1.3.</span> <span class="toc-text">内联配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#指令,_下面是_JSHint_支持的指令列表"><span class="toc-number">1.4.</span> <span class="toc-text">指令, 下面是 JSHint 支持的指令列表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参数"><span class="toc-number">1.5.</span> <span class="toc-text">参数</span></a></li></ol></li></ol>
+		
+		</div>
+		
+		<h1 id="jshint">jshint</h1><h2 id="安装">安装</h2><p>安装 JSHint 最简单的方法是使用 node. 只需要在你的终端输入下面的命令行(标记 -g 表示要在你的系统中全局安装, 如果你仅仅想安装在你的项目中, 请删除 -g).</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install jshint -g</span><br></pre></td></tr></table></figure>
+<p>下面你就可以使用 jshint 程序了, 一个简单的用法是检测单个文件或者指定目录下的所有 js 文件:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">localhost:blog fan$ jshint source/test/myfile.js&#10;source/test/myfile.js: line 2, col 6, Missing semicolon.&#10;&#10;1 error</span><br></pre></td></tr></table></figure>
+<p>? 如果文件路径是一个破折号(-), jshint 将从标准输入读取</p>
+<h2 id="配置">配置</h2><p>配置方式:</p>
+<ul>
+<li>通过 –config 标记手动指定特殊的配置文件(.jshintrc)</li>
+<li>将配置写入项目的 package.json 文件中的 jshintConfig 属性下</li>
+</ul>
+<p>如果使用 .jshintrc, 开始时, JSHint 将在被检测的 js 文件目录下寻找 .jshintrc 文件. 如果没有找到, 将向上层目录树查找一直到根目录.(注意: 如果输入是标准输入, JSHint 不接受查找配置文件).</p>
+<p>这种设置允许你为每一个项目分配配置文件. 放配置文件在项目的根目录下, 不论你在项目的哪个位置执行 JSHint, 使用的都是同一个配置.</p>
+<p>配置文件是一个简单的 json 文件, 它指明 JSHint 参数是打开还是关闭. 例如下面的这个配置, 未定义和未使用的变量将被标记为警告, 并且告诉 JSHint 全局变量的名字是 MY_GLOBAL.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#10;    &#34;undef&#34;: true,&#10;    &#34;unused&#34;: true,&#10;    &#34;predef&#34;: [ &#34;MY_GLOBAL&#34; ]&#10;&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="内联配置">内联配置</h2><p>除了(In addition to)使用配置文件之外, 你能使用特殊的注解在文件内部. 该注解以 jshint 或者 global 开始, 后面跟着以逗号分隔的参数. 例如, 下面的小片段和上面的配置有相同的作用.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/* jshint undef: true, unused: true */&#10;/* global MY_GLOBAL */</span><br></pre></td></tr></table></figure></p>
+<p>你能使用单行或者多行注释来配置 jshint. 如果你将注释写在函数内部, 配置将只在函数内部生效.</p>
+<h2 id="指令,_下面是_JSHint_支持的指令列表">指令, 下面是 JSHint 支持的指令列表</h2><p>jshint  设置 JSHint 参数的指令:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/* jshint strict: true */</span><br></pre></td></tr></table></figure></p>
+<p>JSHint  设置 JSHint 兼容 JSLint 参数的指令:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/* jslint vars: true */</span><br></pre></td></tr></table></figure></p>
+<p>global  global 指令用于告诉 JSHint 在别处定义的全局变量. 如果值为 false(默认为 false), JSHint 认为该变量为只读. 该属性和 undef 属性一起使用.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/* global MY_LIB: false */</span><br></pre></td></tr></table></figure></p>
+<p>你也可以针对某几个全局变量设置黑名单, 确保它们在当前文件的任何地方都不可以使用.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/* global -BAD_LIB */</span><br></pre></td></tr></table></figure></p>
+<p>exported  用于告诉 JSHint 在当前文件定义了一个在别处使用的全局变量, 通常和 unused 参数一起使用.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/* exported EXPORTED_LIB */</span><br></pre></td></tr></table></figure></p>
+<p>members  这个指令用于告诉 JSHint 所有你打算使用的属性. 该指令是被弃用的, 不赞成使用</p>
+<p>ignore  指令告诉 JSHint 忽略某快代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">// Code here will be linted with JSHint&#10;/* jshint ignore:start */&#10;// Code here will be ignore by JSHint&#10;/* jshint ignore:end */</span><br></pre></td></tr></table></figure></p>
+<p>所有在 ignore:start 和 ignore:end 之间的代码都将被 JSHint 忽略. 另外, 你能通过尾随注释忽略一行代码:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ignoreThis(); // jshint ignore:line</span><br></pre></td></tr></table></figure></p>
+<h2 id="参数">参数</h2><p>大部分情况下, 当你在自己的代码中调整 JSHint 时, 你需要在所有的 JSHint 参数中寻找适合自己的那一个. 尝试找出 JSHint 参数是如何工作的是恰当的参数是混乱的和令人沮丧的(我们正在努力修复) 请仔细阅读下面的两段文章.</p>
+<p>JSHint 有两种类型的参数: 强制的和松懈的. 前者使 JSHint 更严格后者压制一些警告. 看下面这个栗子的代码:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">function main(a, b) &#123;&#10;    return a == null;&#10;&#125;</span><br></pre></td></tr></table></figure></p>
+<p>当使用默认的 jshint 参数检测这段代码时, 会报出如下警告:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fan:test fan$ jshint myfile.js&#10;myfile.js: line 2, col 14, Use &#39;===&#39; to compare with &#39;null&#39;.&#10;&#10;1 error</span><br></pre></td></tr></table></figure></p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/JavaScript/">JavaScript</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://blog.fflove.top/post/jshint/" data-title="jshint | 初见" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/post/github-pages/" title="使用Github Pages建独立博客">
+  <strong>上一篇：</strong><br/>
+  <span>
+  使用Github Pages建独立博客</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/post/music-regret-for-life/"  title="Music-后会无期">
+ <strong>下一篇：</strong><br/> 
+ <span>Music-后会无期
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="post/jshint/" data-title="jshint" data-url="http://blog.fflove.top/post/jshint/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#jshint"><span class="toc-number">1.</span> <span class="toc-text">jshint</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装"><span class="toc-number">1.1.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置"><span class="toc-number">1.2.</span> <span class="toc-text">配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#内联配置"><span class="toc-number">1.3.</span> <span class="toc-text">内联配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#指令,_下面是_JSHint_支持的指令列表"><span class="toc-number">1.4.</span> <span class="toc-text">指令, 下面是 JSHint 支持的指令列表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参数"><span class="toc-number">1.5.</span> <span class="toc-text">参数</span></a></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/JavaScript/" title="JavaScript">JavaScript<sup>8</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/css/" title="css">css<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/jquery/" title="jquery">jquery<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/js/" title="js">js<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/test/" title="test">test<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/前端/" title="前端">前端<sup>1</sup></a></li>
+		  
+		
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/JavaScript/" title="JavaScript">JavaScript<sup>8</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Javascript-Design-Pattern/" title="Javascript Design Pattern">Javascript Design Pattern<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Music/" title="Music">Music<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/js/" title="js">js<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Node-js-入门经典/" title="Node.js 入门经典">Node.js 入门经典<sup>2</sup></a></li>
+			
+		
+			
+		
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://coderq.com" target="_blank" title="一个面向程序员交流分享的新一代社区">码农圈</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> 人生若只如初见 <br/>
+			</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		<a href="https://github.com/https://github.com/zfandf" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<a href="mailto:zfandf@163.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2015 
+		
+		<a href="/about" target="_blank" title="Fannie">Fannie</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"ffloveblog"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
