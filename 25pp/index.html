@@ -7,7 +7,7 @@
 <meta name="keywords" content=""/>
 <link rel="icon" href="static/images/favicon.ico" type="image/x-icon" />
 <link type="text/css" rel="stylesheet" href="static/css/css&f=base.css,public.css,applist.css-v=10000.css"/>
-<script type="text/javascript" src="static/js/js&f=jquery-1.7.2.min.js,tr.base.min.js,res.common.min.js,res.ringing.min.js,res.searchbox.js-v=10002"></script>
+<!--<script type="text/javascript" src="static/js/js&f=jquery-1.7.2.min.js,tr.base.min.js,res.common.min.js,res.ringing.min.js,res.searchbox.js-v=10002"></script>-->
 <script type="text/javascript">
 	var currentPageImagesPath = "static/";
 	currentPageImagesPath = location.protocol == "http:" ? currentPageImagesPath : "";
@@ -30,7 +30,7 @@
         <ul>
             <li>
                 <span class="ringName borderL">
-                    石进 - 夜的钢琴曲五                    <i class="listenGif"><img src="static/images/broadcast.gif"></i>
+                    蜗牛                    <i class="listenGif"><img src="static/images/broadcast.gif"></i>
                 </span>
                 <span class="btnBroad borderL">
                     <a href="javascript:;" aud_url="music/1.mp3"></a>
@@ -38,7 +38,7 @@
             </li>
             <li>
                 <span class="ringName ">
-                    陈奕迅 - 最佳损友(To My Friend Special Mix)                    <i class="listenGif"><img src="static/images/broadcast.gif"></i>
+                    发如雪                    <i class="listenGif"><img src="static/images/broadcast.gif"></i>
                 </span>
                 <span class="btnBroad borderL"><a href="javascript:;" aud_url="music/2.mp3"></a></span>
                 <span class="btnDown borderL">
@@ -319,8 +319,52 @@
         </div>
     </div>
     <!--page end-->
-
     <div class="clear"></div>
 </div>
+
+<script type="text/javascript">
+    var eAudio, eCurrent;
+
+    window.onload = function() {
+        eAudio = document.createElement('audio');
+        document.body.appendChild(eAudio);
+
+        var eBtns = document.getElementsByClassName('btnBroad');
+        for (var i = 0; i < eBtns.length; i++) {
+            var elm = eBtns[i].querySelector('a');
+            elm.onclick = function() {
+                player(this);
+            };
+        }
+    };
+
+    function stop() {
+        var eSign = eCurrent.parentElement.parentElement.querySelector('.listenGif');
+        eAudio.pause();
+        eSign.style.display = 'none';
+        eCurrent.className = '';
+
+    }
+
+    function player (elm) {
+
+        if (elm == eCurrent && eCurrent.className == 'on') {
+            stop();
+            return;
+        } else if (eCurrent != undefined) {
+            stop();
+        }
+
+        eCurrent = elm;
+
+        var eSign = eCurrent.parentElement.parentElement.querySelector('.listenGif');
+        var aud_url = eCurrent.getAttribute('aud_url');
+        eAudio.src = aud_url;
+        eAudio.play();
+        eCurrent.className = 'on';
+        eSign.style.display = 'inline';
+    }
+
+</script>
 </body>
 </html>
