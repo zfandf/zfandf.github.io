@@ -29,17 +29,17 @@
         <ul>
             <li>
                 <span class="ringName">
-                    蜗牛                    <i class="listenGif"><img src="static/images/broadcast.gif"></i>
+                    陈敏 - Feel the Moon                    <i class="listenGif"><img src="static/images/broadcast.gif"></i>
                 </span>
                 <span class="btnBroad borderL">
-                    <a href="javascript:;" aud_url="music/3.mp3"></a>
+                    <a href="javascript:;" aud_url="music/5.mp3"></a>
                 </span>
             </li>
             <li>
                 <span class="ringName">
-                    发如雪                    <i class="listenGif"><img src="static/images/broadcast.gif"></i>
+                    Eagles - Hotel California                    <i class="listenGif"><img src="static/images/broadcast.gif"></i>
                 </span>
-                <span class="btnBroad borderL"><a href="javascript:;" aud_url="music/4.mp3"></a></span>
+                <span class="btnBroad borderL"><a href="javascript:;" aud_url="music/6.mp3"></a></span>
             </li>
             <li>
                 <span class="ringName">
@@ -119,16 +119,16 @@
 
     window.onload = function() {
         eAudio = document.createElement('audio');
-        eAudio.onended = function() {
-            stop();
-            console.log('end');
-        };
+        eAudio.pos = -1;
         document.body.appendChild(eAudio);
+
+        initAudio(eAudio);
 
         var eBtns = document.getElementsByClassName('btnBroad');
         for (var i = 0; i < eBtns.length; i++) {
             var elm = eBtns[i].querySelector('a');
             elm.onclick = function() {
+                console.log('click');
                 player(this);
             };
         }
@@ -139,11 +139,9 @@
         eAudio.pause();
         eSign.style.display = 'none';
         eCurrent.className = '';
-
     }
 
     function player (elm) {
-
         if (elm == eCurrent && eCurrent.className == 'on') {
             stop();
             return;
@@ -152,13 +150,34 @@
         }
 
         eCurrent = elm;
-
         var eSign = eCurrent.parentElement.parentElement.querySelector('.listenGif');
         var aud_url = eCurrent.getAttribute('aud_url');
         eAudio.src = aud_url;
+        console.log(aud_url);
         eAudio.play();
         eCurrent.className = 'on';
         eSign.style.display = 'inline';
+    }
+
+
+    function initAudio(aud) {
+
+        aud.addEventListener('progress', function(evt) {
+        });
+
+        aud.addEventListener('timeupdate', function(evt) {
+            var percentPlayed = Math.round(aud.currentTime / aud.duration * 100);
+            console.log('play process: ' + percentPlayed);
+        });
+
+        aud.addEventListener('canplay', function(evt) {
+            console.log('canplay');
+        });
+
+        aud.addEventListener('ended', function(evt) {
+            stop();
+            console.log('ended');
+        });
     }
 
 </script>
