@@ -634,6 +634,9 @@ li {
   border-bottom: 1px solid #ececec;
   float: left;
   line-height: 43px; }
+  .ringing
+  li:nth-child(2n) .ringName {
+    border-left: none; }
 
 .ringName {
   width: 100%;
