@@ -4,44 +4,26 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>jQuery 自定义插件 | 初见</title>
+    <title>CSS 媒体查询 | 初见</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Fannie">
     
 
     
-    <meta name="description" content="jQuery 自定义插件基本要点
-命名: 以 jquery.[插件名].js 命令
-所有的对象方法都附加到 jQuery.fn 对象上, 所有的全局函数都附加到 jQuery 上.
-this 指向
-this.each
-为了稳妥, 可以在插件头部各添加分号
-插件应该返回一个 jQuery 对象, 以保证插件的链式操作. 除非插件需要返回的是一些需要获取的量, 比如字符串或者数组.
-在插件中, 尽量不">
+    <meta name="description" content="每次写个博客都是有原因滴，这次是一个小活，要仿一个网页。待仿的网页不支持手机浏览，主家也没有说要要改，但是吧，这洁癖劲上来了。。。
+#">
 <meta property="og:type" content="article">
-<meta property="og:title" content="jQuery 自定义插件">
-<meta property="og:url" content="http://www.fflove.top/post/jquery-plugns/index.html">
+<meta property="og:title" content="CSS 媒体查询">
+<meta property="og:url" content="http://www.fflove.top/post/css-media/index.html">
 <meta property="og:site_name" content="初见">
-<meta property="og:description" content="jQuery 自定义插件基本要点
-命名: 以 jquery.[插件名].js 命令
-所有的对象方法都附加到 jQuery.fn 对象上, 所有的全局函数都附加到 jQuery 上.
-this 指向
-this.each
-为了稳妥, 可以在插件头部各添加分号
-插件应该返回一个 jQuery 对象, 以保证插件的链式操作. 除非插件需要返回的是一些需要获取的量, 比如字符串或者数组.
-在插件中, 尽量不">
-<meta property="og:updated_time" content="2015-10-09T07:48:42.000Z">
+<meta property="og:description" content="每次写个博客都是有原因滴，这次是一个小活，要仿一个网页。待仿的网页不支持手机浏览，主家也没有说要要改，但是吧，这洁癖劲上来了。。。
+#">
+<meta property="og:updated_time" content="2015-10-10T04:34:00.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="jQuery 自定义插件">
-<meta name="twitter:description" content="jQuery 自定义插件基本要点
-命名: 以 jquery.[插件名].js 命令
-所有的对象方法都附加到 jQuery.fn 对象上, 所有的全局函数都附加到 jQuery 上.
-this 指向
-this.each
-为了稳妥, 可以在插件头部各添加分号
-插件应该返回一个 jQuery 对象, 以保证插件的链式操作. 除非插件需要返回的是一些需要获取的量, 比如字符串或者数组.
-在插件中, 尽量不">
+<meta name="twitter:title" content="CSS 媒体查询">
+<meta name="twitter:description" content="每次写个博客都是有原因滴，这次是一个小活，要仿一个网页。待仿的网页不支持手机浏览，主家也没有说要要改，但是吧，这洁癖劲上来了。。。
+#">
 
     
     <link rel="alternative" href="/atom.xml" title="初见" type="application/atom+xml">
@@ -101,14 +83,14 @@ this.each
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/post/jquery-plugns/" title="jQuery 自定义插件" itemprop="url">jQuery 自定义插件</a>
+      <a href="/post/css-media/" title="CSS 媒体查询" itemprop="url">CSS 媒体查询</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Fannie" target="_blank" itemprop="author">Fannie</a>
 		
   <p class="article-time">
-    <time datetime="2015-01-27T00:40:51.000Z" itemprop="datePublished"> 发表于 2015-01-27</time>
+    <time datetime="2015-10-10T04:10:42.000Z" itemprop="datePublished"> 发表于 2015-10-10</time>
     
   </p>
 </header>
@@ -117,31 +99,12 @@ this.each
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#jQuery_自定义插件"><span class="toc-number">1.</span> <span class="toc-text">jQuery 自定义插件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#基本要点"><span class="toc-number"></span> <span class="toc-text">基本要点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#基本格式"><span class="toc-number"></span> <span class="toc-text">基本格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#插件类型"><span class="toc-number"></span> <span class="toc-text">插件类型</span></a>
+			
 		
 		</div>
 		
-		<h3 id="jQuery_自定义插件">jQuery 自定义插件</h3><h2 id="基本要点">基本要点</h2><ul>
-<li>命名: 以 jquery.[插件名].js 命令</li>
-<li>所有的对象方法都附加到 jQuery.fn 对象上, 所有的全局函数都附加到 jQuery 上.</li>
-<li>this 指向</li>
-<li>this.each</li>
-<li>为了稳妥, 可以在插件头部各添加分号</li>
-<li>插件应该返回一个 jQuery 对象, 以保证插件的链式操作. 除非插件需要返回的是一些需要获取的量, 比如字符串或者数组.</li>
-<li>在插件中, 尽量不要使用 $ 作为 jQuery 对象的别名. 如果使用闭包来回避这个问题.</li>
-</ul>
-<h2 id="基本格式">基本格式</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">;(<span class="function"><span class="keyword">function</span>(<span class="params">$</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 代码块</span></span><br><span class="line">&#125;)(jQuery);</span><br></pre></td></tr></table></figure>
-<h2 id="插件类型">插件类型</h2><ul>
-<li>封装 jQuery 对象方法的插件</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">;(function($) &#123;&#10;    $.fn.extend(&#123;&#10;        &#39;&#23545;&#35937;&#26041;&#27861;&#21517;&#39;: function() &#123;&#10;            // &#26041;&#27861;&#20869;&#23481;&#10;        &#125;&#10;    &#125;);&#10;&#125;)(jQuery);</span><br></pre></td></tr></table></figure>
-<ul>
-<li>封装全局函数的插件</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">;(function($) &#123;&#10;    $.extend(&#123;&#10;        &#39;&#26041;&#27861;&#21517;&#39;: function() &#123;&#10;            // &#26041;&#27861;&#20869;&#23481;&#10;        &#125;&#10;    &#125;);&#10;&#125;)(jQuery);</span><br></pre></td></tr></table></figure>
-<ul>
-<li>自定义选择器<br>  这个实验了一下, 只有 jQuery1.7.2可用, 故而..</li>
-</ul>
+		<p>每次写个博客都是有原因滴，这次是一个小活，要仿一个网页。待仿的网页不支持手机浏览，主家也没有说要要改，但是吧，这洁癖劲上来了。。。</p>
+<p>#</p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -153,18 +116,13 @@ this.each
 </div>
 
 
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/jquery/">jquery</a>
-  </div>
-
 </div>
 
 
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://www.fflove.top/post/jquery-plugns/" data-title="jQuery 自定义插件 | 初见" data-tsina="null" class="share clearfix">
+	  <div data-url="http://www.fflove.top/post/css-media/" data-title="CSS 媒体查询 | 初见" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -177,19 +135,11 @@ this.each
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/post/music-regret-for-life/" title="Music-后会无期">
-  <strong>上一篇：</strong><br/>
-  <span>
-  Music-后会无期</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/post/element-select/"  title="select 样式重定义">
+<a href="/post/web-audio/"  title="web audio">
  <strong>下一篇：</strong><br/> 
- <span>select 样式重定义
+ <span>web audio
 </span>
 </a>
 </div>
@@ -198,7 +148,7 @@ this.each
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="post/jquery-plugns/" data-title="jQuery 自定义插件" data-url="http://www.fflove.top/post/jquery-plugns/"></div>
+	<div class="ds-thread" data-thread-key="post/css-media/" data-title="CSS 媒体查询" data-url="http://www.fflove.top/post/css-media/"></div>
 </section>
 
 
@@ -208,7 +158,7 @@ this.each
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#jQuery_自定义插件"><span class="toc-number">1.</span> <span class="toc-text">jQuery 自定义插件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#基本要点"><span class="toc-number"></span> <span class="toc-text">基本要点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#基本格式"><span class="toc-number"></span> <span class="toc-text">基本格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#插件类型"><span class="toc-number"></span> <span class="toc-text">插件类型</span></a>
+ 
  
   </div>
 
