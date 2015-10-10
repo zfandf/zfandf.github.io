@@ -161,7 +161,15 @@
 
 
     function initAudio(aud) {
-
+	try {
+            var AudioCxt = new (window.AudioContext || window.webkitAudioContext)();
+            var source = AudioCxt.createMediaElementSource(aud);
+            var gainNode = AudioCxt.createGain();
+            source.connect(gainNode);
+            gainNode.connect(AudioCxt.destination);
+        } catch (e) {
+            console.log('AudioContext error');
+        }
         aud.addEventListener('progress', function(evt) {
         });
 
