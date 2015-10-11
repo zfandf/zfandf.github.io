@@ -7,15 +7,15 @@
           content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <meta name="description" content=""/>
     <meta name="keywords" content=""/>
-    <link rel="icon" href="/static/images/favicon.ico" type="image/x-icon" />
-    <link type="text/css" rel="stylesheet" href="/static/css/style.css"/>
+    <link rel="icon" href="static/images/favicon.ico" type="image/x-icon" />
+    <link type="text/css" rel="stylesheet" href="static/css/style.css"/>
     <!--<script type="text/javascript" src="static/js/js&f=jquery-1.7.2.min.js,tr.base.min.js,res.common.min.js,res.ringing.min.js,res.searchbox.js-v=10002"></script>-->
     <script type="text/javascript">
         var currentPageImagesPath = "static/";
         currentPageImagesPath = location.protocol == "http:" ? currentPageImagesPath : "";
     </script>
     <!--[if lt IE 7]>
-    <link href="/static/css/ie6.css" rel="stylesheet" type="text/css"/>
+    <link href="static/css/ie6.css" rel="stylesheet" type="text/css"/>
     <![endif]-->
 <body>
 
