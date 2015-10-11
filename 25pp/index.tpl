@@ -53,6 +53,8 @@
 
     window.onload = function() {
         eAudio = document.createElement('audio');
+        eAudio.setAttribute('preload', 'metadata');
+
         eAudio.pos = -1;
         document.body.appendChild(eAudio);
 
