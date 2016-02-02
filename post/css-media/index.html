@@ -1,0 +1,672 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>CSS 媒体查询 | 如初见</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Fannie">
+    
+
+    
+    <meta name="description" content="每次写个博客都是有原因滴，这次是一个小活，要仿一个网页。待仿的网页不支持手机浏览，主家也没有说要要改，但是吧，这洁癖劲上来了。。。
+虽然之前也有用到媒体查询，但一直没有总结过唉。
+语法&amp;lt;!-- link元素中的CSS媒体查询 --&amp;gt;
+&amp;lt;link rel=&amp;quot;stylesheet&amp;quot; media=&amp;quot;(max-width: 800px)&amp;quot; href">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSS 媒体查询">
+<meta property="og:url" content="http://www.fflove.top/post/css-media/index.html">
+<meta property="og:site_name" content="如初见">
+<meta property="og:description" content="每次写个博客都是有原因滴，这次是一个小活，要仿一个网页。待仿的网页不支持手机浏览，主家也没有说要要改，但是吧，这洁癖劲上来了。。。
+虽然之前也有用到媒体查询，但一直没有总结过唉。
+语法&amp;lt;!-- link元素中的CSS媒体查询 --&amp;gt;
+&amp;lt;link rel=&amp;quot;stylesheet&amp;quot; media=&amp;quot;(max-width: 800px)&amp;quot; href">
+<meta property="og:updated_time" content="2016-02-02T03:21:07.939Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CSS 媒体查询">
+<meta name="twitter:description" content="每次写个博客都是有原因滴，这次是一个小活，要仿一个网页。待仿的网页不支持手机浏览，主家也没有说要要改，但是吧，这洁癖劲上来了。。。
+虽然之前也有用到媒体查询，但一直没有总结过唉。
+语法&amp;lt;!-- link元素中的CSS媒体查询 --&amp;gt;
+&amp;lt;link rel=&amp;quot;stylesheet&amp;quot; media=&amp;quot;(max-width: 800px)&amp;quot; href">
+
+    
+    <link rel="alternative" href="/atom.xml" title="如初见" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/f.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/f.ico">
+    <link rel="apple-touch-icon-precomposed" href="/img/f.ico">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/f.png" alt="如初见" title="如初见"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="如初见">如初见</a></h1>
+				<h2 class="blog-motto">人生若只如初见</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">主页 | Home</a></li>
+					
+						<li><a href="/archives">归档 | Archives</a></li>
+					
+						<li><a href="/about">简介 | About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:www.fflove.top">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/post/css-media/" title="CSS 媒体查询" itemprop="url">CSS 媒体查询</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Fannie" target="_blank" itemprop="author">Fannie</a>
+		
+  <p class="article-time">
+    <time datetime="2015-10-10T04:10:42.000Z" itemprop="datePublished"> 发表于 2015-10-10</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#u8BED_u6CD5"><span class="toc-number">1.</span> <span class="toc-text">语法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#u5E38_u7528_u5A92_u4F53_u5C5E_u6027"><span class="toc-number">2.</span> <span class="toc-text">常用媒体属性</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#u9AD8_u5EA6_uFF08height_uFF09"><span class="toc-number">2.1.</span> <span class="toc-text">高度（height）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u5BBD_u5EA6_uFF08width_uFF09"><span class="toc-number">2.2.</span> <span class="toc-text">宽度（width）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u8BBE_u5907_u9AD8_u5EA6_uFF08device-height_uFF09"><span class="toc-number">2.3.</span> <span class="toc-text">设备高度（device-height）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u8BBE_u5907_u5BBD_u5EA6_uFF08device-width_uFF09"><span class="toc-number">2.4.</span> <span class="toc-text">设备宽度（device-width）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u65B9_u5411_uFF08orientation_uFF09"><span class="toc-number">2.5.</span> <span class="toc-text">方向（orientation）</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#u4E0D_u5E38_u7528_u5A92_u4F53_u5C5E_u6027"><span class="toc-number">3.</span> <span class="toc-text">不常用媒体属性</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#u989C_u8272_uFF08color_uFF09"><span class="toc-number">3.1.</span> <span class="toc-text">颜色（color）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u989C_u8272_u7D22_u5F15_uFF08color-index_uFF09"><span class="toc-number">3.2.</span> <span class="toc-text">颜色索引（color-index）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u5BBD_u9AD8_u6BD4_uFF08aspect-ratio_uFF09"><span class="toc-number">3.3.</span> <span class="toc-text">宽高比（aspect-ratio）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u8BBE_u5907_u5BBD_u9AD8_u6BD4_uFF08device-aspect-ratio_uFF09"><span class="toc-number">3.4.</span> <span class="toc-text">设备宽高比（device-aspect-ratio）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u7F51_u683C_uFF08grid_uFF09"><span class="toc-number">3.5.</span> <span class="toc-text">网格（grid）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u9ED1_u767D_uFF08monochrome_uFF09"><span class="toc-number">3.6.</span> <span class="toc-text">黑白（monochrome）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u5206_u8FA8_u7387_uFF08resolution_uFF09"><span class="toc-number">3.7.</span> <span class="toc-text">分辨率（resolution）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u626B_u63CF_uFF08scan_uFF09"><span class="toc-number">3.8.</span> <span class="toc-text">扫描（scan）</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#u903B_u8F91_u64CD_u4F5C_u7B26"><span class="toc-number">4.</span> <span class="toc-text">逻辑操作符</span></a></li></ol>
+		
+		</div>
+		
+		<p>每次写个博客都是有原因滴，这次是一个小活，要仿一个网页。待仿的网页不支持手机浏览，主家也没有说要要改，但是吧，这洁癖劲上来了。。。</p>
+<p>虽然之前也有用到媒体查询，但一直没有总结过唉。</p>
+<h1 id="u8BED_u6CD5"><a href="#u8BED_u6CD5" class="headerlink" title="语法"></a>语法</h1><pre><code>&lt;!-- link元素中的CSS媒体查询 --&gt;
+&lt;link rel=&quot;stylesheet&quot; media=&quot;(max-width: 800px)&quot; href=&quot;style.css&quot; /&gt;
+
+&lt;!-- 样式表中的CSS媒体查询 --&gt;
+&lt;style&gt;
+@media (max-width: 600px) {
+  .facet_sidebar {
+    display: none;
+  }
+}
+&lt;/style&gt;
+</code></pre><p>当媒体查询为真时，相关的样式表或样式规则就会按照正常的级联规则被应用。即使媒体查询返回假， <link> 标签上带有媒体查询的样式表 仍将被下载 （只不过不会被应用）。</p>
+<h1 id="u5E38_u7528_u5A92_u4F53_u5C5E_u6027"><a href="#u5E38_u7528_u5A92_u4F53_u5C5E_u6027" class="headerlink" title="常用媒体属性"></a>常用媒体属性</h1><p>在媒体属性中，”min-“ 和 “max-“ 前缀，表示”小于等于”和”大于等于”。这样做避免了使用与 HTML 和 XML 冲突的 “&lt;” 和 “&gt;” 字符。</p>
+<blockquote>
+<p>注意：如果浏览器运行的设备上没有该属性值，包含这个属性值的表达式一般返回假。例如，在语音合成器上查询屏幕长宽比总是返回假。</p>
+</blockquote>
+<h2 id="u9AD8_u5EA6_uFF08height_uFF09"><a href="#u9AD8_u5EA6_uFF08height_uFF09" class="headerlink" title="高度（height）"></a>高度（height）</h2><p>height 媒体属性描述了输出设备渲染区域（如可视区域的高度或打印机纸盒的高度）的高度。</p>
+<ul>
+<li>值：<length></length></li>
+<li>媒体：visual, tactile</li>
+<li>是否接受 min/max 前缀：是</li>
+</ul>
+<blockquote>
+<p>注意：用户调整窗口大小后，火狐浏览器会根据使用了width和height属性的媒体查询来切换合适的样式表。</p>
+</blockquote>
+<pre><code>@media screen and (max-device-width: 799px) { ... }
+</code></pre><h2 id="u5BBD_u5EA6_uFF08width_uFF09"><a href="#u5BBD_u5EA6_uFF08width_uFF09" class="headerlink" title="宽度（width）"></a>宽度（width）</h2><p>width 媒体属性描述了输出设备渲染区域（如可视区域的宽度或打印机纸盒的宽度）的宽度。</p>
+<ul>
+<li>值： <length></length></li>
+<li>媒体： visual, tactile</li>
+<li>是否接受 min/max 前缀：是</li>
+</ul>
+<blockquote>
+<p>注意：用户调整窗口大小后，火狐浏览器会根据使用了width和height属性的媒体查询来切换合适的样式表。<br>示例</p>
+</blockquote>
+<pre><code>/* 如果你想向最小宽度20em的手持设备或屏幕应用样式表，你可以使用这样的查询 */
+@media handheld and (min-width: 20em), screen and (min-width: 20em) { ... }
+
+/* 这个查询适用于宽度在500px和800px之间的屏幕 */
+@media screen and (min-width: 500px) and (max-width: 800px) { ... }
+</code></pre><h2 id="u8BBE_u5907_u9AD8_u5EA6_uFF08device-height_uFF09"><a href="#u8BBE_u5907_u9AD8_u5EA6_uFF08device-height_uFF09" class="headerlink" title="设备高度（device-height）"></a>设备高度（device-height）</h2><p>描述了输出设备的高度（整个屏幕或页的高度，而不是仅仅像文档窗口一样的渲染区域）。</p>
+<ul>
+<li>值：<length></length></li>
+<li>媒体： visual, tactile</li>
+<li>是否接受 min/max 前缀：是</li>
+</ul>
+<pre><code>/* 向显示在最大高度800px的屏幕上的文档应用样式表 */
+@media screen and (max-device-height: 799px) { ... }
+</code></pre><h2 id="u8BBE_u5907_u5BBD_u5EA6_uFF08device-width_uFF09"><a href="#u8BBE_u5907_u5BBD_u5EA6_uFF08device-width_uFF09" class="headerlink" title="设备宽度（device-width）"></a>设备宽度（device-width）</h2><p>描述了输出设备的宽度（整个屏幕或页的高度，而不是仅仅像文档窗口一样的渲染区域）。</p>
+<ul>
+<li>值：<length></length></li>
+<li>媒体： visual, tactile</li>
+<li>是否接受 min/max 前缀：是</li>
+</ul>
+<pre><code>/* 向显示在最大宽度800px的屏幕上的文档应用样式表 */
+@media screen and (max-device-width: 799px) { ... }
+</code></pre><h2 id="u65B9_u5411_uFF08orientation_uFF09"><a href="#u65B9_u5411_uFF08orientation_uFF09" class="headerlink" title="方向（orientation）"></a>方向（orientation）</h2><p>指定了设备处于横屏（宽度大于宽度）模式还是竖屏（高度大于宽度）模式。</p>
+<ul>
+<li>值：landscape | portrait</li>
+<li>媒体：visual</li>
+<li>是否接受 min/max 前缀：否</li>
+</ul>
+<pre><code>/* 向竖屏设备应用样式表 */
+@media all and (orientation: portrait) { ... }
+
+/* 向横屏设备应用样式表 */
+@media all and (orientation: landscape) { ... }
+</code></pre><h1 id="u4E0D_u5E38_u7528_u5A92_u4F53_u5C5E_u6027"><a href="#u4E0D_u5E38_u7528_u5A92_u4F53_u5C5E_u6027" class="headerlink" title="不常用媒体属性"></a>不常用媒体属性</h1><h2 id="u989C_u8272_uFF08color_uFF09"><a href="#u989C_u8272_uFF08color_uFF09" class="headerlink" title="颜色（color）"></a>颜色（color）</h2><p>指定输出设备每个像素单元的比特值。如果设备不支持输出颜色，则该值为0。</p>
+<ul>
+<li>值： <color></color></li>
+<li>媒体： visual</li>
+<li>是否接受 min/max 前缀：是</li>
+</ul>
+<blockquote>
+<p>注意：如果每个颜色单元具有不同数量的比特值，则使用最小的。<br>例如：如果显示器为蓝色和红色提供5比特，而为绿色提供6比特，则认为每个颜色单元有5比特。如果设备使用索引颜色，则使用颜色表中颜色单元的最小比特数</p>
+</blockquote>
+<pre><code>@media all and (color) { ... }
+@media all and (min-color: 4) { ... }
+@media all and (max-color: 4) { ... }
+</code></pre><h2 id="u989C_u8272_u7D22_u5F15_uFF08color-index_uFF09"><a href="#u989C_u8272_u7D22_u5F15_uFF08color-index_uFF09" class="headerlink" title="颜色索引（color-index）"></a>颜色索引（color-index）</h2><p>指定了输出设备中颜色查询表中的条目数量支持 min/max. </p>
+<ul>
+<li>值：<integer></integer></li>
+<li>媒体： visual</li>
+<li>是否接受 min/max 前缀：是</li>
+</ul>
+<pre><code>@media all and (color-index) { ... }
+@media all and (min-color-index: 256) { ... }
+@media all and (max-color-index: 256) { ... }
+</code></pre><h2 id="u5BBD_u9AD8_u6BD4_uFF08aspect-ratio_uFF09"><a href="#u5BBD_u9AD8_u6BD4_uFF08aspect-ratio_uFF09" class="headerlink" title="宽高比（aspect-ratio）"></a>宽高比（aspect-ratio）</h2><p>描述了输出设备目标显示区域的宽高比。该值包含两个以“/”分隔的正整数。代表了水平像素数（第一个值）与垂直像素数（第二个值）的比例。 </p>
+<ul>
+<li>值：<ratio></ratio></li>
+<li>媒体：visual, tactile</li>
+<li>是否接受 min/max 前缀：是</li>
+</ul>
+<pre><code>@media screen and (aspect-ratio: 1/1) { ... }
+</code></pre><h2 id="u8BBE_u5907_u5BBD_u9AD8_u6BD4_uFF08device-aspect-ratio_uFF09"><a href="#u8BBE_u5907_u5BBD_u9AD8_u6BD4_uFF08device-aspect-ratio_uFF09" class="headerlink" title="设备宽高比（device-aspect-ratio）"></a>设备宽高比（device-aspect-ratio）</h2><p>描述了输出设备的宽高比。该值包含两个以“/”分隔的正整数。代表了水平像素数（第一个值）与垂直像素数（第二个值）的比例。</p>
+<ul>
+<li>值：<ratio></ratio></li>
+<li>媒体：visual, tactile</li>
+<li>是否接受 min/max 前缀：是</li>
+</ul>
+<pre><code>@media screen and (device-aspect-ratio: 16/9), screen and (device-aspect-ratio: 16/10) { ... }
+</code></pre><h2 id="u7F51_u683C_uFF08grid_uFF09"><a href="#u7F51_u683C_uFF08grid_uFF09" class="headerlink" title="网格（grid）"></a>网格（grid）</h2><p>判断输出设备是网格设备还是位图设备。如果设备是基于网格的（例如电传打字机终端或只能显示一种字形的电话），该值为1，否则为0。</p>
+<ul>
+<li>值：<integer></integer></li>
+<li>媒体：all</li>
+<li>是否接受 min/max 前缀： 否</li>
+</ul>
+<blockquote>
+<p>注意：“em” 在网格设备中有不同的意义；一个“em”的实际宽度不得而知，假设1em相当于一个网格单元的宽高。</p>
+</blockquote>
+<pre><code>/* 向一个15字符宽度或更窄的手持设备应用样式 */：
+@media handheld and (grid) and (max-width: 15em) { ... }
+</code></pre><h2 id="u9ED1_u767D_uFF08monochrome_uFF09"><a href="#u9ED1_u767D_uFF08monochrome_uFF09" class="headerlink" title="黑白（monochrome）"></a>黑白（monochrome）</h2><p>指定了一个黑白（灰度）设备每个像素的比特数。如果不是黑白设备，值为0。</p>
+<ul>
+<li>值：<integer></integer></li>
+<li>媒体： visual</li>
+<li>是否接受 min/max 前缀：是</li>
+</ul>
+<pre><code>/* 向所有黑白设备应用样式表 */
+@media all and (monochrome) { ... }
+
+/* 向每个像素至少8比特的黑白设备应用样式表 */
+@media all and (min-monochrome: 8) { ... }
+</code></pre><h2 id="u5206_u8FA8_u7387_uFF08resolution_uFF09"><a href="#u5206_u8FA8_u7387_uFF08resolution_uFF09" class="headerlink" title="分辨率（resolution）"></a>分辨率（resolution）</h2><p>指定输出设备的分辨率（像素密度）。分辨率可以用每英寸（dpi）或每厘米（dpcm）的点数来表示。</p>
+<ul>
+<li>值： <resolution></resolution></li>
+<li>媒体： bitmap</li>
+<li>是否接受 min/max 前缀：是</li>
+</ul>
+<pre><code>/* 为每英寸至多300点的打印机应用样式 */
+@media print and (min-resolution: 300dpi) { ... }
+
+/* 替换老旧的 (min-device-pixel-ratio: 2) 语法 */
+@media screen and (min-resolution: 2dppx) { ... }
+</code></pre><h2 id="u626B_u63CF_uFF08scan_uFF09"><a href="#u626B_u63CF_uFF08scan_uFF09" class="headerlink" title="扫描（scan）"></a>扫描（scan）</h2><p>描述了电视输出设备的扫描过程。</p>
+<ul>
+<li>值： progressive | interlace</li>
+<li>媒体：tv</li>
+<li>是否接受 min/max 前缀：否</li>
+</ul>
+<pre><code>/* 向以顺序方式扫描的电视机上应用样式表 */
+@media tv and (scan: progressive) { ... }
+</code></pre><h1 id="u903B_u8F91_u64CD_u4F5C_u7B26"><a href="#u903B_u8F91_u64CD_u4F5C_u7B26" class="headerlink" title="逻辑操作符"></a>逻辑操作符</h1><p>操作符 not，and 和 only 可以用来构建复杂的媒体查询。</p>
+<ul>
+<li>and 操作符用来把多个 媒体属性 组合起来，合并到同一条媒体查询中。只有当每个属性都为真时，这条查询的结果才为真。</li>
+<li>not 操作符用来对一条媒体查询的结果进行取反。</li>
+<li>only 操作符表示仅在媒体查询匹配成功的情况下应用指定样式。可以通过它让选中的样式在老式浏览器中不被应用。</li>
+<li>将多个媒体查询以逗号分隔放在一起；只要其中任何一个为真，整个媒体语句就返回真。相当于 or 操作符。</li>
+</ul>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/前端/">前端</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/css/">css</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://www.fflove.top/post/css-media/" data-title="CSS 媒体查询 | 如初见" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/post/php-getwechatversion/" title="微信开发-检测是否在微信内/获取微信版本号">
+  <strong>上一篇：</strong><br/>
+  <span>
+  微信开发-检测是否在微信内/获取微信版本号</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/post/git-shell/"  title="Git 命令">
+ <strong>下一篇：</strong><br/> 
+ <span>Git 命令
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="post/css-media/" data-title="CSS 媒体查询" data-url="http://www.fflove.top/post/css-media/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#u8BED_u6CD5"><span class="toc-number">1.</span> <span class="toc-text">语法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#u5E38_u7528_u5A92_u4F53_u5C5E_u6027"><span class="toc-number">2.</span> <span class="toc-text">常用媒体属性</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#u9AD8_u5EA6_uFF08height_uFF09"><span class="toc-number">2.1.</span> <span class="toc-text">高度（height）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u5BBD_u5EA6_uFF08width_uFF09"><span class="toc-number">2.2.</span> <span class="toc-text">宽度（width）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u8BBE_u5907_u9AD8_u5EA6_uFF08device-height_uFF09"><span class="toc-number">2.3.</span> <span class="toc-text">设备高度（device-height）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u8BBE_u5907_u5BBD_u5EA6_uFF08device-width_uFF09"><span class="toc-number">2.4.</span> <span class="toc-text">设备宽度（device-width）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u65B9_u5411_uFF08orientation_uFF09"><span class="toc-number">2.5.</span> <span class="toc-text">方向（orientation）</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#u4E0D_u5E38_u7528_u5A92_u4F53_u5C5E_u6027"><span class="toc-number">3.</span> <span class="toc-text">不常用媒体属性</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#u989C_u8272_uFF08color_uFF09"><span class="toc-number">3.1.</span> <span class="toc-text">颜色（color）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u989C_u8272_u7D22_u5F15_uFF08color-index_uFF09"><span class="toc-number">3.2.</span> <span class="toc-text">颜色索引（color-index）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u5BBD_u9AD8_u6BD4_uFF08aspect-ratio_uFF09"><span class="toc-number">3.3.</span> <span class="toc-text">宽高比（aspect-ratio）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u8BBE_u5907_u5BBD_u9AD8_u6BD4_uFF08device-aspect-ratio_uFF09"><span class="toc-number">3.4.</span> <span class="toc-text">设备宽高比（device-aspect-ratio）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u7F51_u683C_uFF08grid_uFF09"><span class="toc-number">3.5.</span> <span class="toc-text">网格（grid）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u9ED1_u767D_uFF08monochrome_uFF09"><span class="toc-number">3.6.</span> <span class="toc-text">黑白（monochrome）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u5206_u8FA8_u7387_uFF08resolution_uFF09"><span class="toc-number">3.7.</span> <span class="toc-text">分辨率（resolution）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u626B_u63CF_uFF08scan_uFF09"><span class="toc-number">3.8.</span> <span class="toc-text">扫描（scan）</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#u903B_u8F91_u64CD_u4F5C_u7B26"><span class="toc-number">4.</span> <span class="toc-text">逻辑操作符</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/js/" title="js">js<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/php/" title="php">php<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/前端/" title="前端">前端<sup>18</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/工具/" title="工具">工具<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/杂项/" title="杂项">杂项<sup>3</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/js/" title="js">js<sup>7</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Javascript-Design-Pattern/" title="Javascript Design Pattern">Javascript Design Pattern<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Node-js-入门经典/" title="Node.js 入门经典">Node.js 入门经典<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/music/" title="music">music<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/css/" title="css">css<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/test/" title="test">test<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/jquery/" title="jquery">jquery<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/php/" title="php">php<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/微信开发/" title="微信开发">微信开发<sup>1</sup></a></li>
+			
+		
+			
+		
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://coderq.com" target="_blank" title="一个面向程序员交流分享的新一代社区">码农圈</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<section class="info">
+		<p> 人生若只如初见 <br/>
+			何时何事，保持初见的感觉，怦然心动，热情如火</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		<a href="https://github.com/https://github.com/zfandf" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<a href="mailto:zfandf@163.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		
+		<a href="/about" target="_blank" title="Fannie">Fannie</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"ffloveblog"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

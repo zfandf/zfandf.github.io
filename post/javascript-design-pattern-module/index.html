@@ -1,0 +1,560 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>JavaScript 设计模式 - Module (模块) 模式 | 如初见</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Fannie">
+    
+
+    
+    <meta name="description" content="模块是任何强大应用程序架构中不可或缺的一部分, 它通常能够帮助我们清晰的分离和组织项目中的代码单元.在 JavaScript 中, 有几种用于实现模块的方法:
+
+对象字面量表示法
+Module 模式
+AMD 模块
+CommonJs 模块
+ECMAScript Harmony 模块
+
+Module 模式在某种程度上是基于对象字面量, 因此首先重新认识一下对象字面量.
+对象字面量在对象字面量表示法中,">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript 设计模式 - Module (模块) 模式">
+<meta property="og:url" content="http://www.fflove.top/post/javascript-design-pattern-module/index.html">
+<meta property="og:site_name" content="如初见">
+<meta property="og:description" content="模块是任何强大应用程序架构中不可或缺的一部分, 它通常能够帮助我们清晰的分离和组织项目中的代码单元.在 JavaScript 中, 有几种用于实现模块的方法:
+
+对象字面量表示法
+Module 模式
+AMD 模块
+CommonJs 模块
+ECMAScript Harmony 模块
+
+Module 模式在某种程度上是基于对象字面量, 因此首先重新认识一下对象字面量.
+对象字面量在对象字面量表示法中,">
+<meta property="og:updated_time" content="2016-02-02T03:21:07.941Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript 设计模式 - Module (模块) 模式">
+<meta name="twitter:description" content="模块是任何强大应用程序架构中不可或缺的一部分, 它通常能够帮助我们清晰的分离和组织项目中的代码单元.在 JavaScript 中, 有几种用于实现模块的方法:
+
+对象字面量表示法
+Module 模式
+AMD 模块
+CommonJs 模块
+ECMAScript Harmony 模块
+
+Module 模式在某种程度上是基于对象字面量, 因此首先重新认识一下对象字面量.
+对象字面量在对象字面量表示法中,">
+
+    
+    <link rel="alternative" href="/atom.xml" title="如初见" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/f.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/f.ico">
+    <link rel="apple-touch-icon-precomposed" href="/img/f.ico">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/f.png" alt="如初见" title="如初见"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="如初见">如初见</a></h1>
+				<h2 class="blog-motto">人生若只如初见</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">主页 | Home</a></li>
+					
+						<li><a href="/archives">归档 | Archives</a></li>
+					
+						<li><a href="/about">简介 | About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:www.fflove.top">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/post/javascript-design-pattern-module/" title="JavaScript 设计模式 - Module (模块) 模式" itemprop="url">JavaScript 设计模式 - Module (模块) 模式</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Fannie" target="_blank" itemprop="author">Fannie</a>
+		
+  <p class="article-time">
+    <time datetime="2015-02-10T00:42:16.000Z" itemprop="datePublished"> 发表于 2015-02-10</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#u5BF9_u8C61_u5B57_u9762_u91CF"><span class="toc-number">1.</span> <span class="toc-text">对象字面量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Module__28_u6A21_u5757_29__u6A21_u5F0F"><span class="toc-number">2.</span> <span class="toc-text">Module (模块) 模式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u79C1_u6709"><span class="toc-number">2.1.</span> <span class="toc-text">私有</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u793A_u4F8B_2C__u8D2D_u7269_u8F66"><span class="toc-number">2.2.</span> <span class="toc-text">示例, 购物车</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Module__u6A21_u5F0F_u53D8_u5316"><span class="toc-number">3.</span> <span class="toc-text">Module 模式变化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u5F15_u5165_u6DF7_u5165"><span class="toc-number">3.1.</span> <span class="toc-text">引入混入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5F15_u51FA"><span class="toc-number">3.2.</span> <span class="toc-text">引出</span></a></li></ol></li></ol>
+		
+		</div>
+		
+		<p>模块是任何强大应用程序架构中不可或缺的一部分, 它通常能够帮助我们清晰的分离和组织项目中的代码单元.<br>在 JavaScript 中, 有几种用于实现模块的方法:</p>
+<ul>
+<li>对象字面量表示法</li>
+<li>Module 模式</li>
+<li>AMD 模块</li>
+<li>CommonJs 模块</li>
+<li>ECMAScript Harmony 模块</li>
+</ul>
+<p>Module 模式在某种程度上是基于对象字面量, 因此首先重新认识一下对象字面量.</p>
+<h2 id="u5BF9_u8C61_u5B57_u9762_u91CF"><a href="#u5BF9_u8C61_u5B57_u9762_u91CF" class="headerlink" title="对象字面量"></a>对象字面量</h2><p>在对象字面量表示法中, 一个对象被描述为一组包含在大括号 ({}) 中, 以逗号分隔的 name/value 对. 对象内的名称可以是字符串或者标志符, 后面跟着一个冒号. 对象的最后一个 name/value 对的后面不用加都好, 如果加逗号某些浏览器(IE)将会报错.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var myObj = &#123;&#10;    variableKey: variableValue,&#10;    functionKey: function() &#123;&#10;        // dosomething&#10;    &#125;&#10;&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>对象字面量不需要使用 new 运算符进行实例化, 但不能用在一个语句的开头, 因为开始的可能被解读为一个块的开始. 在对象的外部, 新成员可以使用如下赋值语句添加到对象字面量上, 如: myObj.property = ‘somevalue’;<br>使用对象字面量有助于封装和组织代码<br>也就是说, 如果我们选择了这种技术, 我们可能同样也对 Module 模式感兴趣.他仍然使用对象字面量, 但只是作为一个作用域函数的返回值.</p>
+<h2 id="Module__28_u6A21_u5757_29__u6A21_u5F0F"><a href="#Module__28_u6A21_u5757_29__u6A21_u5F0F" class="headerlink" title="Module (模块) 模式"></a>Module (模块) 模式</h2><p>Module 模式最初被定义为一种在传统软件工程中为类提供私有和公有封装的方法.<br>在 JavaScript 中, Module 模式用于进一步模拟类的概念, 通过这种方式, 能够使一个单独的对象拥有公有/私有方法和变量, 从而屏蔽来自全局作用域的特殊部分.<br>产生的结果是: 函数名与在页面上其它脚本定义的函数冲突的可能性降低.</p>
+<h3 id="u79C1_u6709"><a href="#u79C1_u6709" class="headerlink" title="私有"></a>私有</h3><p>Module 模式使用闭包封装 “私有” 状态和组织. 它提供一种包装混合公有/私有方法和变量的方式, 防止其泄漏致全局作用域, 并与别的开发人员接口发生冲突.通过该模式, 只需返回一个公有API, 而其他一切都维持在私有的闭包里.<br>这种形式为我们提供了一个屏蔽处理底层事件逻辑的整洁解决方案, 同时只暴露一个接口供应用程序的其它部分使用. 该模式除了返回一个对象而非一个函数外, 非常类似于一个自调用的函数表达式.<br>注意: 在 JavaScript 中, 没有真正意义上的 “私有”, JavaScript 没有访问修饰符. 因此, 我们使用函数作用域来模拟公有/私有的概念. 在 Module 模式内, 由于闭包的存在, 声明的变量和方法只在模式内部可用, 但是在返回对象上定义的变量和方法, 则对外部使用者都是可用的.</p>
+<h3 id="u793A_u4F8B_2C__u8D2D_u7269_u8F66"><a href="#u793A_u4F8B_2C__u8D2D_u7269_u8F66" class="headerlink" title="示例, 购物车"></a>示例, 购物车</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">// &#36141;&#29289;&#36710;&#10;var basketModule = function() &#123;&#10;    var basket = [];&#10;&#10;    function checkItem(item) &#123;&#10;        if (!item.id || !item.name) &#123;&#10;            return false;&#10;        &#125;&#10;        item.price = item.price || 0;&#10;        return true;&#10;    &#125;&#10;&#10;    return &#123;&#10;        addItem: function(item) &#123;&#10;            if (checkItem(item)) &#123;&#10;                basket.push(item);&#10;            &#125; else &#123;&#10;                console.log(&#39;item is error&#39;);&#10;            &#125;&#10;        &#125;,&#10;        getItemCount: function() &#123;&#10;            return basket.length;&#10;        &#125;,&#10;        getTotal: function() &#123;&#10;            var itemCount = this.getItemCount(),&#10;                total = 0;&#10;            while (itemCount--) &#123;&#10;                total += basket[itemCount].price;&#10;            &#125;&#10;            return total;&#10;        &#125;&#10;    &#125;;&#10;&#125;();&#10;basketModule.addItem(&#123;&#10;    id: 1,&#10;    name: &#39;JavaScript &#35774;&#35745;&#27169;&#24335;&#39;,&#10;    price: 10.4&#10;&#125;);&#10;basketModule.addItem(&#123;&#10;    id: 1,&#10;    name: &#39;JavaScript &#39640;&#32423;&#25945;&#31243;&#39;,&#10;    price: 20&#10;&#125;);&#10;console.log(basketModule.getItemCount()); // &#36755;&#20986;: 2&#10;console.log(basketModule.getTotal()); // &#36755;&#20986;: 30.4&#10;console.log(basketModule.basket); // &#36755;&#20986;: undefined&#10;console.log(basketModule.basket); // &#36755;&#20986;: undefined</span><br></pre></td></tr></table></figure>
+<p>Module 模式将私有的方法和属性都封装在闭包内, 防止外部访问, 可以被外部访问的方法和属性都定义在返回的对象上.<br>请注意上面的 basket模块中的作用域函数是如何包裹在所有函数周围, 然后调用并立即存储返回值. 这有很多优点:</p>
+<ul>
+<li>只有我们的模块才能享有拥有私有函数的自由. 因为它们不会暴露于页面的其余部分(只会暴露与我们输出的 API)</li>
+<li>函数往往已声明并命名, 在试图找到有哪些函数抛出异常时, 这将使得在调试器中显示调用堆栈变得更容易</li>
+</ul>
+<h2 id="Module__u6A21_u5F0F_u53D8_u5316"><a href="#Module__u6A21_u5F0F_u53D8_u5316" class="headerlink" title="Module 模式变化"></a>Module 模式变化</h2><h3 id="u5F15_u5165_u6DF7_u5165"><a href="#u5F15_u5165_u6DF7_u5165" class="headerlink" title="引入混入"></a>引入混入</h3><p>模式的这种变化演示了全局变量如何作为参数传递给模块的匿名函数. 这允许我们引入它们, 并按照我们希望的方式为它们取个本地别名.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var TestModule = (function(j, w) &#123;&#10;    // dosomething&#10;&#125;)(jQuery, window);</span><br></pre></td></tr></table></figure></p>
+<p>引入的这种变化可以自定义使用的全局变量的名称, 即使外部全局变量名称改变, 该模块也只需要修改传入的参数名.</p>
+<h3 id="u5F15_u51FA"><a href="#u5F15_u51FA" class="headerlink" title="引出"></a>引出</h3><p>引出变化允许我们声明全局变量, 而不需要实现它们.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var TestModule = (function() &#123;&#10;    var module = &#123;&#125;,&#10;        privateVariable = &#39;hello world&#39;;&#10;&#10;    module.publicProperty = &#39;Foobar&#39;;&#10;    module.publicMethod = function() &#123;&#10;        // dosomething&#10;        console.log(privateVariable);&#10;    &#125;;&#10;    return module;&#10;&#125;)();</span><br></pre></td></tr></table></figure></p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/前端/">前端</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Javascript-Design-Pattern/">Javascript Design Pattern</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://www.fflove.top/post/javascript-design-pattern-module/" data-title="JavaScript 设计模式 - Module (模块) 模式 | 如初见" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/post/music-hebe-solo/" title="Music-笑忘书">
+  <strong>上一篇：</strong><br/>
+  <span>
+  Music-笑忘书</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/post/music-what-i-miss-most/"  title="Music-我怀念的">
+ <strong>下一篇：</strong><br/> 
+ <span>Music-我怀念的
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="post/javascript-design-pattern-module/" data-title="JavaScript 设计模式 - Module (模块) 模式" data-url="http://www.fflove.top/post/javascript-design-pattern-module/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#u5BF9_u8C61_u5B57_u9762_u91CF"><span class="toc-number">1.</span> <span class="toc-text">对象字面量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Module__28_u6A21_u5757_29__u6A21_u5F0F"><span class="toc-number">2.</span> <span class="toc-text">Module (模块) 模式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u79C1_u6709"><span class="toc-number">2.1.</span> <span class="toc-text">私有</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u793A_u4F8B_2C__u8D2D_u7269_u8F66"><span class="toc-number">2.2.</span> <span class="toc-text">示例, 购物车</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Module__u6A21_u5F0F_u53D8_u5316"><span class="toc-number">3.</span> <span class="toc-text">Module 模式变化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u5F15_u5165_u6DF7_u5165"><span class="toc-number">3.1.</span> <span class="toc-text">引入混入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5F15_u51FA"><span class="toc-number">3.2.</span> <span class="toc-text">引出</span></a></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/js/" title="js">js<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/php/" title="php">php<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/前端/" title="前端">前端<sup>18</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/工具/" title="工具">工具<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/杂项/" title="杂项">杂项<sup>3</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/js/" title="js">js<sup>7</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Javascript-Design-Pattern/" title="Javascript Design Pattern">Javascript Design Pattern<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Node-js-入门经典/" title="Node.js 入门经典">Node.js 入门经典<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/music/" title="music">music<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/css/" title="css">css<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/test/" title="test">test<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/jquery/" title="jquery">jquery<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/php/" title="php">php<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/微信开发/" title="微信开发">微信开发<sup>1</sup></a></li>
+			
+		
+			
+		
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://coderq.com" target="_blank" title="一个面向程序员交流分享的新一代社区">码农圈</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<section class="info">
+		<p> 人生若只如初见 <br/>
+			何时何事，保持初见的感觉，怦然心动，热情如火</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		<a href="https://github.com/https://github.com/zfandf" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<a href="mailto:zfandf@163.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		
+		<a href="/about" target="_blank" title="Fannie">Fannie</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"ffloveblog"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

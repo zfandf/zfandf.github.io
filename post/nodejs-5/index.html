@@ -1,0 +1,631 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>Node.js 入门经典 第五章 HTTP | 如初见</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Fannie">
+    
+
+    
+    <meta name="description" content="本章学习要点
+理解 HTTP
+使用 Node.js 创建 HTTP 服务器
+使用 Node.js 创建 HTTP 客户端
+
+什么是 HTTP超文本传输协议（HTTP）是 Internet 上老牌的通信协议。它定义了服务器和客户端在通信的时候应该如何发送和接收数据。
+使用 Node.js 的 HTTP 服务器一个基础的服务器创建一个简单的 Node.js 服务器将 “hello world” 输出到">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Node.js 入门经典 第五章 HTTP">
+<meta property="og:url" content="http://www.fflove.top/post/nodejs-5/index.html">
+<meta property="og:site_name" content="如初见">
+<meta property="og:description" content="本章学习要点
+理解 HTTP
+使用 Node.js 创建 HTTP 服务器
+使用 Node.js 创建 HTTP 客户端
+
+什么是 HTTP超文本传输协议（HTTP）是 Internet 上老牌的通信协议。它定义了服务器和客户端在通信的时候应该如何发送和接收数据。
+使用 Node.js 的 HTTP 服务器一个基础的服务器创建一个简单的 Node.js 服务器将 “hello world” 输出到">
+<meta property="og:updated_time" content="2016-02-02T03:21:07.945Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Node.js 入门经典 第五章 HTTP">
+<meta name="twitter:description" content="本章学习要点
+理解 HTTP
+使用 Node.js 创建 HTTP 服务器
+使用 Node.js 创建 HTTP 客户端
+
+什么是 HTTP超文本传输协议（HTTP）是 Internet 上老牌的通信协议。它定义了服务器和客户端在通信的时候应该如何发送和接收数据。
+使用 Node.js 的 HTTP 服务器一个基础的服务器创建一个简单的 Node.js 服务器将 “hello world” 输出到">
+
+    
+    <link rel="alternative" href="/atom.xml" title="如初见" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/f.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/f.ico">
+    <link rel="apple-touch-icon-precomposed" href="/img/f.ico">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/f.png" alt="如初见" title="如初见"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="如初见">如初见</a></h1>
+				<h2 class="blog-motto">人生若只如初见</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">主页 | Home</a></li>
+					
+						<li><a href="/archives">归档 | Archives</a></li>
+					
+						<li><a href="/about">简介 | About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:www.fflove.top">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/post/nodejs-5/" title="Node.js 入门经典 第五章 HTTP" itemprop="url">Node.js 入门经典 第五章 HTTP</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Fannie" target="_blank" itemprop="author">Fannie</a>
+		
+  <p class="article-time">
+    <time datetime="2015-10-02T01:38:51.000Z" itemprop="datePublished"> 发表于 2015-10-02</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#u672C_u7AE0_u5B66_u4E60_u8981_u70B9"><span class="toc-number">1.</span> <span class="toc-text">本章学习要点</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#u4EC0_u4E48_u662F_HTTP"><span class="toc-number">2.</span> <span class="toc-text">什么是 HTTP</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#u4F7F_u7528_Node-js__u7684_HTTP__u670D_u52A1_u5668"><span class="toc-number">3.</span> <span class="toc-text">使用 Node.js 的 HTTP 服务器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#u4E00_u4E2A_u57FA_u7840_u7684_u670D_u52A1_u5668"><span class="toc-number">3.1.</span> <span class="toc-text">一个基础的服务器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u52A0_u5165_u5934_uFF08Header_uFF09"><span class="toc-number">3.2.</span> <span class="toc-text">加入头（Header）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u68C0_u67E5_u54CD_u5E94_u5934"><span class="toc-number">3.3.</span> <span class="toc-text">检查响应头</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Node-js__u4E2D_u7684_u91CD_u5B9A_u5411"><span class="toc-number">3.4.</span> <span class="toc-text">Node.js 中的重定向</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u54CD_u5E94_u4E0D_u540C_u7684_u8BF7_u6C42"><span class="toc-number">3.5.</span> <span class="toc-text">响应不同的请求</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#u4F7F_u7528_Node-js__u7684_HTTP__u5BA2_u6237_u7AEF"><span class="toc-number">4.</span> <span class="toc-text">使用 Node.js 的 HTTP 客户端</span></a></li></ol>
+		
+		</div>
+		
+		<h1 id="u672C_u7AE0_u5B66_u4E60_u8981_u70B9"><a href="#u672C_u7AE0_u5B66_u4E60_u8981_u70B9" class="headerlink" title="本章学习要点"></a>本章学习要点</h1><ul>
+<li>理解 HTTP</li>
+<li>使用 Node.js 创建 HTTP 服务器</li>
+<li>使用 Node.js 创建 HTTP 客户端</li>
+</ul>
+<h1 id="u4EC0_u4E48_u662F_HTTP"><a href="#u4EC0_u4E48_u662F_HTTP" class="headerlink" title="什么是 HTTP"></a>什么是 HTTP</h1><p>超文本传输协议（HTTP）是 Internet 上老牌的通信协议。它定义了服务器和客户端在通信的时候应该如何发送和接收数据。</p>
+<h1 id="u4F7F_u7528_Node-js__u7684_HTTP__u670D_u52A1_u5668"><a href="#u4F7F_u7528_Node-js__u7684_HTTP__u670D_u52A1_u5668" class="headerlink" title="使用 Node.js 的 HTTP 服务器"></a>使用 Node.js 的 HTTP 服务器</h1><h2 id="u4E00_u4E2A_u57FA_u7840_u7684_u670D_u52A1_u5668"><a href="#u4E00_u4E2A_u57FA_u7840_u7684_u670D_u52A1_u5668" class="headerlink" title="一个基础的服务器"></a>一个基础的服务器</h2><p>创建一个简单的 Node.js 服务器将 “hello world” 输出到 Web 浏览器。</p>
+<pre><code>var http = require(&apos;http&apos;),
+    port = 3000;
+
+http.createServer(function(req, res) {
+    res.end(&apos;hello world&apos;);
+}).listen(port, &apos;127.0.0.1&apos;);
+console.log(&apos;server running at http://127.0.0.1:&apos; + port);
+</code></pre><h2 id="u52A0_u5165_u5934_uFF08Header_uFF09"><a href="#u52A0_u5165_u5934_uFF08Header_uFF09" class="headerlink" title="加入头（Header）"></a>加入头（Header）</h2><p>对于每一个 HTTP 请求和响应，都会发送 HTTP 头。HTTP 头发送的是附加信息，包括内容类型、服务器发送响应的日期以及 HTTP 状态码。</p>
+<p>在简单的 hello world 服务器中，Node.js 已经发送了一些基本信息。</p>
+<pre><code>var http = require(&apos;http&apos;),
+    port = 3000;
+
+http.createServer(function(req, res) {
+    res.writeHead(200, {
+        &apos;Content-Type&apos;: &apos;text/plain&apos;
+    });
+    res.end(&apos;hello world&apos;);
+}).listen(port, &apos;127.0.0.1&apos;);
+console.log(&apos;server running at http://127.0.0.1:&apos; + port);
+</code></pre><h2 id="u68C0_u67E5_u54CD_u5E94_u5934"><a href="#u68C0_u67E5_u54CD_u5E94_u5934" class="headerlink" title="检查响应头"></a>检查响应头</h2><ul>
+<li>chrome 用户，可以使用 HTTP Headers 扩展</li>
+<li>firefox 用户，可以使用 Live HTTP Headers Firefox 外挂</li>
+<li><p>习惯使用终端的用户，可以使用 curl 来取得响应头的内容。</p>
+<p>  在终端运行如下命令</p>
+<pre><code>curl -I 127.0.0.1:3000
+</code></pre><p>  应当看到如下响应</p>
+<pre><code>HTTP/1.1 200 OK
+Date: Fri, 02 Oct 2015 02:27:23 GMT
+Connection: keep-alive
+</code></pre></li>
+</ul>
+<h2 id="Node-js__u4E2D_u7684_u91CD_u5B9A_u5411"><a href="#Node-js__u4E2D_u7684_u91CD_u5B9A_u5411" class="headerlink" title="Node.js 中的重定向"></a>Node.js 中的重定向</h2><p>重定向的准则如下</p>
+<ul>
+<li>给客户发送 301 响应代码，告诉客户：资源已经移到另一个位置</li>
+<li>发送一个位置头（Location Header）告诉客户重定向到哪里</li>
+</ul>
+<p>举个栗子，将访问者指向到百度主页</p>
+<pre><code>var http = require(&apos;http&apos;),
+    port = 3000;
+
+http.createServer(function(req, res) {
+    res.writeHead(301, {
+        &apos;Location&apos;: &apos;http://www.baidu.com&apos;
+    });
+}).listen(port, &apos;127.0.0.1&apos;);
+console.log(&apos;Server running at http:127.0.0.1:&apos; + port);
+</code></pre><h2 id="u54CD_u5E94_u4E0D_u540C_u7684_u8BF7_u6C42"><a href="#u54CD_u5E94_u4E0D_u540C_u7684_u8BF7_u6C42" class="headerlink" title="响应不同的请求"></a>响应不同的请求</h2><p>如果要让服务器返回超过一种类型的请求，就需要给应用程序加一些路由（router）. Node.js 中 URL 模块使我们可以读取 URL、分析它然后对输出做一些事情。</p>
+<p>路由定义响应</p>
+<blockquote>
+<p>路由指的是应用程序要响应的请求。举个例子来说，如果想展示一个位于 /about_us 的 “关于我们” 页面，就需要在应用程序中对这一请求设置一个路由。</p>
+</blockquote>
+<p>下面是使用 URL 模块创建的路由服务器：</p>
+<pre><code>var http = require(&apos;http&apos;),
+    url = require(&apos;url&apos;),
+    port = 3000,
+    host = &apos;127.0.0.1&apos;;
+
+http.createServer(function(req, res) {
+    var pathname = url.parse(req.url).pathname;
+
+    if (pathname === &apos;/&apos;) {
+        res.writeHead(200, {
+            &apos;Content-Type&apos;: &apos;text/plain&apos;
+        });
+        res.end(&apos;hello world&apos;);
+    } else if (pathname === &apos;/about&apos;) {
+        res.writeHead(200, {
+            &apos;Content-Type&apos;: &apos;text/plain&apos;
+        });
+        res.end(&apos;about us&apos;);
+    } else if (pathname === &apos;/redirect&apos;) {
+        res.writeHead(301, {
+            &apos;Location&apos;: &apos;http://www.baidu.com&apos;
+        });
+        res.end();
+    } else {
+        res.writeHead(404, {
+            &apos;Content-Type&apos;: &apos;text/plain&apos;
+        });
+        res.end(&apos;404 not found&apos;);
+    }
+}).listen(port, host);
+console.log(&apos;Server running at http://127.0.0.1:&apos; + port);
+</code></pre><p>使用 URL 模块可以创建对许多不同请求进行响应的服务器。但如此做法会使程序变得复杂、难以阅读与维护。在第 6 章中会介绍 Express 库来解决这一问题。</p>
+<h1 id="u4F7F_u7528_Node-js__u7684_HTTP__u5BA2_u6237_u7AEF"><a href="#u4F7F_u7528_Node-js__u7684_HTTP__u5BA2_u6237_u7AEF" class="headerlink" title="使用 Node.js 的 HTTP 客户端"></a>使用 Node.js 的 HTTP 客户端</h1><p>HTML 客户端不总是浏览器</p>
+<blockquote>
+<p>HTML 客户端可以是任何对服务器请求响应的东西。 比如 web 浏览器、搜索引擎机器人、电子邮件客户端以及 web 刮取器（Web Scraper）都是 HTML 客户端。</p>
+</blockquote>
+<p>需要使用 HTML 客户端的场景有：</p>
+<ul>
+<li>监控服务器的正常工作时间</li>
+<li>刮取不能通过 API 获取的 Web 内容</li>
+<li>创建将来自 Web 的两个或更多信息来源组合在一起的混搭（mashup）</li>
+<li>对诸如 Twitter 或 Flicker 这样的流行 Web Service 进行 API 调用</li>
+</ul>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/前端/">前端</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Node-js-入门经典/">Node.js 入门经典</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://www.fflove.top/post/nodejs-5/" data-title="Node.js 入门经典 第五章 HTTP | 如初见" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/post/chrome-extension/" title="前端工程师喜欢的 chrome 扩展">
+  <strong>上一篇：</strong><br/>
+  <span>
+  前端工程师喜欢的 chrome 扩展</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/post/nodejs-install/"  title="Node.js 入门经典">
+ <strong>下一篇：</strong><br/> 
+ <span>Node.js 入门经典
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="post/nodejs-5/" data-title="Node.js 入门经典 第五章 HTTP" data-url="http://www.fflove.top/post/nodejs-5/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#u672C_u7AE0_u5B66_u4E60_u8981_u70B9"><span class="toc-number">1.</span> <span class="toc-text">本章学习要点</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#u4EC0_u4E48_u662F_HTTP"><span class="toc-number">2.</span> <span class="toc-text">什么是 HTTP</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#u4F7F_u7528_Node-js__u7684_HTTP__u670D_u52A1_u5668"><span class="toc-number">3.</span> <span class="toc-text">使用 Node.js 的 HTTP 服务器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#u4E00_u4E2A_u57FA_u7840_u7684_u670D_u52A1_u5668"><span class="toc-number">3.1.</span> <span class="toc-text">一个基础的服务器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u52A0_u5165_u5934_uFF08Header_uFF09"><span class="toc-number">3.2.</span> <span class="toc-text">加入头（Header）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u68C0_u67E5_u54CD_u5E94_u5934"><span class="toc-number">3.3.</span> <span class="toc-text">检查响应头</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Node-js__u4E2D_u7684_u91CD_u5B9A_u5411"><span class="toc-number">3.4.</span> <span class="toc-text">Node.js 中的重定向</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u54CD_u5E94_u4E0D_u540C_u7684_u8BF7_u6C42"><span class="toc-number">3.5.</span> <span class="toc-text">响应不同的请求</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#u4F7F_u7528_Node-js__u7684_HTTP__u5BA2_u6237_u7AEF"><span class="toc-number">4.</span> <span class="toc-text">使用 Node.js 的 HTTP 客户端</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/js/" title="js">js<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/php/" title="php">php<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/前端/" title="前端">前端<sup>18</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/工具/" title="工具">工具<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/杂项/" title="杂项">杂项<sup>3</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/js/" title="js">js<sup>7</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Javascript-Design-Pattern/" title="Javascript Design Pattern">Javascript Design Pattern<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Node-js-入门经典/" title="Node.js 入门经典">Node.js 入门经典<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/music/" title="music">music<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/css/" title="css">css<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/test/" title="test">test<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/jquery/" title="jquery">jquery<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/php/" title="php">php<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/微信开发/" title="微信开发">微信开发<sup>1</sup></a></li>
+			
+		
+			
+		
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://coderq.com" target="_blank" title="一个面向程序员交流分享的新一代社区">码农圈</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<section class="info">
+		<p> 人生若只如初见 <br/>
+			何时何事，保持初见的感觉，怦然心动，热情如火</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		<a href="https://github.com/https://github.com/zfandf" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<a href="mailto:zfandf@163.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		
+		<a href="/about" target="_blank" title="Fannie">Fannie</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"ffloveblog"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

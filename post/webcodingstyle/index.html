@@ -1,0 +1,686 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>Web 前端编码规范 | 如初见</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Fannie">
+    
+
+    
+    <meta name="description" content="通用规范
+tab键用4个空格代替
+  因为在不同系统的编辑工具对tab解析不一样，windows下的tab键是占四个空格的位置，而在linux下会变成占八个空格的位置（除非你自己设定了tab键所占的位置长度）。
+
+每个样式属性或者每句代码后加 “;”
+  方便压缩工具”断句”。
+
+所有文件统一采用UTF-8无BOM编码。换行格式为 unix 格式。
+
+文件和目录命名约定
+
+文件命名可读性强
+文件夹">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Web 前端编码规范">
+<meta property="og:url" content="http://www.fflove.top/post/webcodingstyle/index.html">
+<meta property="og:site_name" content="如初见">
+<meta property="og:description" content="通用规范
+tab键用4个空格代替
+  因为在不同系统的编辑工具对tab解析不一样，windows下的tab键是占四个空格的位置，而在linux下会变成占八个空格的位置（除非你自己设定了tab键所占的位置长度）。
+
+每个样式属性或者每句代码后加 “;”
+  方便压缩工具”断句”。
+
+所有文件统一采用UTF-8无BOM编码。换行格式为 unix 格式。
+
+文件和目录命名约定
+
+文件命名可读性强
+文件夹">
+<meta property="og:updated_time" content="2016-02-02T03:21:07.946Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Web 前端编码规范">
+<meta name="twitter:description" content="通用规范
+tab键用4个空格代替
+  因为在不同系统的编辑工具对tab解析不一样，windows下的tab键是占四个空格的位置，而在linux下会变成占八个空格的位置（除非你自己设定了tab键所占的位置长度）。
+
+每个样式属性或者每句代码后加 “;”
+  方便压缩工具”断句”。
+
+所有文件统一采用UTF-8无BOM编码。换行格式为 unix 格式。
+
+文件和目录命名约定
+
+文件命名可读性强
+文件夹">
+
+    
+    <link rel="alternative" href="/atom.xml" title="如初见" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/f.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/f.ico">
+    <link rel="apple-touch-icon-precomposed" href="/img/f.ico">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/f.png" alt="如初见" title="如初见"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="如初见">如初见</a></h1>
+				<h2 class="blog-motto">人生若只如初见</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">主页 | Home</a></li>
+					
+						<li><a href="/archives">归档 | Archives</a></li>
+					
+						<li><a href="/about">简介 | About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:www.fflove.top">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/post/webcodingstyle/" title="Web 前端编码规范" itemprop="url">Web 前端编码规范</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Fannie" target="_blank" itemprop="author">Fannie</a>
+		
+  <p class="article-time">
+    <time datetime="2015-03-27T06:40:21.000Z" itemprop="datePublished"> 发表于 2015-03-27</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#u901A_u7528_u89C4_u8303"><span class="toc-number">1.</span> <span class="toc-text">通用规范</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#u524D_u7AEF_u89C4_u8303_u4E4BHTML_u89C4_u8303"><span class="toc-number">2.</span> <span class="toc-text">前端规范之HTML规范</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#u6587_u6863_u6A21_u677F"><span class="toc-number">2.1.</span> <span class="toc-text">文档模板</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTML5_doctype"><span class="toc-number">2.2.</span> <span class="toc-text">HTML5 doctype</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IE__u517C_u5BB9_u6A21_u5F0F"><span class="toc-number">2.3.</span> <span class="toc-text">IE 兼容模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u5C5E_u6027_u987A_u5E8F"><span class="toc-number">2.4.</span> <span class="toc-text">属性顺序</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#id_u548Cclass_u547D_u540D_u7EA6_u5B9A"><span class="toc-number">3.</span> <span class="toc-text">id和class命名约定</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#u7A7A_u683C/_u6807_u7B7E/_u6CE8_u91CA"><span class="toc-number">3.1.</span> <span class="toc-text">空格/标签/注释</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u6587_u4EF6_u5F15_u7528"><span class="toc-number">3.2.</span> <span class="toc-text">文件引用</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#u524D_u7AEF_u89C4_u8303_u4E4B_css__u89C4_u8303"><span class="toc-number">4.</span> <span class="toc-text">前端规范之 css 规范</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#z-index"><span class="toc-number">4.1.</span> <span class="toc-text">z-index</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#css_u5C5E_u6027_u987A_u5E8F"><span class="toc-number">4.2.</span> <span class="toc-text">css属性顺序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#css_u4E66_u5199_u987A_u5E8F_uFF1A"><span class="toc-number">4.3.</span> <span class="toc-text">css书写顺序：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#css_u5199_u6CD5"><span class="toc-number">4.4.</span> <span class="toc-text">css写法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u5E26_u524D_u7F00_u7684_u5C5E_u6027"><span class="toc-number">4.5.</span> <span class="toc-text">带前缀的属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u4F18_u5316css_u9009_u62E9_u5668"><span class="toc-number">4.6.</span> <span class="toc-text">优化css选择器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u907F_u514D_u4F7F_u7528_u901A_u914D_u89C4_u5219"><span class="toc-number">4.7.</span> <span class="toc-text">避免使用通配规则</span></a></li></ol></li></ol>
+		
+		</div>
+		
+		<h1 id="u901A_u7528_u89C4_u8303"><a href="#u901A_u7528_u89C4_u8303" class="headerlink" title="通用规范"></a>通用规范</h1><ul>
+<li><p>tab键用4个空格代替</p>
+<p>  因为在不同系统的编辑工具对tab解析不一样，windows下的tab键是占四个空格的位置，而在linux下会变成占八个空格的位置（除非你自己设定了tab键所占的位置长度）。</p>
+</li>
+<li><p>每个样式属性或者每句代码后加 “;”</p>
+<p>  方便压缩工具”断句”。</p>
+</li>
+<li><p>所有文件统一采用UTF-8无BOM编码。换行格式为 unix 格式。</p>
+</li>
+<li><p>文件和目录命名约定</p>
+<ul>
+<li>文件命名可读性强</li>
+<li>文件夹、文件的命名与命名空间应能代表代码功能，可读性强</li>
+<li>一律小写，必须是英文单词或者汉语拼音，以英语单词优先，多个单词以连字符 ( - ) 连接。 只能出现小写引文字母，数字和连字符。</li>
+<li>很多浏览器会将含有这些词的作为广告拦截： ad、ads、adv、banner、sponsor、gg、guangg、guanggao等 页面中尽量避免采用以上词汇来命名。</li>
+<li>该命令规范适用于所有前端维护的内容和相关目录。(html, css, js, png, gif, jpg, ico)。</li>
+</ul>
+</li>
+</ul>
+<h1 id="u524D_u7AEF_u89C4_u8303_u4E4BHTML_u89C4_u8303"><a href="#u524D_u7AEF_u89C4_u8303_u4E4BHTML_u89C4_u8303" class="headerlink" title="前端规范之HTML规范"></a>前端规范之HTML规范</h1><h2 id="u6587_u6863_u6A21_u677F"><a href="#u6587_u6863_u6A21_u677F" class="headerlink" title="文档模板"></a>文档模板</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;!DOCTYPE HTML&#62;&#10;&#60;html&#62;&#10;    &#60;head&#62;&#10;        &#60;meta charset=&#34;utf-8&#34; /&#62;&#10;        &#60;title&#62;Sample page&#60;/title&#62;&#10;        &#60;link rel=&#34;stylesheet&#34; href=&#34;css_example_url&#34; /&#62;&#10;        &#60;script src=&#34;js_example_url&#34;&#62;&#60;/script&#62;&#10;    &#60;/head&#62;&#10;    &#60;body&#62;&#10;        &#60;section id=&#34;page&#34;&#62;&#10;            &#60;header id=&#34;header&#34;&#62;&#10;            &#39029;&#22836;&#10;            &#60;/header&#62;&#10;            &#60;section id=&#34;body&#34;&#62;&#10;            &#20027;&#20307;&#10;            &#60;/section&#62;&#10;            &#60;footer id=&#34;footer&#34;&#62;&#10;            &#39029;&#23614;&#10;            &#60;/footer&#62;&#10;        &#60;/section&#62;&#10;        &#60;script&#62;&#10;        // &#20320;&#30340;&#20195;&#30721;&#10;        &#60;/script&#62;&#10;    &#60;/body&#62;&#10;&#60;/html&#62;</span><br></pre></td></tr></table></figure>
+<h2 id="HTML5_doctype"><a href="#HTML5_doctype" class="headerlink" title="HTML5 doctype"></a>HTML5 doctype</h2><p>为每个 HTML 页面的第一行添加标准模式（standard mode）的声明，这样能够确保在每个浏览器中拥有一致的展现。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;!DOCTYPE html&#62;&#10;&#60;html&#62;&#10;  &#60;head&#62;&#10;  &#60;/head&#62;&#10;&#60;/html&#62;</span><br></pre></td></tr></table></figure>
+<h2 id="IE__u517C_u5BB9_u6A21_u5F0F"><a href="#IE__u517C_u5BB9_u6A21_u5F0F" class="headerlink" title="IE 兼容模式"></a>IE 兼容模式</h2><p>IE 支持通过特定的 <meta> 标签来确定绘制当前页面所应该采用的 IE 版本。除非有强烈的特殊需求，否则最好是设置为 edge mode，从而通知 IE 采用其所支持的最新的模式。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;meta http-equiv=&#34;X-UA-Compatible&#34; content=&#34;IE=Edge&#34;&#62;</span><br></pre></td></tr></table></figure>
+<h2 id="u5C5E_u6027_u987A_u5E8F"><a href="#u5C5E_u6027_u987A_u5E8F" class="headerlink" title="属性顺序"></a>属性顺序</h2><p>HTML 属性应当按照以下给出的顺序依次排列，确保代码的易读性。</p>
+<ul>
+<li>class</li>
+<li>id 、 name</li>
+<li>data-*</li>
+<li>src、for、 type、 href</li>
+<li>title、alt</li>
+<li>aria-*、 role</li>
+<li>class用于标识高度可复用组件，因此应该排在首位。id 用于标识具体组件，应当谨慎使用（例如，页面内的书签），因此排在第二位。如：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;a class=&#34;...&#34; id=&#34;...&#34; data-modal=&#34;toggle&#34; href=&#34;#&#34;&#62;&#10;    Example link&#10;&#60;/a&#62;&#10;&#60;input class=&#34;form-control&#34; type=&#34;text&#34;&#62;&#10;&#60;img src=&#34;...&#34; alt=&#34;...&#34;&#62;</span><br></pre></td></tr></table></figure>
+<h1 id="id_u548Cclass_u547D_u540D_u7EA6_u5B9A"><a href="#id_u548Cclass_u547D_u540D_u7EA6_u5B9A" class="headerlink" title="id和class命名约定"></a>id和class命名约定</h1><ul>
+<li>id 和 class 的命名基本原则: 内容优先，表现为辅。首先根据内容来命名，如:#header,#footer,.main-nav.如根据内容无法找到合适的命名，可以再结合表现进行命名，如：col-main, col-sub, col-extra,blue-box</li>
+<li>id 和 class 的名称一律小写，多个单词以连字符连接，如： main-wrap</li>
+<li>id 和 class 的名称只能出现，小写字母，数字和连字符( - )(js钩子除外)</li>
+<li>id 和 class 的名称尽量使用英文单词命名,如确实找不到合适的单词，可以使用拼音，如：zhidao-com</li>
+<li>在不影响语意的情况下，id 和 class 的名称 可以适当使用缩写，如: col, nav,hd, bd, fd( 缩写只用来表示结构，不允许写任何样式)。不要自造缩写。 </li>
+<li>class 对于选中命名.selected;对于hover，支持伪类使用:hover，不支持的使用.hover，隐藏使用.hide 。</li>
+<li>id 和 class 的选择，如果只使用一次，使用id,如果使用多次使用class，如果需要和js交互，使用id,如果需要交互并且页面中有大量重复，请参见下一条。</li>
+<li>对于作为js钩子的 id 和 class 命名规则为以”J_“开头(J,象形钩子的形状)，后面加上原应有的命名的驼峰形式，在使用class的时候需要放在最前面。如:class=”J_SomeModContent some-mod-content”。（注意：钩子，不允许在css中定义任何的样式效果）</li>
+<li>很多浏览器会将含有这些词的作为广告拦截：ad、ads、adv、banner、sponsor、gg、guangg、guanggao等 页面中尽量避免采用以上词汇来命名。</li>
+<li>命名比较短的词，或者缩写的不允许直接定义样式，如：.title,.hd,.bd,.body.必须用上级节点进行限定,如：.recommend-mod .title。</li>
+</ul>
+<h2 id="u7A7A_u683C/_u6807_u7B7E/_u6CE8_u91CA"><a href="#u7A7A_u683C/_u6807_u7B7E/_u6CE8_u91CA" class="headerlink" title="空格/标签/注释"></a>空格/标签/注释</h2><ul>
+<li>嵌套元素应当缩进一次 —— 即4个空格；</li>
+<li>对于属性的定义，确保全部使用双引号，绝不要使用单引号；</li>
+<li>不要省略可选的结束标签，如：</li>,；
+<li>习惯性书写注释，方便日后维护；</li>
+</ul>
+<h2 id="u6587_u4EF6_u5F15_u7528"><a href="#u6587_u4EF6_u5F15_u7528" class="headerlink" title="文件引用"></a>文件引用</h2><ul>
+<li>页面中尽量不出现css内容(如果有样式， 则写到style标签中， 禁止写行内样式)</li>
+<li>每个页面中至多包括3个css文件，1个 产品级 1个模块级 1个页面级别</li>
+</ul>
+<h1 id="u524D_u7AEF_u89C4_u8303_u4E4B_css__u89C4_u8303"><a href="#u524D_u7AEF_u89C4_u8303_u4E4B_css__u89C4_u8303" class="headerlink" title="前端规范之 css 规范"></a>前端规范之 css 规范</h1><p>多选择器规则之间换行<br>当样式针对多个选择器时每个选择器占一行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/* &#25512;&#33616;&#30340;&#20889;&#27861; */&#10;a.btn,&#10;input.btn,&#10;input[type=&#34;button&#34;] &#123;&#10;......&#10;&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="z-index"><a href="#z-index" class="headerlink" title="z-index"></a>z-index</h2><ul>
+<li>自己写的z-index的值不能超过 100 (通用组的除外)</li>
+<li>页面中的元素内容的z-index不能超过10(popup poptip除外)，需要按照内容定义1 2 3 4不允许直接使用如1000，9999</li>
+<li>popup poptip的z-index需要按照内容使用 99以下，10以上的值（11,12,13，也可以小于10），不允许直接使用1000，9999之类大值</li>
+</ul>
+<h2 id="css_u5C5E_u6027_u987A_u5E8F"><a href="#css_u5C5E_u6027_u987A_u5E8F" class="headerlink" title="css属性顺序"></a>css属性顺序</h2><ul>
+<li>显示属性；</li>
+<li>元素位置；</li>
+<li>元素属性；</li>
+<li>元素内容属性；</li>
+</ul>
+<h2 id="css_u4E66_u5199_u987A_u5E8F_uFF1A"><a href="#css_u4E66_u5199_u987A_u5E8F_uFF1A" class="headerlink" title="css书写顺序："></a>css书写顺序：</h2><p>例子:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.header &#123;&#10;    /* &#26174;&#31034;&#23646;&#24615; */&#10;    display || visibility&#10;    list-style&#10;    position&#10;    top || right || bottom || left&#10;    z-index&#10;    clear&#10;    float&#10;    &#10;    /* &#33258;&#36523;&#23646;&#24615; */&#10;    width&#10;    max-width || min-width&#10;    height&#10;    max-height || min-height&#10;    overflow || clip&#10;    margin &#10;    padding&#10;    outline&#10;    border&#10;    background&#10;    &#10;    /* &#25991;&#26412;&#23646;&#24615; */&#10;    color&#10;    font&#10;    text-overflow&#10;    text-align&#10;    text-indent&#10;    line-height&#10;    white-space&#10;    vertical-align&#10;    cursor&#10;    content&#10;&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="css_u5199_u6CD5"><a href="#css_u5199_u6CD5" class="headerlink" title="css写法"></a>css写法</h2><ul>
+<li>小图片（必须）sprite 合并</li>
+<li>每个样式属性后加 “;”, 即使最后一个样式后都不要省略 “;”</li>
+<li>禁止将样式写为单行</li>
+</ul>
+<p>如:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.hotel-content &#123;margin: 10px; background-color: #efefef;&#125;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>单行显示不好注释，不好备注，这应该是压缩工具的活儿~</li>
+<li>禁止使用行内（inline）样式</li>
+<li>禁止使用”*”来选择元素<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/*&#21035;&#36825;&#26679;&#20889;*/&#10;* &#123;&#10;    margin: 0;&#10;    padding: 0;&#10;&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>这样写是没有必要的，一些元素在浏览器中默认有margin或padding值，但是只是部分元素，没有必要将所有元素的margin、padding值都置为0。</p>
+<h2 id="u5E26_u524D_u7F00_u7684_u5C5E_u6027"><a href="#u5E26_u524D_u7F00_u7684_u5C5E_u6027" class="headerlink" title="带前缀的属性"></a>带前缀的属性</h2><p>当使用特定浏览器带有前缀的属性时，通过缩进的方式，让每个属性的值在垂直方向对齐，这样便于多行编辑。如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.selector &#123;&#10;    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.15);&#10;            box-shadow: 0 1px 2px rgba(0,0,0,.15);&#10;&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="u4F18_u5316css_u9009_u62E9_u5668"><a href="#u4F18_u5316css_u9009_u62E9_u5668" class="headerlink" title="优化css选择器"></a>优化css选择器</h2><p>css选择器是从右边到左边进行匹配的。如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#header a &#123;&#10;    color: #444;&#10;&#125;</span><br></pre></td></tr></table></figure></p>
+<p>浏览器会检查整个文档中的所有链接，然后浏览器并不仅仅检查每个链接的父元素，还要遍历文档树去查找 id 为 header 的祖先元素，如果被评估的链接不是 header 的后代，那么浏览器就要向上一级遍历知道文档的根节点。针对此问题，有以下几个解决方法：</p>
+<h2 id="u907F_u514D_u4F7F_u7528_u901A_u914D_u89C4_u5219"><a href="#u907F_u514D_u4F7F_u7528_u901A_u914D_u89C4_u5219" class="headerlink" title="避免使用通配规则"></a>避免使用通配规则</h2><ul>
+<li>除了传统意义的通配选择符之外还包括相邻兄弟选择符, 子选择符, 后代选择符和属性选择符。推荐id、class和标签选择符。</li>
+<li>不要限定id选择符</li>
+<li>页面中指定一个id只能对应一个元素，所以没有必要添加额外添加限定符，如： div#header ，应该简化为： #header（提权的除外）。</li>
+<li>不要限定类选择器</li>
+<li>不要用具体的标签限定类选择符，而是根据实际情况对类名进行扩展。例如： ul.recommend ，改成 .recommend-list 或者 .list-recommend。</li>
+<li>让规则越具体越好</li>
+<li>尽量不要使用 ul li a 这样长的选择符，最好使用 .list-anchor 之类的选择符。</li>
+<li>避免使用后代选择符</li>
+<li>通常处理后代选择符开销最高，使用字选择符更高效，最好使用下一条代替。</li>
+<li>避免使用标签子选择符</li>
+<li>如果有如： #header &gt; li &gt; a，这样基于子标签的自选择符，那么应该使用一个class来关联每个元素如： .header-anchor。尽量使用具体的类代替子选择符。</li>
+<li>为了 性能原因 ， 请避免元素选择器和类选择器以及 id 选择器混用;例如<br>/<em> 不推荐 </em>/<br>ul#example {}<br>div.error {}<br>/<em> 推荐 </em>/<br>#example {}<br>.error {}<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#10;# &#21069;&#31471;&#35268;&#33539;&#20043;JavaScript&#10;&#10;## &#21629;&#21517;&#35268;&#33539;&#10;&#10;* &#20989;&#25968;&#21629;&#21517;, &#39548;&#23792;&#21629;&#21517;&#26041;&#24335;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>function funName() {</p>
+<p>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#10;* &#24120;&#37327;, &#22823;&#20889;</span><br></pre></td></tr></table></figure></p>
+<p>var VARIABLENAME<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#10;* &#21464;&#37327;, &#39548;&#23792;&#21629;&#21517;</span><br></pre></td></tr></table></figure></p>
+<p>var variableName<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#10;## &#32534;&#30721;&#35268;&#21017;&#10;&#10;* &#25490;&#29256;&#32553;&#36827;, &#37319;&#29992;&#32479;&#19968;&#30340;&#32553;&#36827;&#26041;&#24335;&#25490;&#29256;&#20195;&#30721;&#12290;&#32553;&#36827;&#20026;4&#20010;&#31354;&#26684;</span><br></pre></td></tr></table></figure></p>
+<p>if(condition1 || condition2) {<br>    action1;<br>} else if (condition3 &amp;&amp; condition4) {<br>    action2;<br>} else {<br>    default action;<br>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">* &#31354;&#26684;, &#20851;&#38190;&#35789;&#12289;&#26465;&#20214;&#25324;&#24359;&#21518;&#38754;&#20351;&#29992;&#31354;&#26684;&#65307;&#36816;&#31639;&#25805;&#20316;&#31526;&#21495;&#20004;&#20391;&#20351;&#29992;&#31354;&#26684;&#65307;&#35821;&#21477;&#20998;&#21106;&#31526;&#8216;,&#8217;&#21518;&#38754;&#20351;&#29992;&#31354;&#26684;</span><br></pre></td></tr></table></figure></p>
+<p>var name[空格]=[空格]value;<br>if<a href="/a,[空格]b">空格</a> {<br>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#10;* &#24038;&#22823;&#25324;&#21495;&#34;&#123;&#34;&#23621;&#34892;&#23614;&#65292;&#65307;&#21491;&#22823;&#25324;&#21495;&#34;&#125;&#34;&#21333;&#29420;&#21344;&#19968;&#34892;&#65292;&#23621;&#34892;&#39318;</span><br></pre></td></tr></table></figure></p>
+<p>if (a &amp;&amp; b) {<br>    // code<br>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#10;* &#21477;&#26411;&#24517;&#39035;&#29992;&#20998;&#21495;&#32467;&#23614;</span><br></pre></td></tr></table></figure></p>
+<p>var fn = function () {</p>
+<p>};//这里没有分号的话，脚本解析器会报错！！！<br>(function () {<br>    alert(1);<br>})();<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">* &#21333;&#34892;&#36807;&#38271;&#24212;&#22312;&#36866;&#24403;&#20301;&#32622;&#20104;&#20197;&#25442;&#34892;,&#22686;&#24378;&#21487;&#35835;&#24615;&#10;&#10;- &#26465;&#20214;&#35821;&#21477;&#25324;&#21495;&#20013;&#30340;&#26465;&#20214;&#33509;&#36807;&#38271;&#65292; &#25240;&#34892;&#22312;&#25805;&#20316;&#31526;&#21518;&#36827;&#34892;&#65292;&#25240;&#34892;&#19982;&#39318;&#34892;&#31354;&#20986;&#20004;&#20010;Tab&#12290;&#10;- &#23383;&#31526;&#20018;&#36807;&#38271;&#65292;&#36825;&#34892;&#21518;&#20197; &#8220;+&#8221;&#25340;&#25509;&#65292; &#22312;&#8220;+&#8221;&#21518;&#25240;&#34892;&#65292;&#25240;&#34892;&#19982;&#39318;&#34892;&#25991;&#23383;&#20445;&#25345;&#32437;&#21521;&#23545;&#40784;&#12290;</span><br></pre></td></tr></table></figure></p>
+<p>if (condition1 &amp;&amp;<br>        condition2) {<br>    var str = “i am so long, haha haha,haha,haha” +<br>              “e , 我是折行，请与上一行的内容保持纵向对齐”<br>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#10;* if&#12289;while&#12289;for&#12289;do&#35821;&#21477;&#30340;&#25191;&#34892;&#20307;&#24635;&#26159;&#29992;&#34;&#123;&#34;&#21644;&#34;&#125;&#34;&#25324;&#36215;&#26469;&#65292;&#21363;&#20351;&#22312;&#20854;&#32467;&#26500;&#20307;&#20869;&#21482;&#26377;&#19968;&#26465;&#35821;&#21477;</span><br></pre></td></tr></table></figure></p>
+<p>if (s==100) {<br>    alert(‘shit!’);<br>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#10;&#10;* &#35821;&#27861;&#24847;&#20041;&#30456;&#20114;&#29420;&#31435;&#30340;&#20195;&#30721;&#23558;&#29992;&#31354;&#34892;&#20998;&#38548;</span><br></pre></td></tr></table></figure></p>
+<p>a++; b++;   //！！！避免同一行书写两个表达式<br>if (a &gt; b) {<br>    value = a;  //行间不用空行间隔<br>}</p>
+<p>var variableName = value;   //与上一代码行使用空行间隔<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#10;## &#27880;&#37322;&#35268;&#33539;&#10;&#10;* &#25991;&#20214;&#27880;&#37322;&#10;&#10;&#25991;&#20214;&#27880;&#37322;&#35201;&#26631;&#26126;&#20316;&#32773;&#12289;&#25991;&#20214;&#29256;&#26412;&#12289;&#21019;&#24314;/&#20462;&#25913;&#26102;&#38388;&#12289;&#37325;&#22823;&#29256;&#26412;&#20462;&#25913;&#35760;&#24405;&#10;&#10;&#20989;&#25968;&#25551;&#36848;&#10;&#10;&#25991;&#20214;&#29256;&#26412;&#12289;&#21019;&#24314;&#25110;&#32773;&#20462;&#25913;&#26102;&#38388;&#12289;&#21151;&#33021;&#12289;&#20316;&#32773;&#10;&#10; /**&#10; * @file Image.js&#10; * @description &#21151;&#33021;&#35814;&#32454;&#25551;&#36848;&#10; */&#10;&#20989;&#25968;&#25110;&#32773;&#31867;&#31561;&#37117;&#35201;&#28155;&#21152;&#22836;&#25551;&#36848;</span><br></pre></td></tr></table></figure></p>
+<p> /**</p>
+<ul>
+<li>简述<br>*</li>
+<li>功能详细描述<br>*</li>
+<li>@param <string> arg1 参数1</string></li>
+<li>@param <number> arg2 参数2，默认为0</number></li>
+<li>@return <boolean> 看xxx是否成功<br>*/<br>function fooFunction (arg1, arg2) {<br>}<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#10;* &#25805;&#20316;&#27880;&#37322;&#10;&#10;&#21333;&#34892;&#27880;&#37322;,&#20889;&#22312;&#20195;&#30721;&#19978;&#38754;&#10;&#22810;&#34892;&#27880;&#37322;</span><br></pre></td></tr></table></figure>
+</boolean></li>
+</ul>
+<p>/*</p>
+<ul>
+<li>注释操作说明<br>*/<br>for( var i = 0; i &lt; obj.lenght; i++) {<br>}<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#10;&#10;### &#27880;&#37322;&#26631;&#31614;&#21442;&#32771;&#10;&#10;- @addon&#9; &#25226;&#19968;&#20010;&#20989;&#25968;&#26631;&#35760;&#20026;&#21478;&#19968;&#20010;&#20989;&#25968;&#30340;&#25193;&#24352;&#65292;&#21478;&#19968;&#20010;&#20989;&#25968;&#30340;&#23450;&#20041;&#19981;&#22312;&#28304;&#25991;&#20214;&#20013;&#12290;&#10;- @argument&#9; &#29992;&#22823;&#25324;&#21495;&#20013;&#30340;&#33258;&#21464;&#37327;&#31867;&#22411;&#25551;&#36848;&#19968;&#20010;&#33258;&#21464;&#37327;&#12290;&#10;- @author&#9; &#20989;&#25968;/&#31867;&#20316;&#32773;&#30340;&#22995;&#21517;&#12290;&#10;- @base&#9; &#22914;&#26524;&#31867;&#26159;&#32487;&#25215;&#24471;&#26469;&#65292;&#23450;&#20041;&#25552;&#20379;&#30340;&#31867;&#21517;&#31216;&#12290;&#10;- @class&#9; &#29992;&#26469;&#32473;&#19968;&#20010;&#31867;&#25552;&#20379;&#25551;&#36848;&#65292;&#19981;&#33021;&#29992;&#20110;&#26500;&#36896;&#22120;&#30340;&#25991;&#26723;&#20013;&#12290;&#10;- @constructor&#9; &#25551;&#36848;&#19968;&#20010;&#31867;&#30340;&#26500;&#36896;&#22120;&#12290;&#10;- @deprecated&#9; &#34920;&#31034;&#20989;&#25968;/&#31867;&#24050;&#34987;&#24573;&#30053;&#12290;&#10;- @exception&#9; &#25551;&#36848;&#20989;&#25968;/&#31867;&#20135;&#29983;&#30340;&#19968;&#20010;&#38169;&#35823;&#12290;&#10;- @exec&#9;&#10;- @extends&#9; &#34920;&#31034;&#27966;&#29983;&#20986;&#24403;&#21069;&#31867;&#30340;&#21478;&#19968;&#20010;&#31867;&#12290;&#10;- @fileoverview&#9; &#34920;&#31034;&#25991;&#26723;&#22359;&#23558;&#29992;&#20110;&#25551;&#36848;&#24403;&#21069;&#25991;&#20214;&#12290;&#36825;&#20010;&#26631;&#31614;&#24212;&#35813;&#25918;&#22312;&#20854;&#23427;&#20219;&#20309;&#26631;&#31614;&#20043;&#21069;&#12290;&#10;- @final&#9; &#25351;&#20986;&#20989;&#25968;/&#31867;&#12290;&#10;- @ignore&#9; &#35753;jsdoc&#24573;&#35270;&#38543;&#21518;&#30340;&#20195;&#30721;&#12290;&#10;- @link&#9; &#31867;&#20284;&#20110;@link&#26631;&#31614;&#65292;&#29992;&#20110;&#36830;&#25509;&#35768;&#22810;&#20854;&#23427;&#39029;&#38754;&#12290;&#10;- @member&#9; &#23450;&#20041;&#38543;&#21518;&#30340;&#20989;&#25968;&#20026;&#25552;&#20379;&#30340;&#31867;&#21517;&#31216;&#30340;&#19968;&#20010;&#25104;&#21592;&#12290;&#10;- @param&#9; &#29992;&#22823;&#25324;&#21495;&#20013;&#30340;&#21442;&#25968;&#31867;&#22411;&#25551;&#36848;&#19968;&#20010;&#21442;&#25968;&#12290;&#10;- @private&#9; &#34920;&#31034;&#20989;&#25968;/&#31867;&#20026;&#31169;&#26377;&#65292;&#19981;&#24212;&#21253;&#21547;&#22312;&#29983;&#25104;&#30340;&#25991;&#26723;&#20013;&#12290;&#10;- @requires&#9; &#34920;&#31034;&#38656;&#35201;&#21478;&#19968;&#20010;&#20989;&#25968;/&#31867;&#12290;&#10;- @return&#9; &#25551;&#36848;&#19968;&#20010;&#20989;&#25968;&#30340;&#36820;&#22238;&#20540;&#12290;&#10;- @returns&#9; &#25551;&#36848;&#19968;&#20010;&#20989;&#25968;&#30340;&#36820;&#22238;&#20540;&#12290;&#10;- @see&#9; &#36830;&#25509;&#21040;&#21478;&#19968;&#20010;&#20989;&#25968;/&#31867;&#12290;&#10;- @throws&#9; &#25551;&#36848;&#20989;&#25968;/&#31867;&#21487;&#33021;&#20135;&#29983;&#30340;&#38169;&#35823;&#12290;&#10;- @type&#9; &#25351;&#23450;&#20989;&#25968;/&#25104;&#21592;&#30340;&#36820;&#22238;&#31867;&#22411;&#12290;&#10;- @version&#9; &#20989;&#25968;/&#31867;&#30340;&#29256;&#26412;&#21495;&#12290;&#10;&#10;## &#26465;&#20214;&#21028;&#26029;&#30340;&#38519;&#38449;&#10;&#10;&#22312;if&#21028;&#26029;&#20013;&#65292;&#20351;&#29992;===&#20316;&#27604;&#36739;,&#36991;&#20813;&#25481;&#20837;==&#36896;&#25104;&#30340;&#38519;&#38449;&#10;&#10;&#22312;&#26465;&#20214;&#21028;&#26029;&#26102;&#65292;&#36825;&#26679;&#30340;&#19968;&#20123;&#20540;&#34920;&#31034;false&#65306;null&#65292;undefined&#65292;&#23383;&#31526;&#20018;&#39;&#39;&#65292;&#25968;&#23383;0&#65292;NaN&#10;&#10;&#32780;&#22312;==&#26102;&#65292;&#21017;&#20250;&#26377;&#19968;&#20123;&#35753;&#20154;&#38590;&#20197;&#29702;&#35299;&#30340;&#38519;&#38449;,&#22914;&#65306;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>(function () {<br>    var undefined;<br>    undefined == null; // true<br>    1 == true; //true<br>    2 == true; // false<br>    0 == false; // true<br>    0 == ‘’; // true<br>    NaN == NaN;// false<br>    [] == false; // true<br>    [] == ![]; // true<br>})();<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#23545;&#20110;&#19981;&#21516;&#31867;&#22411;&#30340; == &#21028;&#26029;&#65292;&#26377;&#36825;&#26679;&#19968;&#20123;&#35268;&#21017;&#65292;&#39034;&#24207;&#33258;&#19978;&#32780;&#19979;&#65306;&#10;&#10;1.undefined&#19982;null&#30456;&#31561;&#10;2.&#19968;&#20010;&#26159;number&#19968;&#20010;&#26159;string&#26102;&#65292;&#20250;&#23581;&#35797;&#23558;string&#36716;&#25442;&#20026;number&#10;3.&#23581;&#35797;&#23558;boolean&#36716;&#25442;&#20026;number&#65292;0&#25110;1&#10;4.&#23581;&#35797;&#23558;Object&#36716;&#25442;&#25104;number&#25110;string&#65292;&#21462;&#20915;&#20110;&#21478;&#22806;&#19968;&#20010;&#23545;&#27604;&#37327;&#30340;&#31867;&#22411;&#10;&#25152;&#20197;&#65292;&#23545;&#20110;0&#12289;&#31354;&#23383;&#31526;&#20018;&#30340;&#21028;&#26029;&#65292;&#24314;&#35758;&#20351;&#29992; === &#12290;===&#20250;&#20808;&#21028;&#26029;&#20004;&#36793;&#30340;&#20540;&#31867;&#22411;&#65292;&#31867;&#22411;&#19981;&#21305;&#37197;&#26102;&#20026;false&#12290;&#10;&#10;## &#31616;&#21333;&#31867;&#22411;&#36716;&#25442;&#10;&#10;* number to string&#30340;&#36716;&#25442;&#65292;&#24314;&#35758;&#20351;&#29992; 1 + &#39;&#39;&#25110;String(1)&#65292;&#19981;&#20351;&#29992;new String(1)&#25110;1.toString()&#30340;&#26041;&#24335;&#12290;&#10;* string to number&#30340;&#36716;&#25442;&#65292;&#24314;&#35758;&#20351;&#29992;parseInt&#65292;&#24517;&#39035;&#26174;&#24335;&#25351;&#23450;&#31532;&#20108;&#20010;&#21442;&#25968;&#30340;&#36827;&#21046;&#12290;&#19979;&#38754;&#30340;&#20363;&#23376;&#23637;&#31034;&#20102;&#19981;&#25351;&#23450;&#36827;&#21046;&#30340;&#39118;&#38505;&#65306;</span><br></pre></td></tr></table></figure></p>
+<p>parseInt(‘08’); // 0<br>parseInt(‘08’, 10); //8<br>````</p>
+<ul>
+<li>float to integer的转换，建议使用Math.floor/Math.round/Math.ceil方法，不使用parseInt。</li>
+</ul>
+<p>字符串拼接<br>字符串拼接，应使用数组保存字符串片段，使用时调用join方法。避免使用+或+=的方式拼接较长的字符串，每个字符串都会使用一个小的内存片段，过多的内存片段会影响性能。如:</p>
+<p>// 不好的拼接方式，+=</p>
+<p>var str = ‘’;<br>for (var i = 0, len = list.length; i &lt; len; i++) {<br>    str+= ‘<div>‘ + list[i] + ‘</div>‘;<br>}<br>dom.innerHTML = str;</p>
+<p>// 正确拼接方式，Array的push+join</p>
+<p>var str = [];<br>for (var i = 0, len = list.length; i &lt; len; i++) {<br>    str.push(‘<div>‘+ list[i] + ‘</div>‘);<br>}<br>dom.innerHTML = str.join(‘’);<br>获取元素</p>
+<p>获取单个元素</p>
+<p>通常，我们使用document.getElementById来获取dom元素，避免使用document.all。document.getElementById是标准方法，兼容所有浏览器</p>
+<p>ie浏览器会混淆元素的id和name属性，document.getElementById可能获得不期望的元素。<br>在对元素的id与name属性的命名需要非常小心，应使用不同的命名法。<br>下面是一个name与id冲突的例子：</p>
+<p><input type="text" name="test"> <div id="test"></div></p>
+<p><button onclick="alert(document.getElementById('test').tagName)"></button><br><!-- ie6下为INPUT --></p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/前端/">前端</a>
+</div>
+
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://www.fflove.top/post/webcodingstyle/" data-title="Web 前端编码规范 | 如初见" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/post/css-text-ellipsis/" title="CSS 文字过长超出使用省略号">
+  <strong>上一篇：</strong><br/>
+  <span>
+  CSS 文字过长超出使用省略号</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/post/javascript-replace/"  title="String.prototype.replace() 用法">
+ <strong>下一篇：</strong><br/> 
+ <span>String.prototype.replace() 用法
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="post/webcodingstyle/" data-title="Web 前端编码规范" data-url="http://www.fflove.top/post/webcodingstyle/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#u901A_u7528_u89C4_u8303"><span class="toc-number">1.</span> <span class="toc-text">通用规范</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#u524D_u7AEF_u89C4_u8303_u4E4BHTML_u89C4_u8303"><span class="toc-number">2.</span> <span class="toc-text">前端规范之HTML规范</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#u6587_u6863_u6A21_u677F"><span class="toc-number">2.1.</span> <span class="toc-text">文档模板</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTML5_doctype"><span class="toc-number">2.2.</span> <span class="toc-text">HTML5 doctype</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IE__u517C_u5BB9_u6A21_u5F0F"><span class="toc-number">2.3.</span> <span class="toc-text">IE 兼容模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u5C5E_u6027_u987A_u5E8F"><span class="toc-number">2.4.</span> <span class="toc-text">属性顺序</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#id_u548Cclass_u547D_u540D_u7EA6_u5B9A"><span class="toc-number">3.</span> <span class="toc-text">id和class命名约定</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#u7A7A_u683C/_u6807_u7B7E/_u6CE8_u91CA"><span class="toc-number">3.1.</span> <span class="toc-text">空格/标签/注释</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u6587_u4EF6_u5F15_u7528"><span class="toc-number">3.2.</span> <span class="toc-text">文件引用</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#u524D_u7AEF_u89C4_u8303_u4E4B_css__u89C4_u8303"><span class="toc-number">4.</span> <span class="toc-text">前端规范之 css 规范</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#z-index"><span class="toc-number">4.1.</span> <span class="toc-text">z-index</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#css_u5C5E_u6027_u987A_u5E8F"><span class="toc-number">4.2.</span> <span class="toc-text">css属性顺序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#css_u4E66_u5199_u987A_u5E8F_uFF1A"><span class="toc-number">4.3.</span> <span class="toc-text">css书写顺序：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#css_u5199_u6CD5"><span class="toc-number">4.4.</span> <span class="toc-text">css写法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u5E26_u524D_u7F00_u7684_u5C5E_u6027"><span class="toc-number">4.5.</span> <span class="toc-text">带前缀的属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u4F18_u5316css_u9009_u62E9_u5668"><span class="toc-number">4.6.</span> <span class="toc-text">优化css选择器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u907F_u514D_u4F7F_u7528_u901A_u914D_u89C4_u5219"><span class="toc-number">4.7.</span> <span class="toc-text">避免使用通配规则</span></a></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/js/" title="js">js<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/php/" title="php">php<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/前端/" title="前端">前端<sup>18</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/工具/" title="工具">工具<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/杂项/" title="杂项">杂项<sup>3</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/js/" title="js">js<sup>7</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Javascript-Design-Pattern/" title="Javascript Design Pattern">Javascript Design Pattern<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Node-js-入门经典/" title="Node.js 入门经典">Node.js 入门经典<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/music/" title="music">music<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/css/" title="css">css<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/test/" title="test">test<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/jquery/" title="jquery">jquery<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/php/" title="php">php<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/微信开发/" title="微信开发">微信开发<sup>1</sup></a></li>
+			
+		
+			
+		
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://coderq.com" target="_blank" title="一个面向程序员交流分享的新一代社区">码农圈</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<section class="info">
+		<p> 人生若只如初见 <br/>
+			何时何事，保持初见的感觉，怦然心动，热情如火</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		<a href="https://github.com/https://github.com/zfandf" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<a href="mailto:zfandf@163.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		
+		<a href="/about" target="_blank" title="Fannie">Fannie</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"ffloveblog"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
