@@ -31,7 +31,7 @@ function formatTime(time, format) {
  */
 function formatTime(time, format) {
     format = format || &amp;apos;yyyy-MM-dd">
-<meta property="og:updated_time" content="2016-02-02T08:59:28.194Z">
+<meta property="og:updated_time" content="2016-02-03T08:21:06.576Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="javascript 时间戳与日期互转">
 <meta name="twitter:description" content="时间戳转换成日期/**
@@ -157,7 +157,7 @@ function formatTime(time, format) {
          &apos;yyyy.MM.dd hh:mm:ss&apos;
  * @returns 十位时间戳 
  **/
-function dateToTimestamp(date) {
+function dateToTimestamp(date) {  
     var arr = date.replace(/ |:|\/|\./g, &apos;-&apos;).split(&apos;-&apos;);
     date = new Date(arr[0], arr[1] - 1, arr[2], arr[3]||0, arr[4]||0, arr[5]||0);
     return Date.parse(date) / 1000;
