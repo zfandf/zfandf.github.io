@@ -1,0 +1,553 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>jQuery 自定义插件 | 如初见</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Fannie">
+    
+
+    
+    <meta name="description" content="jQuery 自定义插件基本要点
+命名: 以 jquery.[插件名].js 命令
+所有的对象方法都附加到 jQuery.fn 对象上, 所有的全局函数都附加到 jQuery 上.
+this 指向
+this.each
+为了稳妥, 可以在插件头部各添加分号
+插件应该返回一个 jQuery 对象, 以保证插件的链式操作. 除非插件需要返回的是一些需要获取的量, 比如字符串或者数组.
+在插件中, 尽量不">
+<meta property="og:type" content="article">
+<meta property="og:title" content="jQuery 自定义插件">
+<meta property="og:url" content="http://www.fflove.top/post/jquery-plugns/index.html">
+<meta property="og:site_name" content="如初见">
+<meta property="og:description" content="jQuery 自定义插件基本要点
+命名: 以 jquery.[插件名].js 命令
+所有的对象方法都附加到 jQuery.fn 对象上, 所有的全局函数都附加到 jQuery 上.
+this 指向
+this.each
+为了稳妥, 可以在插件头部各添加分号
+插件应该返回一个 jQuery 对象, 以保证插件的链式操作. 除非插件需要返回的是一些需要获取的量, 比如字符串或者数组.
+在插件中, 尽量不">
+<meta property="og:updated_time" content="2016-02-02T03:21:07.942Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="jQuery 自定义插件">
+<meta name="twitter:description" content="jQuery 自定义插件基本要点
+命名: 以 jquery.[插件名].js 命令
+所有的对象方法都附加到 jQuery.fn 对象上, 所有的全局函数都附加到 jQuery 上.
+this 指向
+this.each
+为了稳妥, 可以在插件头部各添加分号
+插件应该返回一个 jQuery 对象, 以保证插件的链式操作. 除非插件需要返回的是一些需要获取的量, 比如字符串或者数组.
+在插件中, 尽量不">
+
+    
+    <link rel="alternative" href="/atom.xml" title="如初见" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/f.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/f.ico">
+    <link rel="apple-touch-icon-precomposed" href="/img/f.ico">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/f.png" alt="如初见" title="如初见"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="如初见">如初见</a></h1>
+				<h2 class="blog-motto">人生若只如初见</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">主页 | Home</a></li>
+					
+						<li><a href="/archives">归档 | Archives</a></li>
+					
+						<li><a href="/about">简介 | About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:www.fflove.top">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/post/jquery-plugns/" title="jQuery 自定义插件" itemprop="url">jQuery 自定义插件</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Fannie" target="_blank" itemprop="author">Fannie</a>
+		
+  <p class="article-time">
+    <time datetime="2015-01-27T00:40:51.000Z" itemprop="datePublished"> 发表于 2015-01-27</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#jQuery__u81EA_u5B9A_u4E49_u63D2_u4EF6"><span class="toc-number">1.</span> <span class="toc-text">jQuery 自定义插件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u57FA_u672C_u8981_u70B9"><span class="toc-number"></span> <span class="toc-text">基本要点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u57FA_u672C_u683C_u5F0F"><span class="toc-number"></span> <span class="toc-text">基本格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u63D2_u4EF6_u7C7B_u578B"><span class="toc-number"></span> <span class="toc-text">插件类型</span></a>
+		
+		</div>
+		
+		<h3 id="jQuery__u81EA_u5B9A_u4E49_u63D2_u4EF6"><a href="#jQuery__u81EA_u5B9A_u4E49_u63D2_u4EF6" class="headerlink" title="jQuery 自定义插件"></a>jQuery 自定义插件</h3><h2 id="u57FA_u672C_u8981_u70B9"><a href="#u57FA_u672C_u8981_u70B9" class="headerlink" title="基本要点"></a>基本要点</h2><ul>
+<li>命名: 以 jquery.[插件名].js 命令</li>
+<li>所有的对象方法都附加到 jQuery.fn 对象上, 所有的全局函数都附加到 jQuery 上.</li>
+<li>this 指向</li>
+<li>this.each</li>
+<li>为了稳妥, 可以在插件头部各添加分号</li>
+<li>插件应该返回一个 jQuery 对象, 以保证插件的链式操作. 除非插件需要返回的是一些需要获取的量, 比如字符串或者数组.</li>
+<li>在插件中, 尽量不要使用 $ 作为 jQuery 对象的别名. 如果使用闭包来回避这个问题.</li>
+</ul>
+<h2 id="u57FA_u672C_u683C_u5F0F"><a href="#u57FA_u672C_u683C_u5F0F" class="headerlink" title="基本格式"></a>基本格式</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">;(<span class="function"><span class="keyword">function</span>(<span class="params">$</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 代码块</span></span><br><span class="line">&#125;)(jQuery);</span><br></pre></td></tr></table></figure>
+<h2 id="u63D2_u4EF6_u7C7B_u578B"><a href="#u63D2_u4EF6_u7C7B_u578B" class="headerlink" title="插件类型"></a>插件类型</h2><ul>
+<li>封装 jQuery 对象方法的插件</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">;(function($) &#123;&#10;    $.fn.extend(&#123;&#10;        &#39;&#23545;&#35937;&#26041;&#27861;&#21517;&#39;: function() &#123;&#10;            // &#26041;&#27861;&#20869;&#23481;&#10;        &#125;&#10;    &#125;);&#10;&#125;)(jQuery);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>封装全局函数的插件</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">;(function($) &#123;&#10;    $.extend(&#123;&#10;        &#39;&#26041;&#27861;&#21517;&#39;: function() &#123;&#10;            // &#26041;&#27861;&#20869;&#23481;&#10;        &#125;&#10;    &#125;);&#10;&#125;)(jQuery);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>自定义选择器<br>  这个实验了一下, 只有 jQuery1.7.2可用, 故而..</li>
+</ul>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/前端/">前端</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/jquery/">jquery</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://www.fflove.top/post/jquery-plugns/" data-title="jQuery 自定义插件 | 如初见" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/post/js-apply-call/" title="关于 JavaScript 中 apply 和 call">
+  <strong>上一篇：</strong><br/>
+  <span>
+  关于 JavaScript 中 apply 和 call</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/post/js-base64decode/"  title="JavaScript Base64编码转换">
+ <strong>下一篇：</strong><br/> 
+ <span>JavaScript Base64编码转换
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="post/jquery-plugns/" data-title="jQuery 自定义插件" data-url="http://www.fflove.top/post/jquery-plugns/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#jQuery__u81EA_u5B9A_u4E49_u63D2_u4EF6"><span class="toc-number">1.</span> <span class="toc-text">jQuery 自定义插件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u57FA_u672C_u8981_u70B9"><span class="toc-number"></span> <span class="toc-text">基本要点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u57FA_u672C_u683C_u5F0F"><span class="toc-number"></span> <span class="toc-text">基本格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u63D2_u4EF6_u7C7B_u578B"><span class="toc-number"></span> <span class="toc-text">插件类型</span></a>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/js/" title="js">js<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/php/" title="php">php<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/前端/" title="前端">前端<sup>18</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/工具/" title="工具">工具<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/杂项/" title="杂项">杂项<sup>3</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/js/" title="js">js<sup>7</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Javascript-Design-Pattern/" title="Javascript Design Pattern">Javascript Design Pattern<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Node-js-入门经典/" title="Node.js 入门经典">Node.js 入门经典<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/music/" title="music">music<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/css/" title="css">css<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/test/" title="test">test<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/jquery/" title="jquery">jquery<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/php/" title="php">php<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/微信开发/" title="微信开发">微信开发<sup>1</sup></a></li>
+			
+		
+			
+		
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://coderq.com" target="_blank" title="一个面向程序员交流分享的新一代社区">码农圈</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<section class="info">
+		<p> 人生若只如初见 <br/>
+			何时何事，保持初见的感觉，怦然心动，热情如火</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		<a href="https://github.com/https://github.com/zfandf" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<a href="mailto:zfandf@163.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		
+		<a href="/about" target="_blank" title="Fannie">Fannie</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"ffloveblog"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
